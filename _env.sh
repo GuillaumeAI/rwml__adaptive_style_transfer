@@ -35,3 +35,6 @@ if [ -f $hostenvfile ]; then
 else
     echo " ./$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
 fi
+
+echo "Environment is loaded"
+
