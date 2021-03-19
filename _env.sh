@@ -19,6 +19,7 @@ export containermodelroot="/data/styleCheckpoint"
 
 # Infrastructure related
 export containertag="guillaumeai/ast:runwayml_picasso_2103180139"
+export containertag="guillaumeai/ast:server-2103180139"
 
 export serverport=8000
 export serverhostport=9000
