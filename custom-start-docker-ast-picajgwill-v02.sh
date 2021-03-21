@@ -13,7 +13,7 @@ export modelname="model_gia-young-picasso-201210_new-135000"
 
 
 
-serverhostport=9000
+export serverhostport=9000
 
 
 source __launch-docker.sh

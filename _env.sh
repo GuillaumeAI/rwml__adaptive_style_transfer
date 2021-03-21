@@ -24,7 +24,13 @@ export containertag="guillaumeai/server:ast"
 
 export serverport=8000
 export serverhostport=9000
+
+# docker
 export docker_cmd="docker run -it --rm "
+export docker_cmd="docker run -d --rm "
+
+
+
 export run_cmd="bash"
 
 
