@@ -35,7 +35,7 @@ if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated 
 if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
 
 
-
+# Deprecating, the container starts its own command
 export run_cmd="bash"
 
 
