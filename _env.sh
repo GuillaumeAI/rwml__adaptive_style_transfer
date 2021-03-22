@@ -22,6 +22,8 @@ export containermodelroot="/data/styleCheckpoint"
 export containerns="guillaumeai"
 export containerreponame="server"
 export containerrepotag="ast"
+# Testing the new version
+export containerrepotag="ast-2103220014"
 export containerrepo="$containerns/$containerreponame"
 #export containertag="guillaumeai/server:ast"
 export containertag="$containerrepo:$containerrepotag"
