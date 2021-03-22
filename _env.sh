@@ -26,8 +26,11 @@ export serverport=8000
 export serverhostport=9000
 
 # docker
-export docker_cmd="docker run -it --rm "
-export docker_cmd="docker run -d --rm "
+#export docker_cmd="docker run -it --rm "
+## Set to desired Docker running Mode (it:iteractive, d:background)
+export docker_mode="it"
+export docker_mode="d"
+export docker_cmd="docker run -$docker_mode --rm "
 
 
 
