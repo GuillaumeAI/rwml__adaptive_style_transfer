@@ -31,6 +31,8 @@ export serverhostport=9000
 export docker_mode="it"
 export docker_mode="d"
 export docker_cmd="docker run -$docker_mode --rm "
+if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
+if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
 
 
 
