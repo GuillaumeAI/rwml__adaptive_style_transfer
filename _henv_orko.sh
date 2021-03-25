@@ -1,15 +1,9 @@
-
-
-
-
+# local Mount
 ## Environment path related
 export modelmountpath="/a/model/models"
-
-
-
-export hostdns="as.guillaumeisabelle.com"
-
-
+export hostdns="orko.guillaumeisabelle.com"
+#export callprotocol="http"
+#export callurl="$callprotocol://$hostdns:$serverhostport"
 
 
 # docker
@@ -17,3 +11,5 @@ export hostdns="as.guillaumeisabelle.com"
 ## Set to desired Docker running Mode (it:iteractive, d:background)
 #export docker_mode="it"
 export docker_mode="d"
+
+

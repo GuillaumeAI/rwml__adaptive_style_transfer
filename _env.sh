@@ -10,7 +10,8 @@ export modelname="model_gia-ds-wassily_kandinsky_v1_210310_new-210ik"
 # ARTIST : Probably dont change anything bellow 
 
 ## Environment path related
-export modelmountpath="/mnt/c/model/models"
+
+export modelmountpath="/a/model/models"
 
 
 ## Container related
@@ -32,14 +33,16 @@ export containertag="$containerrepo:$containerrepotag"
 export serverport=8000
 export serverhostport=9000
 
+export callprotocol="http"
+
 # docker
 #export docker_cmd="docker run -it --rm "
 ## Set to desired Docker running Mode (it:iteractive, d:background)
-export docker_mode="it"
-export docker_mode="d"
-export docker_cmd="docker run -$docker_mode --rm "
-if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
-if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
+#export docker_mode="it"
+#export docker_mode="d"
+#export docker_cmd="docker run -$docker_mode --rm "
+#if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
+#if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
 
 
 # Deprecating, the container starts its own command
