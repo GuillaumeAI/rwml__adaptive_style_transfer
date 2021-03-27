@@ -38,8 +38,11 @@ export callprotocol="http"
 # docker
 #export docker_cmd="docker run -it --rm "
 ## Set to desired Docker running Mode (it:iteractive, d:background)
+#@STCIssue Where are those vars now ??
 #export docker_mode="it"
-#export docker_mode="d"
+export docker_mode="d"
+export docker_run_args="--rm "
+export docker_run_args="--restart unless-stopped "
 #export docker_cmd="docker run -$docker_mode --rm "
 #if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
 #if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
