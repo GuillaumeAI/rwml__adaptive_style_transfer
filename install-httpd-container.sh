@@ -8,10 +8,13 @@ source _env.sh
 ### docker run -dit --name my-apache-app -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4
 export httpdserverport=80
 export httpdcontainerport=80
-export httpdcontainerhtdocs=/usr/local/apache2/htdocs/
-export httpdserverhtdocs=/a/src/x__etch-a-sketch__210224/
-export httpdcontainertag=httpd
+export httpdcontainerhtdocs=/usr/local/apache2/htdocs
+export httpdserverhtdocs=/a/src/x__etch-a-sketch__210224
+export httpdcontainertag="guillaumeai/server:httpd"
 export httpcontainername=ast_webapp
+
+#echo docker run -d $docker_run_args --name $httpcontainername -p $httpdserverport:$httpdcontainerport -v $(pwd):/work -v $httpdserverhtdocs:$httpdcontainerhtdocs -v /a:/a -v /a:$httpdcontainerhtdocs/a $httpdcontainertag
+docker rm $$httpcontainername
 
 docker run -d $docker_run_args --name $httpcontainername -p $httpdserverport:$httpdcontainerport -v $(pwd):/work -v $httpdserverhtdocs:$httpdcontainerhtdocs -v /a:/a -v /a:$httpdcontainerhtdocs/a $httpdcontainertag
 

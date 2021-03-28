@@ -12,7 +12,7 @@ source _env.sh
 #export modelname="model_gia-young-picasso-v03-201216_new-165ik"
 export modelname="model_gia-young-picasso-v03-201216_new-030ik"
 
-
+export containername=ast_picasso_var3_030
 
 
 export serverhostport=9003

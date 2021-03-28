@@ -9,7 +9,7 @@ source _env.sh
 
 export modelname="model_cezanne"
 
-
+export containername=ast_cezanne
 
 
 export serverhostport=9007
