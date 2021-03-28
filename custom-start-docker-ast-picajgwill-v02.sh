@@ -7,7 +7,6 @@ source _env.sh
 
 
 
-export modelname="model_gia-young-picasso-v02-201210-240ik"
 export modelname="model_gia-young-picasso-201210_new-135000"
 
 export containername=ast_picasso_var2_135
