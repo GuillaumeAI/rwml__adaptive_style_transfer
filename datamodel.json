@@ -1,0 +1,21 @@
+{
+  "schema": "guillaumeai/ast/model/210328",
+  "modelmountpath":"/a/model/models",
+  "containermodelroot":"/data/styleCheckpoint",
+  "containerns":"guillaumeai",
+  "containerreponame":"server",
+  "containerrepotag":"ast-2103220014",
+  "serverport":8000,
+  "docker_mode":"d",
+  "docker_run_args":"--restart unless-stopped ",
+  "callprotocol":"http",
+  "hostdns":"orko.guillaumeisabelle.com",
+  "astservers": [
+    {
+      "modelname": "model_giapicallo_v04__201221-120ik",
+      "containername": "ast_picawill_var3_225",
+      "uiname": "PicaWill var 4.120",
+      "port": 9005
+    }
+  ]
+}
