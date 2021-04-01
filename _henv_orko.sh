@@ -1,6 +1,10 @@
 # local Mount
 ## Environment path related
-export modelmountpath="/a/model/models"
+
+export mount_root="/a"
+export src_root="$mount_root/src"
+export modelmountpath="$mount_root/model/models"
+
 export hostdns="orko.guillaumeisabelle.com"
 #export callprotocol="http"
 #export callurl="$callprotocol://$hostdns:$serverhostport"
@@ -12,4 +16,8 @@ export hostdns="orko.guillaumeisabelle.com"
 #export docker_mode="it"
 export docker_mode="d"
 
+
+# Web App
+## Where is stored the HTML file being served from the host
+export httpdserverhtdocs="$src_root/x__etch-a-sketch__210224"
 
