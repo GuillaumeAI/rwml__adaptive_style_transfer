@@ -18,5 +18,6 @@ export docker_mode="d"
 
 # Web App
 ## Where is stored the HTML file being served from the host
-export httpdserverhtdocs="$src_root/x__etch-a-sketch__210224
+export httpdserverhtdocs="$src_root/x__etch-a-sketch__210224"
+
 
