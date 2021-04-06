@@ -4,7 +4,7 @@ import tensorflow as tf
 from module import encoder, decoder
 from glob import glob
 import runway
-
+import cv2
 
 @runway.setup(options={'styleCheckpoint': runway.file(is_directory=True)})
 def setup(opts):
@@ -34,7 +34,6 @@ def setup(opts):
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(model, inp):
     contentImage = inp['contentImage']
-    contentImageNpArray = np.array(contentImage)
     contentImage = np.array(contentImage)
     contentImage = contentImage / 127.5 - 1.
     contentImage = np.expand_dims(contentImage, axis=0)
@@ -48,7 +47,7 @@ def stylize(model, inp):
     savedir='/work/build'
     contentFile='/work/build/content.jpg'
     c = open(contentFile, "w")
-    c.write({ "contentImage": contentImage })
+    c.write(contentImage)
     c.close()
 
 # we dont get what we want here...
@@ -62,7 +61,7 @@ def stylize(model, inp):
 
     stylizedFile='/work/build/stylized.jpg'
     s = open(stylizedFile, "w")
-    s.write({"stylizedImage":stylizedImage})
+    s.write(stylizedImage)
     s.close()
     
     return result
