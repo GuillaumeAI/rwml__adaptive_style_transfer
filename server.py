@@ -52,7 +52,11 @@ def stylize(model, inp):
     # d = open(dataFile, "w")
     # d.write(data)
     # d.close()
-    
+
+    resultFile='/work/build/result.json'
+    r = open(resultFile, "w")
+    r.write(result)
+    r.close()
     
     
     contentFile='/work/build/content.jpg'
