@@ -34,7 +34,7 @@ def setup(opts):
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(model, inp):
     contentImage = inp['contentImage']
-    data=help(contentImage)
+    #data=help(contentImage)
    
     contentImage = np.array(contentImage)
     contentImage = contentImage / 127.5 - 1.
