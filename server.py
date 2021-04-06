@@ -41,7 +41,8 @@ def stylize(model, inp):
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
-    return dict(stylizedImage=img)
+    result = dict(stylizedImage=img)
+    return result
 
 
 if __name__ == '__main__':
