@@ -33,21 +33,27 @@ def setup(opts):
 
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(model, inp):
-    img = inp['contentImage']
-    img = np.array(img)
-    img = img / 127.5 - 1.
-    img = np.expand_dims(img, axis=0)
-    img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
-    img = (img + 1.) * 127.5
-    img = img.astype('uint8')
-    img = img[0]
-    result = dict(stylizedImage=img)
+    contentImage = inp['contentImage']
+    contentImage = np.array(contentImage)
+    contentImage = contentImage / 127.5 - 1.
+    contentImage = np.expand_dims(contentImage, axis=0)
+    stylizedImage = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: contentImage})
+    stylizedImage = (stylizedImage + 1.) * 127.5
+    stylizedImage = stylizedImage.astype('uint8')
+    stylizedImage = stylizedImage[0]
+    result = dict(stylizedImage=stylizedImage)
     #@STCGoal A Sequencing of result is being saved
-    savedir='/work/build'
-    savedirfile='/work/build/test.png'
-    f = open(savedirfile, "w")
-    f.write(img)
-    f.close()
+    # savedir='/work/build'
+    # contentFile='/work/build/content.png'
+    # c = open(contentFile, "w")
+    # c.write(contentImage)
+    # c.close()
+
+    # stylizedFile='/work/build/stylized.png'
+    # s = open(stylizedFile, "w")
+    # s.write(stylizedImage)
+    # s.close()
+    
     return result
 
 
