@@ -48,10 +48,10 @@ def stylize(model, inp):
     #@STCGoal A Sequencing of result is being saved
     savedir='/work/build'
 
-    dataFile='/work/build/data.txt'
-    d = open(dataFile, "w")
-    d.write(data)
-    d.close()
+    # dataFile='/work/build/data.txt'
+    # d = open(dataFile, "w")
+    # d.write(data)
+    # d.close()
     
     
     
