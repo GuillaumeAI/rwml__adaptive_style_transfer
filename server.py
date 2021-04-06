@@ -59,10 +59,10 @@ def stylize(model, inp):
     r.close()
     
     
-    contentFile='/work/build/content.jpg'
-    c = open(contentFile, "wb")
-    c.write(contentImage)
-    c.close()
+    # contentFile='/work/build/content.jpg'
+    # c = open(contentFile, "wb")
+    # c.write(contentImage)
+    # c.close()
 
 # we dont get what we want here...
     # metafile='/work/build/meta.txt'
@@ -73,10 +73,10 @@ def stylize(model, inp):
     # m.write(type(stylizedImage))
     # m.close()
 
-    stylizedFile='/work/build/stylized.jpg'
-    s = open(stylizedFile, "wb")
-    s.write(stylizedImage)
-    s.close()
+    # stylizedFile='/work/build/stylized.jpg'
+    # s = open(stylizedFile, "wb")
+    # s.write(stylizedImage)
+    # s.close()
     
     return result
 
