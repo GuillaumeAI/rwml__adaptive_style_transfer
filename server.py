@@ -39,6 +39,7 @@ def stylize(model, inp):
     contentImage = np.expand_dims(contentImage, axis=0)
     stylizedImage = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: contentImage})
     stylizedImage = (stylizedImage + 1.) * 127.5
+    stylizedImageuint8 = stylizedImage.astype('uint8')
     stylizedImage = stylizedImage.astype('uint8')
     stylizedImage = stylizedImage[0]
     result = dict(stylizedImage=stylizedImage)
@@ -49,17 +50,18 @@ def stylize(model, inp):
     c.write(contentImage)
     c.close()
 
-    metafile='/work/build/meta.txt'
-    m = open(metafile,"a+")
-    m.write('type:contentImage')
-    m.write(type(contentImage))
-    m.write('type:stylizedImage')
-    m.write(type(stylizedImage))
-    m.close()
+# we dont get what we want here...
+    # metafile='/work/build/meta.txt'
+    # m = open(metafile,"a+")
+    # m.write('type:contentImage')
+    # m.write(type(contentImage))
+    # m.write('type:stylizedImage')
+    # m.write(type(stylizedImage))
+    # m.close()
 
     stylizedFile='/work/build/stylized.png'
     s = open(stylizedFile, "w")
-    s.write(stylizedImage)
+    s.write(stylizedImageuint8)
     s.close()
     
     return result
