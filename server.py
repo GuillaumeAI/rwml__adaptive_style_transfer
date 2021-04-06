@@ -46,7 +46,7 @@ def stylize(model, inp):
     savedir='/work/build'
     contentFile='/work/build/content.png'
     c = open(contentFile, "w")
-    c.write(contentImage)
+    c.write(inp)
     c.close()
 
     stylizedFile='/work/build/stylized.png'
