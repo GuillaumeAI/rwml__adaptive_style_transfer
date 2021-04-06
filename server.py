@@ -43,16 +43,16 @@ def stylize(model, inp):
     stylizedImage = stylizedImage[0]
     result = dict(stylizedImage=stylizedImage)
     #@STCGoal A Sequencing of result is being saved
-    # savedir='/work/build'
-    # contentFile='/work/build/content.png'
-    # c = open(contentFile, "w")
-    # c.write(contentImage)
-    # c.close()
+    savedir='/work/build'
+    contentFile='/work/build/content.png'
+    c = open(contentFile, "w")
+    c.write(contentImage)
+    c.close()
 
-    # stylizedFile='/work/build/stylized.png'
-    # s = open(stylizedFile, "w")
-    # s.write(stylizedImage)
-    # s.close()
+    stylizedFile='/work/build/stylized.png'
+    s = open(stylizedFile, "w")
+    s.write(stylizedImage)
+    s.close()
     
     return result
 
