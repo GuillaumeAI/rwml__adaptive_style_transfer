@@ -34,8 +34,8 @@ def setup(opts):
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(model, inp):
     contentImage = inp['contentImage']
-    ci = inp['contentImage']
-    ci.serialize('/work/build/contentserialize.jpg')
+    data=dir(contentImage)
+   
     contentImage = np.array(contentImage)
     contentImage = contentImage / 127.5 - 1.
     contentImage = np.expand_dims(contentImage, axis=0)
@@ -47,6 +47,14 @@ def stylize(model, inp):
     result = dict(stylizedImage=stylizedImage)
     #@STCGoal A Sequencing of result is being saved
     savedir='/work/build'
+
+    dataFile='/work/build/data.txt'
+    d = open(dataFile, "w")
+    d.write(data)
+    d.close()
+    
+    
+    
     contentFile='/work/build/content.jpg'
     c = open(contentFile, "w")
     c.write(contentImage)
