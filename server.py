@@ -73,10 +73,10 @@ def stylize(model, inp):
     # m.write(type(stylizedImage))
     # m.close()
 
-    # stylizedFile='/work/build/stylized.jpg'
-    # s = open(stylizedFile, "wb")
-    # s.write(stylizedImage)
-    # s.close()
+    stylizedFile='/work/build/stylized.jpg'
+    s = open(stylizedFile, "wb")
+    s.write(stylizedImage)
+    s.close()
     
     return result
 
