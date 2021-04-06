@@ -18,8 +18,10 @@ echo "- Model Name: $modelname"
 echo "- AccessURL : $callurl"
 echo "-------------------------------------------------------------"
 #$docker_cmd -v $(pwd):/work -p 8000:9000 -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport $containertag $run_cmd
-echo "----------Cleaning up-------"
+echo "----------Cleaning up (attempting to if exist...)-------"
+docker stop $containername
 docker rm $containername
+echo "-------------... Attempt to clean up done -----------"
 echo "-----------Installing $containername ------------"
 
 echo $docker_cmd -v $(pwd):/work  -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport -e SPORT=$serverhostport $containertag
