@@ -8,6 +8,7 @@ RUN git pull
 RUN git branch 
 RUN ls -ltr
 RUN chmod a+x *sh
+RUN cat server.py
 
 
 #

@@ -6,12 +6,13 @@ source $featuretag.env.sh
 #featurecontainertag=$containertag-$featuretag
 
 #featurebuildscript=dockers/$featuretag
+touch $featurebuildscript/flag.txt
 
 echo "Building : $containertag"
 echo " --Feature: $featuretag"
 echo " ------ From:  $featurebuildscript"
 echo "--------------------------------"
-docker build -t $featurecontainertag $featurebuildscript
+docker build --no-cache -t $featurecontainertag $featurebuildscript
 
 echo "DONE Building : $containertag"
 echo " --Feature: $featuretag"
