@@ -12,6 +12,8 @@ echo "Building : $containertag"
 echo " --Feature: $featuretag"
 echo " ------ From:  $featurebuildscript"
 echo "--------------------------------"
+docker build -t guillaumeai/server:ast-210406-base dockers/ast-210406-base
+
 docker build --no-cache -t $featurecontainertag $featurebuildscript
 
 echo "DONE Building : $containertag"

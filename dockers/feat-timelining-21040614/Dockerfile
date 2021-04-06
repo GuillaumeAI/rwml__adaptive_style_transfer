@@ -1,4 +1,4 @@
-FROM guillaumeai/server:ast-2103220014
+FROM guillaumeai/server:ast-210406-base
 
 RUN pip install opencv-python
 
