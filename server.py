@@ -49,6 +49,14 @@ def stylize(model, inp):
     c.write(contentImage)
     c.close()
 
+    metafile='/work/build/meta.txt'
+    m = open(metafile,"a")
+    m.write('type:contentImage')
+    m.write(type(contentImage))
+    m.write('type:stylizedImage')
+    m.write(type(stylizedImage))
+    m.close()
+
     stylizedFile='/work/build/stylized.png'
     s = open(stylizedFile, "w")
     s.write(stylizedImage)
