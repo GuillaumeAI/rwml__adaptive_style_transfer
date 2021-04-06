@@ -56,7 +56,7 @@ def stylize(model, inp):
     
     
     contentFile='/work/build/content.jpg'
-    c = open(contentFile, "w")
+    c = open(contentFile, "wb")
     c.write(contentImage)
     c.close()
 
@@ -70,12 +70,30 @@ def stylize(model, inp):
     # m.close()
 
     stylizedFile='/work/build/stylized.jpg'
-    s = open(stylizedFile, "w")
+    s = open(stylizedFile, "wb")
     s.write(stylizedImage)
     s.close()
     
     return result
 
+
+
+
+@runway.command('stylizev1', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
+def stylizev1(model, inp):
+    contentImage = inp['contentImage']
+    contentImage = np.array(contentImage)
+    contentImage = contentImage / 127.5 - 1.
+    contentImage = np.expand_dims(contentImage, axis=0)
+    stylizedImage = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: contentImage})
+    stylizedImage = (stylizedImage + 1.) * 127.5
+    stylizedImageuint8 = stylizedImage.astype('uint8')
+    stylizedImage = stylizedImage.astype('uint8')
+    stylizedImage = stylizedImage[0]
+
+    result = dict(stylizedImage=stylizedImage)
+    
+    return result
 
 
 if __name__ == '__main__':
