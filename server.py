@@ -46,9 +46,9 @@ def stylize(model, inp):
     result = dict(stylizedImage=stylizedImage)
     #@STCGoal A Sequencing of result is being saved
     savedir='/work/build'
-    contentFile='/work/build/content.png'
+    contentFile='/work/build/content.jpg'
     c = open(contentFile, "w")
-    c.write(contentImageNpArray)
+    c.write({ "contentImage": contentImage })
     c.close()
 
 # we dont get what we want here...
@@ -60,9 +60,9 @@ def stylize(model, inp):
     # m.write(type(stylizedImage))
     # m.close()
 
-    stylizedFile='/work/build/stylized.png'
+    stylizedFile='/work/build/stylized.jpg'
     s = open(stylizedFile, "w")
-    s.write(stylizedImageuint8)
+    s.write({"stylizedImage":stylizedImage})
     s.close()
     
     return result
