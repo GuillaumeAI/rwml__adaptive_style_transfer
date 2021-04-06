@@ -34,6 +34,7 @@ def setup(opts):
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(model, inp):
     contentImage = inp['contentImage']
+    contentImageNpArray = np.array(contentImage)
     contentImage = np.array(contentImage)
     contentImage = contentImage / 127.5 - 1.
     contentImage = np.expand_dims(contentImage, axis=0)
@@ -47,7 +48,7 @@ def stylize(model, inp):
     savedir='/work/build'
     contentFile='/work/build/content.png'
     c = open(contentFile, "w")
-    c.write(contentImage)
+    c.write(contentImageNpArray)
     c.close()
 
 # we dont get what we want here...
