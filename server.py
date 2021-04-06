@@ -4,7 +4,7 @@ import tensorflow as tf
 from module import encoder, decoder
 from glob import glob
 import runway
-import cv2
+# import cv2
 
 @runway.setup(options={'styleCheckpoint': runway.file(is_directory=True)})
 def setup(opts):
