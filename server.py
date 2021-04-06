@@ -54,7 +54,7 @@ def stylize(model, inp):
     # d.close()
 
     resultFile='/work/build/result.json'
-    r = open(resultFile, "w")
+    r = open(resultFile, "wb")
     r.write(result)
     r.close()
     
