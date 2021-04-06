@@ -64,9 +64,10 @@ def stylize(model, inp):
     # c.close()
 
 # we dont get what we want here...
+    metadata = 'type:result= ' + type(result)  + '\n\n---\n' 
+    #+ 'type:stylizedImage=' + type(stylizedImage)
     metafile='/work/build/meta.txt'
     m = open(metafile,"w")
-    metadata = 'type:result= ' + type(result)  + '\n\n---\n' + 'type:stylizedImage=' + type(stylizedImage)
     m.write(metadata)
     m.close()
 
