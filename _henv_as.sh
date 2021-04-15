@@ -17,3 +17,8 @@ export hostdns="as.guillaumeisabelle.com"
 ## Set to desired Docker running Mode (it:iteractive, d:background)
 #export docker_mode="it"
 export docker_mode="d"
+
+
+# Determine the PATH of the app being served on the localhost
+export httpdserverhtdocs=/a/src/x__etch-a-sketch__210224
+
