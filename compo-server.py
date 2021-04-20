@@ -42,7 +42,6 @@ def setup(opts):
     return models
 
 
-
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(model, inp):
     img = inp['contentImage']
