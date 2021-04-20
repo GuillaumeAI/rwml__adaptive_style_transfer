@@ -92,19 +92,20 @@ def stylize(models, inp):
     image_size=pass1_image_size
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
-    print "DEBUG::pass1.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
+    print "DEBUG::content.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
 
     img = scipy.misc.imresize(img, size=alpha)
 
     img = np.expand_dims(img, axis=0)
-    print("INFO:Pass1 inference starting")
+    #@a INFERENCE PASS 1
+    printwdt("INFO:Pass1 inference starting")
     img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
     print("INFO:Pass1 inference done")
     #
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
-    print("INFO:Upresing Pass1 starting ")
+    print("INFO:Upresing Pass1 starting for Pass 2 ")
 
     #@a Pass 2 RESIZE to 2048px the smaller side
     image_size=pass2_image_size
@@ -112,7 +113,7 @@ def stylize(models, inp):
     
     
     alpha = float(image_size) / float(min(img_shape))
-    print "DEBUG::pass2.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
+    print "DEBUG::pass1.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
 
     img = scipy.misc.imresize(img, size=alpha)
     print("INFO:Upresing Pass1 done ")
@@ -121,6 +122,7 @@ def stylize(models, inp):
     img = np.array(img)
     img = img / 127.5 - 1.
     img = np.expand_dims(img, axis=0)
+    #@a INFERENCE PASS 2
     print("INFO:Pass2 inference starting")
     img = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img})
     print("INFO:Pass2 inference done")
@@ -137,3 +139,14 @@ def stylize(models, inp):
 if __name__ == '__main__':
     print('External Service port is:' +os.environ.get('SPORT'))
     runway.run()
+
+def printwdt(msg):
+    return msg + " " + getdttag()
+
+def getdttag():
+    # datetime object containing current date and time
+    now = datetime.now()    
+
+    # dd/mm/YY H:M:S
+    # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    return now.strftime("%H:%M:%S")
