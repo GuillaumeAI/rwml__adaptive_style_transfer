@@ -56,8 +56,20 @@ def setup(opts):
     saver = tf.train.Saver()
     saver2 = tf.train.Saver()
     path = opts['styleCheckpoint']
-    model_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][0]
+    #Getting the model name
+    model_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][0]    
+    if not os.getenv('MODELNAME'):
+        dtprint("CONFIG::MODELNAME env var non existent;using default:" + model_name)
+    else:
+        model_name = os.getenv('MODELNAME')
+
+    #Getting the model2 name
     model2_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][1]
+    if not os.getenv('MODELNAME'):
+        dtprint("CONFIG::MODELNAME env var non existent;using default:" + model2_name)
+    else:
+        model2_name = os.getenv('MODEL2NAME')
+        
     checkpoint_dir = os.path.join(path, model_name, 'checkpoint_long')
     checkpoint2_dir = os.path.join(path, model2_name, 'checkpoint_long')
     print("-----------------------------------------")
