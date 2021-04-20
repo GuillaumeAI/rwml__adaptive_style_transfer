@@ -21,4 +21,4 @@ export docker_run_args="--restart unless-stopped "
 
 
 #source __launch-docker.sh
-source __launch-docker-test-compo.sh
+source __launch-docker-compo.sh
