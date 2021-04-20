@@ -83,7 +83,6 @@ def stylize(models, inp):
     # img = np.array(img)
     # img = img / 127.5 - 1.
     # img = np.expand_dims(img, axis=0)
-    img = np.expand_dims(img, axis=0)
     img = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img})
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
