@@ -1,3 +1,9 @@
+#####################################################
+# AST Composite Server
+# By Guillaume Descoteaux-Isabelle, 20021
+#
+# This server compose two Adaptive Style Transfer model (output of the first pass serve as input to the second.)
+########################################################
 import os
 import numpy as np
 import tensorflow as tf
