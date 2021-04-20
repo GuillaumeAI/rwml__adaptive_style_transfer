@@ -14,6 +14,7 @@ import runway
 
 #from utils import *
 import scipy
+from datetime import datetime
 
 
 # Determining the size of the passes
