@@ -93,7 +93,7 @@ def stylize(models, inp):
     image_size=pass1_image_size
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
-    dtprint "DEBUG::content.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
+    dtprint ("DEBUG::content.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
 
     img = scipy.misc.imresize(img, size=alpha)
 
