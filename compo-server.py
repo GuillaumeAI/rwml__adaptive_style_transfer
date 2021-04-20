@@ -69,8 +69,10 @@ def stylize(models, inp):
     img = img / 127.5 - 1.
     #@a Pass 1 RESIZE to 1024px the smaller side
     image_size=1024
-    #alpha = float(image_size) / float(min(img_shape))
-    #img = scipy.misc.imresize(img, size=alpha)
+    img_shape = img.shape[:2]
+    alpha = float(image_size) / float(min(img_shape))
+    img = scipy.misc.imresize(img, size=alpha)
+    
     img = np.expand_dims(img, axis=0)
     img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
     # img = (img + 1.) * 127.5
