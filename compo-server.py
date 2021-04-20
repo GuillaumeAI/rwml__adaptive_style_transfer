@@ -68,20 +68,21 @@ def stylize(models, inp):
 
 
 
-    res1 = dict(stylizedImage=img)
+    #res1 = dict(stylizedImage=img)
 
     
     #
-    img2 = res1['stylizedImage']
-    img2 = np.array(img2)
-    img2 = img2 / 127.5 - 1.
-    img2 = np.expand_dims(img2, axis=0)
-    img2 = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img2})
-    img2 = (img2 + 1.) * 127.5
-    img2 = img2.astype('uint8')
-    img2 = img2[0]
+    # img2 = res1['stylizedImage']
+    
+    img = np.array(img)
+    img = img / 127.5 - 1.
+    img = np.expand_dims(img, axis=0)
+    img = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img})
+    img = (img + 1.) * 127.5
+    img = img.astype('uint8')
+    img = img[0]
 
-    res2 = dict(stylizedImage=img2)
+    res2 = dict(stylizedImage=img)
     print("INFO:ASTCompoServer:ran")
     return res2
 
