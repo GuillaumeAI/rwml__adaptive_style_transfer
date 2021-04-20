@@ -11,7 +11,7 @@ export PASS2IMAGESIZE=2048
 export containername=compo_ast_picawill_v5_150_v3_120
 
 
-export serverhostport=9050
+export serverhostport=9051
 
 #export docker_mode="it"
 export docker_mode="d"
@@ -20,5 +20,4 @@ export docker_run_args="--restart unless-stopped "
 
 
 
-#source __launch-docker.sh
 source __launch-docker-compo.sh
