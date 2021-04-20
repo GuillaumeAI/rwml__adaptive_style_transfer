@@ -66,16 +66,24 @@ def stylize(models, inp):
     img = inp['contentImage']
     img = np.array(img)
     img = img / 127.5 - 1.
+    #@a Pass 1 RESIZE to 1024px the smaller side
+    image_size=1024
+    #alpha = float(image_size) / float(min(img_shape))
+    #img = scipy.misc.imresize(img, size=alpha)
     img = np.expand_dims(img, axis=0)
     img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
     # img = (img + 1.) * 127.5
     # img = img.astype('uint8')
     # img = img[0]
-
+    #@a Pass 2 RESIZE to 2048px the smaller side
+    image_size=2048
+    #img = scipy.misc.imresize(img, size=alpha)
+    #alpha = float(image_size) / float(min(img_shape))
     #Iteration 2    
     # img = np.array(img)
     # img = img / 127.5 - 1.
     # img = np.expand_dims(img, axis=0)
+    img = np.expand_dims(img, axis=0)
     img = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img})
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
