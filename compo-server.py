@@ -24,16 +24,6 @@ def setup(opts):
     output_photo = decoder(features=input_photo_features,
                            options={'gf_dim': 32},
                            reuse=False)
-    with tf.name_scope('placeholder'):
-        input_photo2 = tf.placeholder(dtype=tf.float32,
-                                     shape=[1, None, None, 3],
-                                     name='photo')
-    input_photo_features2 = encoder(image=input_photo2,
-                                   options={'gf_dim': 32},
-                                   reuse=False)
-    output_photo2 = decoder(features=input_photo_features2,
-                           options={'gf_dim': 32},
-                           reuse=False)
     saver = tf.train.Saver()
     saver2 = tf.train.Saver()
     path = opts['styleCheckpoint']
@@ -54,7 +44,7 @@ def setup(opts):
     saver.restore(sess, os.path.join(checkpoint_dir, ckpt_name))
     saver2.restore(sess2, os.path.join(checkpoint2_dir, ckpt2_name))
     m1 = dict(sess=sess, input_photo=input_photo, output_photo=output_photo)
-    m2 = dict(sess=sess2, input_photo=input_photo2, output_photo=output_photo2)
+    m2 = dict(sess=sess2, input_photo=input_photo, output_photo=output_photo)
     models = type('', (), {})()
     models.m1 = m1
     models.m2 = m2
