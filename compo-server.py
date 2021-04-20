@@ -26,16 +26,18 @@ def setup(opts):
     model_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][0]
     model2_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][1]
     checkpoint_dir = os.path.join(path, model_name, 'checkpoint_long')
+    checkpoint2_dir = os.path.join(path, model2_name, 'checkpoint_long')
     print("-----------------------------------------")
     print("modelname is : " + model_name)
     print("model2name is : " + model2_name)
     print("checkpoint_dir is : " + checkpoint_dir)
+    print("checkpoint2_dir is : " + checkpoint2_dir)
     print("-----------------------------------------")
     ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
     ckpt_name = os.path.basename(ckpt.model_checkpoint_path)
     saver.restore(sess, os.path.join(checkpoint_dir, ckpt_name))
     m1 = dict(sess=sess, input_photo=input_photo, output_photo=output_photo)
-    return dict(m1=m1)
+    return m1
 
 
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
