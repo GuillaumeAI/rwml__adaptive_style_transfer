@@ -82,7 +82,7 @@ def stylize(models, inp):
     img2 = img2[0]
 
     res2 = dict(stylizedImage=img2)
-
+    print("INFO:ASTCompoServer:ran")
     return res2
 
 
