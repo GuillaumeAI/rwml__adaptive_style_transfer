@@ -50,7 +50,8 @@ export callprotocol="http"
 #@STCIssue Where are those vars now ??
 #export docker_mode="it"
 export docker_mode="d"
-export docker_run_args="--rm "
+
+#export docker_run_args="--rm "
 export docker_run_args="--restart unless-stopped "
 #export docker_cmd="docker run -$docker_mode --rm "
 #if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
