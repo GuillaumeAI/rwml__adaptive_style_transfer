@@ -91,6 +91,7 @@ def stylize(models, inp):
     #@a Pass 1 RESIZE to 1024px the smaller side
     image_size=pass1_image_size
     img_shape = img.shape[:2]
+    print("pass1.imgshape:" + img_shape)
     alpha = float(image_size) / float(min(img_shape))
     img = scipy.misc.imresize(img, size=alpha)
 
@@ -106,6 +107,7 @@ def stylize(models, inp):
     #@a Pass 2 RESIZE to 2048px the smaller side
     image_size=pass2_image_size
     img_shape = img.shape[:2]
+    print("pass2.imgshape:" + img_shape)
     alpha = float(image_size) / float(min(img_shape))
     img = scipy.misc.imresize(img, size=alpha)
     print("INFO:Upresing Pass1 done ")
