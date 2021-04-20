@@ -55,6 +55,8 @@ def setup(opts):
 def stylize(models, inp):
     model = models.m1
     model2 = models.m2
+
+    #
     img = inp['contentImage']
     img = np.array(img)
     img = img / 127.5 - 1.
@@ -63,8 +65,25 @@ def stylize(models, inp):
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
+
+
+
     res1 = dict(stylizedImage=img)
-    return res1
+
+    
+    #
+    img2 = res1['stylizedImage']
+    img2 = np.array(img2)
+    img2 = img2 / 127.5 - 1.
+    img2 = np.expand_dims(img2, axis=0)
+    img2 = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img2})
+    img2 = (img2 + 1.) * 127.5
+    img2 = img2.astype('uint8')
+    img2 = img2[0]
+
+    res2 = dict(stylizedImage=img2)
+
+    return res2
 
 
 if __name__ == '__main__':
