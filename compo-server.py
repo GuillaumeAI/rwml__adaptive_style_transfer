@@ -133,10 +133,11 @@ def stylize(models, inp):
     img = img.astype('uint8')
     img = img[0]
 
-    res2 = dict(stylizedImage=img)
     dtprint("INFO:Composing done")
     stop = time.time()
-    print("The time of the run:", stop - start)
+    totaltime = stop - start
+    print("The time of the run:", totaltime)
+    res2 = dict(stylizedImage=img,totaltime=totaltime)
     return res2
 
 
