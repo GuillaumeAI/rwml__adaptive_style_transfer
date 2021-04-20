@@ -52,12 +52,13 @@ def setup(opts):
 
 
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
-def stylize(model, inp):
+def stylize(models, inp):
+    model = models.m1
     img = inp['contentImage']
     img = np.array(img)
     img = img / 127.5 - 1.
     img = np.expand_dims(img, axis=0)
-    img = model.m1['sess'].run(model.m1['output_photo'], feed_dict={model.m1['input_photo']: img})
+    img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
