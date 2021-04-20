@@ -15,6 +15,24 @@ import runway
 #from utils import *
 import scipy
 
+
+# Determining the size of the passes
+pass1_image_size = 1024
+if not os.getenv('PASS1IMAGESIZE'):
+   print("PASS1IMAGESIZE env var non existent;using default:" + pass1_image_size)
+else:
+   pass1_image_size = os.getenv('PASS1IMAGESIZE')
+   print("PASS1IMAGESIZE value:" + pass1_image_size)
+
+pass2_image_size = 2048
+if not os.getenv('PASS2IMAGESIZE'):
+   print("PASS12MAGESIZE env var non existent;using default:" + pass2_image_size)
+else:
+   pass2_image_size = os.getenv('PASS2IMAGESIZE')
+   print("PASS2IMAGESIZE value:" + pass2_image_size)
+
+
+
 @runway.setup(options={'styleCheckpoint': runway.file(is_directory=True)})
 def setup(opts):
     sess = tf.Session()
@@ -71,23 +89,26 @@ def stylize(models, inp):
     img = np.array(img)
     img = img / 127.5 - 1.
     #@a Pass 1 RESIZE to 1024px the smaller side
-    image_size=1024
+    image_size=pass1_image_size
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
     img = scipy.misc.imresize(img, size=alpha)
 
     img = np.expand_dims(img, axis=0)
     img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
+    print("INFO:Pass1 inference done")
     #
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
+    print("INFO:Upresing Pass1 starting ")
 
     #@a Pass 2 RESIZE to 2048px the smaller side
-    image_size=2048
+    image_size=pass2_image_size
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
     img = scipy.misc.imresize(img, size=alpha)
+    print("INFO:Upresing Pass1 done ")
 
     #Iteration 2    
     img = np.array(img)
