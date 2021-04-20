@@ -81,7 +81,7 @@ def setup(opts):
 
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(models, inp):
-    print("Composing...")
+    dtprint("Composing...")
     model = models.m1
     model2 = models.m2
 
@@ -93,7 +93,7 @@ def stylize(models, inp):
     image_size=pass1_image_size
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
-    print "DEBUG::content.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
+    dtprint "DEBUG::content.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
 
     img = scipy.misc.imresize(img, size=alpha)
 
@@ -101,12 +101,12 @@ def stylize(models, inp):
     #@a INFERENCE PASS 1
     dtprint("INFO:Pass1 inference starting")
     img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
-    print("INFO:Pass1 inference done")
+    dtprint("INFO:Pass1 inference done")
     #
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
-    print("INFO:Upresing Pass1 starting for Pass 2 ")
+    dtprint("INFO:Upresing Pass1 for Pass 2 (STARTING) ")
 
     #@a Pass 2 RESIZE to 2048px the smaller side
     image_size=pass2_image_size
@@ -114,31 +114,31 @@ def stylize(models, inp):
     
     
     alpha = float(image_size) / float(min(img_shape))
-    print "DEBUG::pass1.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
+    dtprint ("DEBUG::pass1.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
 
     img = scipy.misc.imresize(img, size=alpha)
-    print("INFO:Upresing Pass1 done ")
+    dtprint("INFO:Upresing Pass1 (DONE) ")
 
     #Iteration 2    
     img = np.array(img)
     img = img / 127.5 - 1.
     img = np.expand_dims(img, axis=0)
     #@a INFERENCE PASS 2
-    print("INFO:Pass2 inference starting")
+    dtprint("INFO:Pass2 inference (STARTING)")
     img = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img})
-    print("INFO:Pass2 inference done")
+    dtprint("INFO:Pass2 inference (DONE)")
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
 
     res2 = dict(stylizedImage=img)
-    print("INFO:ASTCompoServer:ran")
+    dtprint("INFO:Composing done")
     return res2
 
 
 
 def dtprint(msg):
-    print msg + " " + getdttag()
+    print getdttag() + "::" + msg  
 
 def getdttag():
     # datetime object containing current date and time
