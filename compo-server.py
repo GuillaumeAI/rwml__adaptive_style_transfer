@@ -138,7 +138,7 @@ def stylize(models, inp):
 
 
 def dtprint(msg):
-    return msg + " " + getdttag()
+    print msg + " " + getdttag()
 
 def getdttag():
     # datetime object containing current date and time
