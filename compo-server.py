@@ -12,6 +12,9 @@ from glob import glob
 import runway
 
 
+#from utils import *
+import scipy
+
 @runway.setup(options={'styleCheckpoint': runway.file(is_directory=True)})
 def setup(opts):
     sess = tf.Session()
@@ -72,7 +75,7 @@ def stylize(models, inp):
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
     img = scipy.misc.imresize(img, size=alpha)
-    
+
     img = np.expand_dims(img, axis=0)
     img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
     # img = (img + 1.) * 127.5
