@@ -1,6 +1,9 @@
 
 
 source _env.sh
+# Pulling docker images
+docker pull $containertag
+docker pull $compocontainertag
 
 for s in custom-start-docker-ast-*.sh ; do
 	echo "Launching/Installing : $s"
