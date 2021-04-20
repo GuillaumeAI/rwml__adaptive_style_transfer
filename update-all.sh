@@ -1,5 +1,5 @@
 
-
+git pull
 source _env.sh
 # Pulling docker images
 docker pull $containertag
