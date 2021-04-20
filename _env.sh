@@ -25,9 +25,16 @@ export containerreponame="server"
 export containerrepotag="ast"
 # Testing the new version
 export containerrepotag="ast-2103220014"
+#export containerrepotag="ast-210420" #compo-server
 export containerrepo="$containerns/$containerreponame"
 #export containertag="guillaumeai/server:ast"
 export containertag="$containerrepo:$containerrepotag"
+
+#COMPO Container
+export compocontainerrepotag="ast-210420-compo"
+export compocontainerrepo="$containerns/$containerreponame"
+#export containertag="guillaumeai/server:ast"
+export compocontainertag="$containerrepo:$containerrepotag"
 
 
 export serverport=8000
