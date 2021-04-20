@@ -22,19 +22,21 @@ export containermodelroot="/data/styleCheckpoint"
 #export containertag="guillaumeai/ast:runwayml_picasso_2103180139"
 export containerns="guillaumeai"
 export containerreponame="server"
-export containerrepotag="ast"
+
 # Testing the new version
 export containerrepotag="ast-2103220014"
-#export containerrepotag="ast-210420" #compo-server
+#export containerrepotag="ast-210420" #a new release but we dont need it yet
 export containerrepo="$containerns/$containerreponame"
 #export containertag="guillaumeai/server:ast"
 export containertag="$containerrepo:$containerrepotag"
 
 #COMPO Container
+export compocontainerns="guillaumeai"
+export compocontainerreponame="server"
 export compocontainerrepotag="ast-210420-compo"
-export compocontainerrepo="$containerns/$containerreponame"
-#export containertag="guillaumeai/server:ast"
-export compocontainertag="$containerrepo:$containerrepotag"
+export compocontainerrepo="$compocontainerns/$compocontainerreponame"
+
+export compocontainertag="$compocontainerrepo:$compocontainerrepotag"
 
 
 export serverport=8000
