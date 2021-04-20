@@ -37,6 +37,7 @@ def setup(opts):
     ckpt_name = os.path.basename(ckpt.model_checkpoint_path)
     saver.restore(sess, os.path.join(checkpoint_dir, ckpt_name))
     m1 = dict(sess=sess, input_photo=input_photo, output_photo=output_photo)
+    models = object()
     models.m1 = m1
     return models
 
