@@ -99,7 +99,7 @@ def stylize(models, inp):
 
     img = np.expand_dims(img, axis=0)
     #@a INFERENCE PASS 1
-    printwdt("INFO:Pass1 inference starting")
+    dtprint("INFO:Pass1 inference starting")
     img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
     print("INFO:Pass1 inference done")
     #
@@ -137,11 +137,7 @@ def stylize(models, inp):
 
 
 
-if __name__ == '__main__':
-    print('External Service port is:' +os.environ.get('SPORT'))
-    runway.run()
-
-def printwdt(msg):
+def dtprint(msg):
     return msg + " " + getdttag()
 
 def getdttag():
@@ -151,3 +147,7 @@ def getdttag():
     # dd/mm/YY H:M:S
     # dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     return now.strftime("%H:%M:%S")
+
+if __name__ == '__main__':
+    print('External Service port is:' +os.environ.get('SPORT'))
+    runway.run()
