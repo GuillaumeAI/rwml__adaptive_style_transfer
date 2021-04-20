@@ -54,6 +54,7 @@ def setup(opts):
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(models, inp):
     model = models.m1
+    model2 = models.m2
     img = inp['contentImage']
     img = np.array(img)
     img = img / 127.5 - 1.
@@ -62,7 +63,8 @@ def stylize(models, inp):
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
-    return dict(stylizedImage=img)
+    res1 = dict(stylizedImage=img)
+    return res1
 
 
 if __name__ == '__main__':
