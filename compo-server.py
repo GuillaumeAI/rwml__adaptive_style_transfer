@@ -92,7 +92,7 @@ def stylize(models, inp):
     image_size=pass1_image_size
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
-    print "pass1.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
+    print "DEBUG::pass1.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
 
     img = scipy.misc.imresize(img, size=alpha)
 
@@ -112,7 +112,8 @@ def stylize(models, inp):
     
     
     alpha = float(image_size) / float(min(img_shape))
-    print "pass2.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
+    print "DEBUG::pass2.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha)
+
     img = scipy.misc.imresize(img, size=alpha)
     print("INFO:Upresing Pass1 done ")
 
@@ -120,7 +121,9 @@ def stylize(models, inp):
     img = np.array(img)
     img = img / 127.5 - 1.
     img = np.expand_dims(img, axis=0)
+    print("INFO:Pass2 inference starting")
     img = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img})
+    print("INFO:Pass2 inference done")
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
     img = img[0]
