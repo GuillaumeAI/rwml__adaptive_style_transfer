@@ -10,4 +10,4 @@ RUN git clone https://github.com/GuillaumeAI/rwml__adaptive_style_transfer.git .
 
 #
 ENTRYPOINT []
-CMD python compo-server.py 
+CMD python server.py 
