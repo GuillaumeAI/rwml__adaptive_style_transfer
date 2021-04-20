@@ -59,6 +59,7 @@ def setup(opts):
 
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(models, inp):
+    print("Composing...")
     model = models.m1
     model2 = models.m2
 
