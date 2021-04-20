@@ -15,6 +15,7 @@ import runway
 #from utils import *
 import scipy
 from datetime import datetime
+import time
 
 
 # Determining the size of the passes
@@ -81,6 +82,7 @@ def setup(opts):
 
 @runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
 def stylize(models, inp):
+    start = time.time()
     dtprint("Composing...")
     model = models.m1
     model2 = models.m2
@@ -133,6 +135,8 @@ def stylize(models, inp):
 
     res2 = dict(stylizedImage=img)
     dtprint("INFO:Composing done")
+    stop = time.time()
+    print("The time of the run:", stop - start)
     return res2
 
 
