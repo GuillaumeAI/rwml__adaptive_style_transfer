@@ -83,6 +83,10 @@ def stylize(models, inp):
     # img = img[0]
     #@a Pass 2 RESIZE to 2048px the smaller side
     image_size=2048
+    img_shape = img.shape[:2]
+    alpha = float(image_size) / float(min(img_shape))
+    img = scipy.misc.imresize(img, size=alpha)
+
     #img = scipy.misc.imresize(img, size=alpha)
     #alpha = float(image_size) / float(min(img_shape))
     #Iteration 2    
