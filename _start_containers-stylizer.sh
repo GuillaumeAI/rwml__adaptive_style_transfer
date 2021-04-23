@@ -1,4 +1,4 @@
-for f in custom-start-docker-ast-st*sh
+for f in custom-start-docker-ast-st-*sh
 do 
 	#echo $f
 	$(cat $f |grep "containername=")
