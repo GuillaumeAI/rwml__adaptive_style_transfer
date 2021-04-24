@@ -1,0 +1,9 @@
+model_el-greco
+model_gauguin
+model_kirchner
+model_morisot
+model_munch
+model_peploe
+model_pollock
+model_roerich
+
