@@ -33,10 +33,18 @@ export containertag="$containerrepo:$containerrepotag"
 #COMPO Container
 export compocontainerns="guillaumeai"
 export compocontainerreponame="server"
-export compocontainerrepotag="ast-210420-compo"
+# export compocontainerrepotag="ast-210420-compo"
+export compocontainerrepotag="ast-210502-compo"
 export compocontainerrepo="$compocontainerns/$compocontainerreponame"
-
 export compocontainertag="$compocontainerrepo:$compocontainerrepotag"
+
+#COMPO Three Container
+export compo3containerns="guillaumeai"
+export compo3containerreponame="server"
+export compo3containerrepotag="ast-210502-compo-three"
+export compo3containerrepo="$compo3containerns/$compo3containerreponame"
+export compo3containertag="$compo3containerrepo:$compo3containerrepotag"
+#guillaumeai/server:ast-210502-compo-three
 
 
 export serverport=8000
