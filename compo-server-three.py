@@ -19,14 +19,14 @@ import time
 
 
 # Determining the size of the passes
-pass1_image_size = 1024
+pass1_image_size = 1328
 if not os.getenv('PASS1IMAGESIZE'):
    print("PASS1IMAGESIZE env var non existent;using default:" + pass1_image_size)
 else:
    pass1_image_size = os.getenv('PASS1IMAGESIZE')
    print("PASS1IMAGESIZE value:" + pass1_image_size)
 
-pass2_image_size = 1328
+pass2_image_size = 1024
 if not os.getenv('PASS2IMAGESIZE'):
    print("PASS2IMAGESIZE env var non existent;using default:" + pass2_image_size)
 else:
