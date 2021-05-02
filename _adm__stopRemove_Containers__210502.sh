@@ -19,25 +19,33 @@ if [ "$1" == "" ] ||  [ "$1" == "--rm" ]  ; then
 	echo "----------------------------------------------------------"
 	echo "$containers"
 	echo "----------------"
-	echo "Do you wish to stop/remove all containers above (y/n) ?"
-	select yn in "y" "n"; do
-    		case $yn in 
-			y ) break;break;;
-			n ) exit;;
-		esac
-		break;
-	done
+	echo "Wish to Stop/remove all containers above."
+	read -r -p "Are You Sure? [Y/n] " input
+   	
+	case $input in
+    		[yY][eE][sS]|[yY])
+			echo "Deletion starting..."	
+			for container in $containers
+			do
+				echo "Container: $container"
+				if [ "$1" != "--list" ];then
+					(docker stop $container  ; docker rm $container) &
+					sleep 1
+				fi
+				echo ================================
+			done
+		;;
+
+		[nN][oO]|[nN]) 
+			 echo "Cancelling removal";
+		;;
+		*)
+ 			echo "Invalid input..."
+ 			exit 1
+ 		;;	
+	esac
+	
+	
 fi
 
-for container in $containers
-do
-  echo "Container: $container"
-  if [ "$1" != "--list" ];then
-	  (docker stop $container  ; docker rm $container) &
-	  sleep 1
-  fi
 
-  
-
-  echo ================================
-done
