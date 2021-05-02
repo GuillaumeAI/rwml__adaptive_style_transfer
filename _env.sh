@@ -3,9 +3,6 @@
 
 # ARTIST : CHG Model name
 
-export modelname="model_gia-ds-wassily_kandinsky_v1_210310_new-210ik"
-
-
 
 # ARTIST : Probably dont change anything bellow 
 
@@ -17,6 +14,9 @@ export modelmountpath="/a/model/models"
 ## Container related
 export containermodelroot="/data/styleCheckpoint"
 
+# Service script
+## used to start container simplified
+export scriptfn=./custom-cli-start-script-docker.sh
 
 # Infrastructure related
 #export containertag="guillaumeai/ast:runwayml_picasso_2103180139"
