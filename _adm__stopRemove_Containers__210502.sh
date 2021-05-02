@@ -48,4 +48,12 @@ if [ "$1" == "" ] ||  [ "$1" == "--rm" ]  ; then
 	
 fi
 
+if [ "$1" == "--list" ]  ||  [ "$1" == "--ls" ];then
+	echo "------Listing containers ---------"
+	for container in $containers
+	do
+		echo "$container"
+	done
+fi
+
 
