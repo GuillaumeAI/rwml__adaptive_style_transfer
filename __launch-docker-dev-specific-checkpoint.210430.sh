@@ -110,7 +110,7 @@ echo $docker_cmd -v $(pwd):/work  \
         -v $modellocalpointdata:$modelmountpointdata \
         -v $mcheckpointfilepath:$modelmountpointckfile \
         -p $serverhostport:$serverport -e SPORT=$serverhostport $containertag
-sleep 2
+sleep 1
 
 #echo "Exting because we are testing" ;exit 1
 
