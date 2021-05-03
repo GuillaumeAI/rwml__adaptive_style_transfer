@@ -52,17 +52,22 @@ if [ "$1" == "--list" ]  ||  [ "$1" == "--ls" ];then
 	echo "------Listing containers ---------"
 	for container in $containers
 	do
-		msg="$container"
+		export msg="$container"
 		if [ "$2" == "--port" ]; then
 
 			cports=$(docker container port $container | tr ":" " "| awk '/0.0.0.0/ { print $4}')
+			#echo "$cports"
 			for cport in $cports; do
-			       msg=$cport':'$container
-			       echo "$msg"
+			       #msg=$cport':'$container
+			       msg2=$cport':'$container
+		#	       echo "$msg2"
+			      export msg=" $msg2"
 		       done
 	       else
-		       echo "$msg"
+		       echo " "
 		fi
+		
+		echo "$msg"
 
 		
 	done
