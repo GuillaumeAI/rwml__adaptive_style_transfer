@@ -18,7 +18,7 @@ s=./test-compo-three-v2-dev-args.sh
 c=5
 #determine if we infer
 infer=1
-for i in {5..50}
+for i in {5..51}
 do
 	echo "-----------i:$i--c:$c-------------"
 	source $cropscript $ocf $crpf $i
@@ -39,7 +39,7 @@ do
 	ft=$lastoutdir/$lastoutfilebase$cc.$lastout_ext
 	fs=$lastoutdir/$lastoutfilebase$ii.$lastout_ext ; cp $fs $ft ; echo "$fs to $ft"
 	if [ -e "$ft" ]; then 
-        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 1)) &
+        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 2)) &
         fi
 		
 done
@@ -54,11 +54,11 @@ do
        ft=$lastoutdir/$lastoutfilebase$cc.$lastout_ext        
        fs=$lastoutdir/$lastoutfilebase$ii.$lastout_ext ; cp $fs $ft ; echo "$fs to $ft"
         if [ -e "$ft" ]; then 
-        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 1)) &
+        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 2)) &
         fi 
 
 done
-for i in {51..80}
+for i in {51..81}
 do
         echo "-----------i:$i--c:$c-------------"
         source $cropscript $ocf $crpf $i
@@ -79,7 +79,7 @@ do
       ft=$lastoutdir/$lastoutfilebase$cc.$lastout_ext        
       fs=$lastoutdir/$lastoutfilebase$ii.$lastout_ext ; cp $fs $ft ; echo "$fs to $ft"
         if [ -e "$ft" ]; then 
-        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 1)) &
+        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 2)) &
         fi
 
 done
@@ -95,12 +95,12 @@ do
      ft=$lastoutdir/$lastoutfilebase$cc.$lastout_ext        
      fs=$lastoutdir/$lastoutfilebase$ii.$lastout_ext ; cp $fs $ft ; echo "$fs to $ft"
         if [ -e "$ft" ]; then 
-        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 1)) &
+        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 2)) &
         fi
 
 done
 #source _init.sh
-for i in {81..96}
+for i in {81..97}
 do
         echo "-----------i:$i--c:$c-------------"
         source $cropscript $ocf $crpf $i
@@ -120,7 +120,7 @@ do
       ft=$lastoutdir/$lastoutfilebase$cc.$lastout_ext        
       fs=$lastoutdir/$lastoutfilebase$ii.$lastout_ext ; cp $fs $ft ; echo "$fs to $ft"
         if [ -e "$ft" ]; then 
-        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 1)) &
+        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 2)) &
          fi
 done
 
@@ -136,7 +136,7 @@ do
        fs=$lastoutdir/$lastoutfilebase$ii.$lastout_ext ; cp $fs $ft ; echo "$fs to $ft"
 
         if [ -e "$ft" ]; then
-        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 1)) &
+        (sleep $w;droxul -q upload $ft $lastdxt;w=$(expr $w + 2)) &
          fi
 done
 

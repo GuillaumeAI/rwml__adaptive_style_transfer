@@ -1,11 +1,17 @@
 #!/bin/bash
-source _env.sh
+source _env.sh $5
 
 #export infile=Sketch__2101240002__01_cc01-redraw.jpg
 
 # export infile=mycrop.jpg
 # outdir_prefix='ocrop_'
 
+export multihost=0
+if [ "$8" != "" ];then
+   export multihost=1
+   # we use the host from the param so we can distribute
+   export callhost=$8
+fi
 
 if [ "$4" == "" ];then
    echo "Infer a compo style with specific resolution "
@@ -25,9 +31,6 @@ if [ "$6" == "--droxul" ] && [ "$7" == "" ] ;then
    exit
 fi
    
-#export req_contentImageFilePart=_contentImage.ojson
-$giaImg2Base64RequestScript $infile $requestFileContentImage --quiet
-
 # export callhost="as.guillaumeisabelle.com"
 # export callprotocol="http"
 # export callmethod="stylize"
@@ -47,9 +50,16 @@ v3=$x3
 v3l=3x
 #default seq number for FN or get it as optional args
 vseq=$v1l
+
 if [ "$5" != "" ];then
    vseq=$5
 fi
+crpitemf=$crpf$vseq.jpg
+
+#export req_contentImageFilePart=_contentImage.ojson
+$giaImg2Base64RequestScript $crpitemf $requestFileContentImage --quiet
+rm $crpitemf 
+
 vseq=`printf %03d $vseq`
 
 v1p=`printf %03d $v1`
@@ -68,6 +78,7 @@ echo "$req_p1" >$requestFile
 #cat $req_contentImageFilePart >> $requestFile
 cat $requestFileContentImage | tr "{" " " >> $requestFile
 rm $requestFileContentImage
+
 #echo "}" >> $requestFile
 outdir=$outdir_prefix$filetag
 
@@ -75,22 +86,25 @@ mkdir -p $outdir
 
 export callurl="$callprotocol://$callhost:$callport$modelid/$callmethod"
 
+echo "export lcallurl=$callurl" >> $lastContextEnv
 # Call the modeling service
 #curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
 #echo curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
 echo "------------------------------"
-echo -n "Infering..."
+echo -n "Infering...$vseq..."
 (sleep 1;echo -n ".")
 (sleep 1;echo -n ".")
 (sleep 1;echo -n ".")
 curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
 echo -n "."
+
 echo "done."
 echo "------------------------------"
 #convert the response
 $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
 mv $outfile $outdir
 #######################
+#exit
 #store the vars for other process
 echo "export lastoutfile=$outfile" >> $lastContextEnv
 echo "export lastoutdir=$outdir" >> $lastContextEnv
