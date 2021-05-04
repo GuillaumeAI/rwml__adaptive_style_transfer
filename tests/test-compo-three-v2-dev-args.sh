@@ -1,7 +1,11 @@
 #!/bin/bash
+source _env.sh
 
-export requestFileContentImage=_request_raw.json
-export infile=Sketch__2101240002__01_cc01-redraw.jpg
+#export infile=Sketch__2101240002__01_cc01-redraw.jpg
+
+# export infile=mycrop.jpg
+# outdir_prefix='ocrop_'
+
 
 if [ "$4" == "" ];then
    echo "Infer a compo style with specific resolution "
@@ -15,17 +19,21 @@ if [ "$4" == "" ];then
    exit
 fi
 
+if [ "$6" == "--droxul" ] && [ "$7" == "" ] ;then
+   echo "--droxul require a base path where to upload the file"
+   echo "--droxul /lib/results/compo-three-v2-dev"
+   exit
+fi
+   
 #export req_contentImageFilePart=_contentImage.ojson
-gia-ast-img2stylize-request $infile $requestFileContentImage
+$giaImg2Base64RequestScript $infile $requestFileContentImage --quiet
 
-export callhost="as.guillaumeisabelle.com"
-export callprotocol="http"
-export callmethod="stylize"
-export callportbase=90
+# export callhost="as.guillaumeisabelle.com"
+# export callprotocol="http"
+# export callmethod="stylize"
+# export callportbase=90
 export callport=$callportbase$modelid
-export responseFile=response.json
-export requestFile=sample-args.json
-export callContentType="Content-Type: application/json"
+
 export modelid=$1
 
 export x1=$2
@@ -49,10 +57,8 @@ v2p=`printf %03d $v2`
 v3p=`printf %03d $v3`
 
 n=`printf %03d $v1`
-export out_prefix="result_a_"
-export out_ext=jpg
 export filetag=$modelid'_'$v3l$v3'_'$v2l$v2p
-export outfile=$out_prefix$filetag'_'$vseq.$out_ext
+export outfile=$outfile_prefix$filetag'_'$vseq.$out_ext
 export req_p1='{"x1":'$x1',"x2":'$x2',"x3":'$x3','
 #make the request file
 echo "$req_p1" >$requestFile
@@ -60,19 +66,47 @@ echo "$req_p1" >$requestFile
 cat $requestFileContentImage | tr "{" " " >> $requestFile
 rm $requestFileContentImage
 #echo "}" >> $requestFile
-outdir='out_'$filetag
+outdir=$outdir_prefix$filetag
+
 mkdir -p $outdir
 
 export callurl="$callprotocol://$callhost:$callport$modelid/$callmethod"
 
 # Call the modeling service
 #curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
-echo curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile
-
-curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile
-
+#echo curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
+echo "------------------------------"
+echo -n "Infering..."
+(sleep 1;echo -n ".")
+(sleep 1;echo -n ".")
+(sleep 1;echo -n ".")
+curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
+echo -n "."
+echo "done."
+echo "------------------------------"
 #convert the response
-gia-ast-response-stylizedImage2file response.json $outfile
+$giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
 mv $outfile $outdir
-echo "$outfile created and moved in $outdir"
+echo -n "      Moving $outfile to: $outdir"
 
+if [ "$6" == "--droxul" ];then
+   dxr=$7
+   dxt=$dxr/$outdir
+   #so we dont try to create it more than once on dropbox
+   flag="$outdir/.droxulflag"
+   if [ -e "$flag" ];then
+      #Dir Already created already
+      echo -n " "
+   else  
+      droxul -q mkdir $dxt
+      echo "just to know" > $flag
+   fi
+
+   #executing the upload of the
+   execcmd="droxul -q upload $outdir/$outfile $dxt"
+   #echo $execcmd
+   ($execcmd) &
+fi
+
+echo "------------"
+#sleep 1
