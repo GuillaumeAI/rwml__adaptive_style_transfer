@@ -12,7 +12,7 @@ if [ "$4" == "" ];then
    echo "the composite model three-v2-dev with custom resolution."
    echo "----------------------------"
    echo "USAGE :"
-   echo "$0 [mid] [x1] [x2] [x3] ([vseq])"
+   echo "$0 [mid] [x1] [x2] [x3] ([vseq]) [--droxul TARGET_FOLDER]"
    echo "vseq: used to bypass the sequencial number at the end. default is x1"
    echo "mid:  57,58"
    echo "-----By Guillaume Descoteaux-Isabelle,2021"
@@ -58,7 +58,10 @@ v3p=`printf %03d $v3`
 
 n=`printf %03d $v1`
 export filetag=$modelid'_'$v3l$v3'_'$v2l$v2p
-export outfile=$outfile_prefix$filetag'_'$vseq.$out_ext
+
+export outfilebase=$outfile_prefix$filetag'_'
+export outfile=$outfilebase$vseq.$out_ext
+
 export req_p1='{"x1":'$x1',"x2":'$x2',"x3":'$x3','
 #make the request file
 echo "$req_p1" >$requestFile
@@ -87,11 +90,23 @@ echo "------------------------------"
 #convert the response
 $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
 mv $outfile $outdir
-echo -n "      Moving $outfile to: $outdir"
+#######################
+#store the vars for other process
+echo "export lastoutfile=$outfile" >> $lastContextEnv
+echo "export lastoutdir=$outdir" >> $lastContextEnv
+echo "export lastfiletag=$filetag" >> $lastContextEnv
+echo "export lastoutfilebase=$outfilebase" >> $lastContextEnv
+echo "export lastout_ext=$out_ext" >> $lastContextEnv
+###################
+
+echo -n " Moving $outfile    to: $outdir"
 
 if [ "$6" == "--droxul" ];then
    dxr=$7
+   
+   echo "export lastdxr=$dxr" >> $lastContextEnv
    dxt=$dxr/$outdir
+   echo "export lastdxt=$dxt" >> $lastContextEnv
    #so we dont try to create it more than once on dropbox
    flag="$outdir/.droxulflag"
    if [ -e "$flag" ];then
@@ -105,7 +120,9 @@ if [ "$6" == "--droxul" ];then
    #executing the upload of the
    execcmd="droxul -q upload $outdir/$outfile $dxt"
    #echo $execcmd
+   echo -n "Launching Droxul in bg..."
    ($execcmd) &
+   echo "...done"
 fi
 
 echo "------------"

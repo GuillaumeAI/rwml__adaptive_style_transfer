@@ -3,6 +3,8 @@ export infile=mycrop.jpg
 export out_ext=jpg
 export outdir_prefix='ocrop_'
 export outfile_prefix="result_a_"
+#to load env of context
+export lastContextEnv="_lastContextEnv.sh"
 export callhost="as.guillaumeisabelle.com"
 export callprotocol="http"
 export callmethod="stylize"
