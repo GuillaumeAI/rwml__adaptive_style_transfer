@@ -4,12 +4,16 @@
 #
 # This server compose two Adaptive Style Transfer model (output of the first pass serve as input to the second.)
 ########################################################
+#v2-dev
+#Receive the 3 res from arguments in the request...
+
 import os
 import numpy as np
 import tensorflow as tf
 from module import encoder, decoder
 from glob import glob
 import runway
+from runway.data_types import number, text
 
 
 #from utils import *
