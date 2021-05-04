@@ -1,4 +1,9 @@
 #!/bin/bash
+export requestFileContentImage=_request_raw.json
+export infile=Sketch__2101240002__01_cc01-redraw.jpg
+#export req_contentImageFilePart=_contentImage.ojson
+gia-ast-img2stylize-request $infile $requestFileContentImage
+
 export callhost="as.guillaumeisabelle.com"
 export callprotocol="http"
 export callmethod="stylize"
@@ -12,22 +17,43 @@ export modelid=$1
 export x1=$2
 export x2=$3
 export x3=$4
-n=`printf %03d $x1`
-export outfile=result-a-$modelid-$x3-$x2-$n.jpg
-export req_p1='{"x1":'$x1',"x2":'$x2',"x3":'$x3','
-export req_contentImageFilePart=_contentImage.ojson
-#make the request file
-echo "$req_p1">$requestFile
-cat $req_contentImageFilePart >> $requestFile
-echo "}" >> $requestFile
+v1=$x1 #The one we alter
+v1l=1x
+v2=$x2
+v2l=2x
+v3=$x3
+v3l=3x
+#default seq number for FN or get it as optional args
+vseq=$v1l
+if [ "$5" != "" ];then
+   vseq=$5
+fi
 
-outdir='out-'$modelid'_'$x3'_'$x2
+v1p=`printf %03d $v1`
+v2p=`printf %03d $v2`
+v3p=`printf %03d $v3`
+
+n=`printf %03d $v1`
+export out_prefix="result_a_"
+export out_ext=jpg
+export filetag=$modelid'_'$v3l$v3'_'$v3l$v2p
+export outfile=$out_prefix$filetag'_'$vseq.$out_ext
+export req_p1='{"x1":'$x1',"x2":'$x2',"x3":'$x3','
+#make the request file
+echo "$req_p1" >$requestFile
+#cat $req_contentImageFilePart >> $requestFile
+cat $requestFileContentImage | tr "{" " " >> $requestFile
+rm $requestFileContentImage
+#echo "}" >> $requestFile
+outdir='out_'$filetag
 mkdir -p $outdir
 
 export callurl="$callprotocol://$callhost:$callport$modelid/$callmethod"
 
 # Call the modeling service
 #curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
+echo curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile
+
 curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile
 
 #convert the response
