@@ -10,6 +10,8 @@
 
 export modelmountpath="/a/model/models"
 
+export admscript=./_adm__stopRemove_Containers__210502.sh
+alias dcls="$admscript --list --port"
 
 ## Container related
 export containermodelroot="/data/styleCheckpoint"
