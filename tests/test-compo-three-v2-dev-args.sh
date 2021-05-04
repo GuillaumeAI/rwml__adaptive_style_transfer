@@ -104,6 +104,7 @@ echo "------------------------------"
 #convert the response
 $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
 mv $outfile $outdir
+rm $responseFile
 #######################
 #exit
 #store the vars for other process
