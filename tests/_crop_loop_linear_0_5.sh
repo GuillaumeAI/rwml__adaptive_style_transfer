@@ -14,29 +14,44 @@ x3=2048
 
 p=98
 s=./test-compo-three-v2-dev-args.sh
-c=1
+c=94
 #determine if we infer
 infer=1
 
-export A="as.guillaumeisabelle.com"
+export A="gaia.guillaumeisabelle.com"
 export B="orko.guillaumeisabelle.com"
-for i in {5..99}
+export C="as.guillaumeisabelle.com"
+droxflag="--droxul"
+droxflag="--nodroxul"
+for i in {46..99}
 do
+	
 	echo "#-----------i:$i--c:$c-------------"
-        crpitemf=$crpf$c.jpg
-	source $cropscript $ocf $crpitemf $i
+   crpitemf=$crpf$c.jpg
+		source $cropscript $ocf $crpitemf $i  
 	if [ "$infer" == "1" ] ; then 
-                $s $p $x1 $x2 $x3 $c --droxul $dropbox_root_dir $A &
-        fi
+      $s $p $x1 $x2 $x3 $c $droxflag $dropbox_root_dir $A &
+   fi
 	c=$(expr $c + 1)
+	echo "#-----------i:$i--c:$c-------------"
+   crpitemf=$crpf$c.jpg
+	source $cropscript $ocf $crpitemf $i.33  
+	if [ "$infer" == "1" ] ; then 
+      $s $p $x1 $x2 $x3 $c $droxflag $dropbox_root_dir $B &
+   fi
+	c=$(expr $c + 1)
+	source _sleeper_loop_mid.sh
 	echo "#-----------i:$i--c:$c-------------"
 	crpitemf=$crpf$c.jpg
-	source $cropscript $ocf $crpitemf $i
+	source $cropscript $ocf $crpitemf $i.67
 	if [ "$infer" == "1" ] ; then 
-                $s $p $x1 $x2 $x3 $c --droxul $dropbox_root_dir $B
-        fi
+                $s $p $x1 $x2 $x3 $c $droxflag $dropbox_root_dir $C
+   fi
 	c=$(expr $c + 1)
-        sleep 2
+   #sleep 3
+	
+	source _sleeper_loop.sh
+
 done	
 
 

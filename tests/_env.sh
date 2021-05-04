@@ -1,9 +1,10 @@
-export crpf=mycrop
+export crpf=$TMP/_tmp_crop
 export dropbox_root_dir=/lib/results/compo-three-v2-dev
-export infile=mycrop.jpg
+export dropbox_root_dir=/Downloads__2101
+export infile=$crpf.jpg
 export out_ext=jpg
 export cropscript=_crop.sh
-export outdir_prefix='ohcrop_'
+export outdir_prefix='ohcropIMG00250_1_'
 export outfile_prefix="result_a_"
 #to load env of context
 export lastContextEnv="_lastContextEnv.sh"
@@ -16,11 +17,13 @@ export lseqScript=./test-compo-three-v2-dev-args.sh
 export giaImg2Base64RequestScript=gia-ast-img2stylize-request
 export giaAstResponseStylizedToFileScript=gia-ast-response-stylizedImage2file
 export callContentType="Content-Type: application/json"
+#$TMP/
+export requestFileContentImage=$TMP/_request_raw$1.json
+export responseFile=$TMP/response$1.json
+export requestFile=$TMP/request$1.json
 
-export requestFileContentImage=_request_raw$1.json
-export responseFile=response$1.json
-export requestFile=sample-args$1.json
-
+echo "Response File: $responseFile"
+echo "Request File: $requestFile"
 
 # Loads an ENV for the current host if exist
 hostenvfile="_henv_$HOSTNAME.sh"
