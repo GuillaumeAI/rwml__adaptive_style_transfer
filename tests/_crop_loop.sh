@@ -2,7 +2,8 @@ source _env.sh
 #source _init.sh
 
 dropbox_root_dir=/lib/results/compo-three-v2-dev
-
+ocf=$1
+crpf=$2
 #test
 x1=24
 x2=32
@@ -20,7 +21,7 @@ infer=1
 for i in {5..50}
 do
 	echo "-----------i:$i--c:$c-------------"
-	source _crop.sh $1 $2 $i
+	source $cropscript $ocf $crpf $i
 	if [ "$infer" == "1" ] ; then $s $p $x1 $x2 $x3 $c --droxul $dropbox_root_dir ; fi
 	c=$(expr $c + 1)
 
@@ -60,7 +61,7 @@ done
 for i in {51..80}
 do
         echo "-----------i:$i--c:$c-------------"
-        source _crop.sh $1 $2 $i
+        source $cropscript $ocf $crpf $i
         if [ "$infer" == "1" ] ; then $s $p $x1 $x2 $x3 $c --droxul $dropbox_root_dir; fi
         c=$(expr $c + 1)
 
@@ -102,7 +103,7 @@ done
 for i in {81..96}
 do
         echo "-----------i:$i--c:$c-------------"
-        source _crop.sh $1 $2 $i
+        source $cropscript $ocf $crpf $i
         if [ "$infer" == "1" ] ; then $s $p $x1 $x2 $x3 $c --droxul $dropbox_root_dir ; fi
         c=$(expr $c + 1)
 
@@ -143,10 +144,10 @@ done
 for i in {97..100}
 do
         echo "-----------i:$i--c:$c-------------"
-        source _crop.sh $1 $2 $i
+        source $cropscript $ocf $crpf $i
         if [ "$infer" == "1" ] ; then $s $p $x1 $x2 $x3 $c --droxul $dropbox_root_dir; fi
         c=$(expr $c + 1)
 
 done
 w=1;source $lastContextEnv
-#convert $1 -set page -%[fx:w*0.1]-%[fx:h*0.1] -crop $3%x+0+0 $2
+#convert $ocf -set page -%[fx:w*0.1]-%[fx:h*0.1] -crop $3%x+0+0 $crpf

@@ -1,6 +1,7 @@
 
 export infile=mycrop.jpg
 export out_ext=jpg
+export cropscript=_crop.sh
 export outdir_prefix='ocrop_'
 export outfile_prefix="result_a_"
 #to load env of context
