@@ -48,6 +48,13 @@ export compo3containerrepo="$compo3containerns/$compo3containerreponame"
 export compo3containertag="$compo3containerrepo:$compo3containerrepotag"
 #guillaumeai/server:ast-210502-compo-three
 
+#COMPO Three v2 devContainer
+export compo3v2devcontainerns="guillaumeai"
+export compo3v2devcontainerreponame="server"
+export compo3v2devcontainerrepotag="ast-210502-compo-three-v2-dev"
+export compo3v2devcontainerrepo="$compo3v2devcontainerns/$compo3v2devcontainerreponame"
+export compo3v2devcontainertag="$compo3v2devcontainerrepo:$compo3v2devcontainerrepotag"
+
 
 export serverport=8000
 export serverhostport=9000
