@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "entening"
 
 if [ "$5" == "" ];then
    echo "Render a sequence of inferences using "
