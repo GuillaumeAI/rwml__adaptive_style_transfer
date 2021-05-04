@@ -1,0 +1,6 @@
+tests/*jpg
+tests/*req*json
+tests/*res*json
+tests/out*
+tests/sample*json
+tests/*ojson
