@@ -122,13 +122,23 @@ def setup(opts):
     return models
 
 
-@runway.command('stylize', inputs={'contentImage': runway.image}, outputs={'stylizedImage': runway.image})
+#@STCGoal add number or text to specify resolution of the three pass
+inputs={'contentImage': runway.image,'x1':number(default=1328,min=24,max=8000),'x2':number(default=1024,min=24,max=8000),'x3':number(default=2048,min=24,max=8000)}
+outputs={'stylizedImage': runway.image}
+
+
+@runway.command('stylize', inputs=inputs, outputs=outputs)
 def stylize(models, inp):
     start = time.time()
     dtprint("Composing...")
     model = models.m1
     model2 = models.m2
     model3 = models.m3
+
+    #get size from inputs rather than env
+    x1 = inp['x1']
+    x2 = inp['x2']
+    x3 = inp['x3']
 
     #
     img = inp['contentImage']
@@ -137,6 +147,7 @@ def stylize(models, inp):
 
     #@a Pass 1 RESIZE to 1368px the smaller side
     image_size=pass1_image_size
+    image_size=x1
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
     dtprint ("DEBUG::content.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
@@ -156,6 +167,7 @@ def stylize(models, inp):
 
     #@a Pass 2 RESIZE to 1024px the smaller side
     image_size=pass2_image_size
+    image_size=x2
     img_shape = img.shape[:2]
     
     
@@ -181,6 +193,7 @@ def stylize(models, inp):
 
     #@a Pass 3 RESIZE to 2048px the smaller side
     image_size=pass3_image_size
+    image_size=x3
     img_shape = img.shape[:2]
     
     
