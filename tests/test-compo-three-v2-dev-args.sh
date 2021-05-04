@@ -97,6 +97,7 @@ echo -n "Infering...$vseq..."
 (sleep 1;echo -n ".")
 curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
 echo -n "."
+rm $requestFile
 
 echo "done."
 echo "------------------------------"
