@@ -1,5 +1,5 @@
 #!/bin/bash
-source _env.sh $5
+source _env.sh $6
 
 #export infile=Sketch__2101240002__01_cc01-redraw.jpg
 #sleep 1
@@ -7,27 +7,27 @@ source _env.sh $5
 # outdir_prefix='ocrop_'
 
 export multihost=0
-if [ "$8" != "" ];then
+if [ "$9" != "" ];then
    export multihost=1
    # we use the host from the param so we can distribute
-   export callhost=$8
+   export callhost=$9
    echo "Host is : $callhost"
 
 fi
 
-if [ "$4" == "" ];then
+if [ "$5" == "" ];then
    echo "Infer a compo style with specific resolution "
    echo "the composite model three-v2-dev with custom resolution."
    echo "----------------------------"
    echo "USAGE :"
-   echo "$0 [mid] [x1] [x2] [x3] ([vseq]) [--droxul TARGET_FOLDER]"
+   echo "$0 <file> <mid> <x1> <x2> <x3> ([vseq]) [--droxul TARGET_FOLDER] [Host]"
    echo "vseq: used to bypass the sequencial number at the end. default is x1"
    echo "mid:  57,58"
    echo "-----By Guillaume Descoteaux-Isabelle,2021"
    exit
 fi
 
-if [ "$6" == "--droxul" ] && [ "$7" == "" ] ;then
+if [ "$7" == "--droxul" ] && [ "$8" == "" ] ;then
    echo "--droxul require a base path where to upload the file"
    echo "--droxul /lib/results/compo-three-v2-dev"
    exit
@@ -39,11 +39,12 @@ fi
 # export callportbase=90
 export callport=$callportbase$modelid
 
-export modelid=$1
+export infile=$1
+export modelid=$2
 
-export x1=$2
-export x2=$3
-export x3=$4
+export x1=$3
+export x2=$4
+export x3=$5
 v1=$x1 #The one we alter
 v1l=1x
 v2=$x2
@@ -53,10 +54,14 @@ v3l=3x
 #default seq number for FN or get it as optional args
 vseq=$v1l
 
-if [ "$5" != "" ];then
-   vseq=$5
+if [ "$6" != "" ];then
+   vseq=$6
 fi
 crpitemf=$crpf$vseq.jpg
+crpitemf=$infile
+#infilebasename=${infile%.*}
+#crpitemf=$infilebasename$vseq.jpg
+
 
 #State of the current host
 hostcurrentstatefile=$TMP/$callhost.txt
@@ -67,10 +72,11 @@ echo "-----$vseq------" >> $hostcurrentstatefile
 echo "$vseq:$(date)" >> $hostcurrentstatefile
 echo "$callhost:$vseq>>" >> $hostcurrentstatefile
 
-$giaImg2Base64RequestScript $crpitemf $requestFileContentImage --quiet
-#echo "Cleaning $crpitemf"
-rm $crpitemf 
-#sleep 2
+
+$giaImg2Base64RequestScript $crpitemf $requestFileContentImage --verbose
+echo "Cleaning $crpitemf"
+#rm $crpitemf 
+sleep 1
 
 vseq=`printf %03d $vseq`
 
@@ -90,7 +96,7 @@ echo "$req_p1" >$requestFile
 #cat $req_contentImageFilePart >> $requestFile
 cat $requestFileContentImage | tr "{" " " >> $requestFile
 rm $requestFileContentImage
-
+echo "requestFile: $requestFile was just contructed"
 #echo "}" >> $requestFile
 outdir=$outdir_prefix$filetag
 
@@ -102,22 +108,24 @@ echo "export lcallurl=$callurl" >> $lastContextEnv
 # Call the modeling service
 #curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
 #echo curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
-#echo "------------------------------"
+#echo 
+
+
 echo -n "Infering...$vseq..."
 (sleep 1;echo -n ".")&
 (sleep 2;echo -n ".")&
 (sleep 3;echo -n ".")&
 #echo curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
 curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
-
 echo -n "."
-#echo -n "...cleaning $requestFile"
+echo "Cleaning $requestFile...."
 rm $requestFile
 echo  "..."
 #echo "------------------------------"
 #convert the response
-$giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
-mv $outfile $outdir
+echo $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
+echo mv $outfile $outdir
+exit
 #echo "...$responseFile cleared"
 rm $responseFile
 #######################
@@ -139,7 +147,7 @@ echo -n " Moving $outfile   "
 echo -n "...done"
 #echo -n " Moving $outfile    to: $outdir"
 
-if [ "$6" == "--droxul" ];then
+if [ "$7" == "--droxul" ];then
    dxr=$7
    
    echo "export lastdxr=$dxr" >> $lastContextEnv
