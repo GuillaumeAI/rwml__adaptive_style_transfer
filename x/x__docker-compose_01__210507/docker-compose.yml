@@ -1,0 +1,30 @@
+version: "3"
+services:
+        app:
+                image: jgwill/node
+                container_name: my_app
+                command: sh -c "echo 'Voila, pretty much it is like I am doing stuff in this container then it will quit';ls; sleep 55"
+                ports:
+                        - 3000:3000
+                working_dir: /app
+                volumes:
+                        - ./:/app
+                environment:
+                        MYVAL: allo
+                        MYVAL2: haha
+        
+        be:
+                image: guillaumeai/server:http-server
+                container_name: my_http-server_app
+                command: sh -c "cd /a;http-server"
+                ports:
+                        - 8080:8080
+                volumes:
+                        - /a:/a
+                        #- todo-some-data:/var/lib/somedata
+                environment: 
+                        MYPASSWORD: MyPassw0rd
+                        MYKEY: MyKey
+        #volumes:
+              #  todo-some-data:
+                        
