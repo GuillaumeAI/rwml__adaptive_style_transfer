@@ -49,7 +49,7 @@ if [ "$1" == "" ] ||  [ "$1" == "--rm" ]  ; then
 fi
 
 if [ "$1" == "--list" ]  ||  [ "$1" == "--ls" ];then
-	echo "------Listing containers ---------"
+#	echo "------Listing containers ---------"
 	for container in $containers
 	do
 		export msg="$container"
@@ -57,17 +57,18 @@ if [ "$1" == "--list" ]  ||  [ "$1" == "--ls" ];then
 
 			cports=$(docker container port $container | tr ":" " "| awk '/0.0.0.0/ { print $4}')
 			#echo "$cports"
-			for cport in $cports; do
+		for cport in $cports; do
 			       #msg=$cport':'$container
 			       msg2=$cport':'$container
 		#	       echo "$msg2"
 			      export msg=" $msg2"
-		       done
+		      done
+		      #echo "$res" | sort
 	       else
 		       echo " "
 		fi
 		
-		echo "$msg"
+		echo "$msg" | sort
 
 		
 	done
