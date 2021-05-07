@@ -13,11 +13,10 @@ var config2 = { cwd: svc2path,
   log: true //@STCGoal Start two services description in one shot :)
 };
 
-compose.upAll(
+compose.down(
 {  cwd: path.join(__dirname), 
   log: true,
-  config: ["myservice1.yml","myservice2.yml"]
-
+  config: ["./docker-compose.yml",svc2path]
 }
   ).then(
   (data) =>  {
