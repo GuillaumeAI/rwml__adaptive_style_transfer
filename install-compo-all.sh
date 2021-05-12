@@ -4,10 +4,12 @@ source _env.sh
 # Pulling docker images
 docker pull $containertag
 docker pull $compocontainertag
-
+echo "--------------------------------------------------------"
+echo "WARNING - IT MIGHT STARTS CONTAINER THAT ARE NOT DESIRED"
+sleep 3
 for s in custom-start-docker-ast-compo*.sh ; do
 	echo "Launching/Installing : $s"
-	./$s
+ 	./$s
 done
 
 #echo "Launching/Installing WebApp..."

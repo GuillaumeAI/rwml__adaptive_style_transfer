@@ -118,14 +118,14 @@ echo -n "Infering...$vseq..."
 #echo curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
 curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
 echo -n "."
-#echo -n "...cleaning $requestFile"
+echo "Cleaning $requestFile...."
 rm $requestFile
 echo  "..."
 #echo "------------------------------"
 #convert the response
 echo $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
-mv $outfile $outdir
-
+echo mv $outfile $outdir
+exit
 #echo "...$responseFile cleared"
 rm $responseFile
 #######################

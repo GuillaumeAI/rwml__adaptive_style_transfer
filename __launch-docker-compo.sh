@@ -32,4 +32,4 @@ echo "-----------Installing $containername ------------"
 sleep 1
 torun="$docker_cmd -v $(pwd):/work  -v $model2localpoint:$model2mountpoint  -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport  -e PASS1IMAGESIZE=$PASS1IMAGESIZE -e PASS2IMAGESIZE=$PASS2IMAGESIZE  -e MODELNAME=$modelname -e MODEL2NAME=$model2name  -e SPORT=$serverhostport $compocontainertag"
 echo $torun
-#$torun
+$torun
