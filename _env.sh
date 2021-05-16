@@ -61,6 +61,15 @@ export serverhostport=9000
 
 export callprotocol="http"
 
+#### Imports from gixast to use droxul
+
+export cuserhome=/root
+export dkrun_mount_droxconf_config_args="-v $HOME/.dropbox_uploader:$cuserhome/.dropbox_uploader -v $HOME:/config"
+#binroot support in container
+export dkrun_mount_binroot=" -v $binroot:$binroot "
+##<<<#
+# $dkrun_mount_binroot $dkrun_mount_droxconf_config_args
+
 # docker
 #export docker_cmd="docker run -it --rm "
 ## Set to desired Docker running Mode (it:iteractive, d:background)
