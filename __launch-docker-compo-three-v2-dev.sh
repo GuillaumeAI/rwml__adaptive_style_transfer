@@ -33,7 +33,7 @@ echo "-----------Installing $containername ------------"
 
 
 
-execme="$docker_cmd -v $(pwd):/work  -v $model2localpoint:$model2mountpoint  -v $modellocalpoint:$modelmountpoint  -v $model3localpoint:$model3mountpoint -p $serverhostport:$serverport  -e PASS1IMAGESIZE=$PASS1IMAGESIZE -e PASS2IMAGESIZE=$PASS2IMAGESIZE -e PASS3IMAGESIZE=$PASS3IMAGESIZE -e MODELNAME=$modelname -e MODEL2NAME=$model2name -e MODEL3NAME=$model3name  -e SPORT=$serverhostport $compo3v2devcontainertag"
+execme="$docker_cmd -v $(pwd):/work  -v $model2localpoint:$model2mountpoint  -v $modellocalpoint:$modelmountpoint  -v $model3localpoint:$model3mountpoint -p $serverhostport:$serverport  -e PASS1IMAGESIZE=$PASS1IMAGESIZE -e PASS2IMAGESIZE=$PASS2IMAGESIZE -e PASS3IMAGESIZE=$PASS3IMAGESIZE -e MODELNAME=$modelname -e MODEL2NAME=$model2name -e MODEL3NAME=$model3name  -e SPORT=$serverhostport $dkrun_mount_binroot $dkrun_mount_droxconf_config_args $compo3v2devcontainertag"
 
 sleep 1
 echo $execme
