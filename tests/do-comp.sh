@@ -1,5 +1,11 @@
 #!/bin/bash
-source _env.sh $6
+
+#Loading functions
+if [ -e $binroot/__fn.sh ]; then
+                source $binroot/__fn.sh $@
+fi
+DEBUG=1
+source _env.sh $1
 
 #export infile=Sketch__2101240002__01_cc01-redraw.jpg
 #sleep 1
@@ -38,7 +44,6 @@ fi
 # export callmethod="stylize"
 # export callportbase=90
 export callport=$callportbase$modelid
-
 export infile=$1
 export modelid=$2
 
@@ -54,11 +59,16 @@ v3l=3x
 #default seq number for FN or get it as optional args
 vseq=$v1l
 
+dvar callport infile modelid x1 x2 x3 vseq
+
 if [ "$6" != "" ];then
    vseq=$6
 fi
+
 crpitemf=$crpf$vseq.jpg
 crpitemf=$infile
+dvar crpitemf
+
 #infilebasename=${infile%.*}
 #crpitemf=$infilebasename$vseq.jpg
 
@@ -67,16 +77,20 @@ crpitemf=$infile
 hostcurrentstatefile=$TMP/$callhost.txt
 #echo "tail -f $hostcurrentstatefile"
 #sleep 1
-
-echo "-----$vseq------" >> $hostcurrentstatefile
-echo "$vseq:$(date)" >> $hostcurrentstatefile
-echo "$callhost:$vseq>>" >> $hostcurrentstatefile
+dvar hostcurrentstatefile
 
 
+dvar callhost vseq
+
+dvar giaImg2Base64RequestScript requestFileContentImage
+
+d $giaImg2Base64RequestScript $crpitemf $requestFileContentImage --verbose
 $giaImg2Base64RequestScript $crpitemf $requestFileContentImage --verbose
+
+
 echo "Cleaning $crpitemf"
 #rm $crpitemf 
-sleep 1
+
 
 vseq=`printf %03d $vseq`
 
@@ -85,25 +99,31 @@ v2p=`printf %03d $v2`
 v3p=`printf %03d $v3`
 
 n=`printf %03d $v1`
+
+dvar vseq v1p v2p v3p n
 export filetag=$modelid'_'$v3l$v3'_'$v2l$v2p
 
 export outfilebase=$outfile_prefix$filetag'_'
 export outfile=$outfilebase$vseq.$out_ext
-
+dvar filetag outfilebase outfile
 export req_p1='{"x1":'$x1',"x2":'$x2',"x3":'$x3','
 #make the request file
 echo "$req_p1" >$requestFile
+d "Generating the request JSON with input res as args"
+dvar req_p1
+
 #cat $req_contentImageFilePart >> $requestFile
 cat $requestFileContentImage | tr "{" " " >> $requestFile
 rm $requestFileContentImage
 echo "requestFile: $requestFile was just contructed"
 #echo "}" >> $requestFile
 outdir=$outdir_prefix$filetag
+dvar outdir
 
 mkdir -p $outdir
 
 export callurl="$callprotocol://$callhost:$callport$modelid/$callmethod"
-
+dvar callurl
 echo "export lcallurl=$callurl" >> $lastContextEnv
 # Call the modeling service
 #curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
@@ -116,17 +136,22 @@ echo -n "Infering...$vseq..."
 (sleep 2;echo -n ".")&
 (sleep 3;echo -n ".")&
 #echo curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
-curl --header  "$callContentType"  --request POST   --data @$requestFile $callurl --output $responseFile --silent
+curl -vs --header  "$callContentType"  --request POST   --data @$requestFile $callurl | cat - > $responseFile
+#--output $responseFile --silent
 echo -n "."
 echo "Cleaning $requestFile...."
 rm $requestFile
 echo  "..."
 #echo "------------------------------"
 #convert the response
-echo $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
-echo mv $outfile $outdir
-exit
+ecd g $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
+dvar giaAstResponseStylizedToFileScript responseFile outfile
+$giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
+mv $outfile $outdir
+ecd c "Should have a result in $outdir"
+feh -F $outdir/$outfile &
 #echo "...$responseFile cleared"
+exit
 rm $responseFile
 #######################
 #exit
