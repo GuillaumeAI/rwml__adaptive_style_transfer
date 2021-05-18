@@ -103,8 +103,7 @@ def setup(opts):
     else:
         model_name = os.getenv('MODELNAME')
     
-    #keeping the name for later
-    model1name = model_name
+    
 
     #Getting the model2 name
     model2_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][1]
@@ -112,8 +111,7 @@ def setup(opts):
         dtprint("CONFIG::MODEL2NAME env var non existent;using default:" + model2_name)
     else:
         model2_name = os.getenv('MODEL2NAME')
-    #keeping the name for later
-    model2name = model2_name
+        
 
     #Getting the model3 name
     model3_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][2]
@@ -122,8 +120,7 @@ def setup(opts):
     else:
         model3_name = os.getenv('MODEL3NAME')
     
-    ##keeping the name for later
-    model3name = model3_name
+    
 
     checkpoint_dir = os.path.join(path, model_name, 'checkpoint_long')
     checkpoint2_dir = os.path.join(path, model2_name, 'checkpoint_long')
@@ -145,9 +142,9 @@ def setup(opts):
     saver.restore(sess, os.path.join(checkpoint_dir, ckpt_name))
     saver2.restore(sess2, os.path.join(checkpoint2_dir, ckpt2_name))
     saver3.restore(sess3, os.path.join(checkpoint3_dir, ckpt3_name))
-    m1 = dict(sess=sess, input_photo=input_photo, output_photo=output_photo,name=model1name)
-    m2 = dict(sess=sess2, input_photo=input_photo, output_photo=output_photo,name=model2name)
-    m3 = dict(sess=sess3, input_photo=input_photo, output_photo=output_photo,name=model3name)
+    m1 = dict(sess=sess, input_photo=input_photo, output_photo=output_photo)
+    m2 = dict(sess=sess2, input_photo=input_photo, output_photo=output_photo)
+    m3 = dict(sess=sess3, input_photo=input_photo, output_photo=output_photo)
     models = type('', (), {})()
     models.m1 = m1
     models.m2 = m2
@@ -157,7 +154,7 @@ def setup(opts):
 
 #@STCGoal add number or text to specify resolution of the three pass
 inputs={'contentImage': runway.image,'x1':number(default=1328,min=24,max=8000),'x2':number(default=1024,min=24,max=8000),'x3':number(default=2048,min=24,max=8000)}
-outputs={'stylizedImage': runway.image}
+outputs={'stylizedImage': runway.image,'totaltime':number,'x1': number,'x2': number,'x3': number,'model1name':str,'model2name':str,'model3name':str}
 
 
 @runway.command('stylize', inputs=inputs, outputs=outputs)
@@ -169,9 +166,10 @@ def stylize(models, inp):
     model3 = models.m3
     
     #Getting our names back (even though I think we dont need)
-    m1name=models.m1.name
-    m2name=models.m2.name
-    m3name=models.m3.name
+    #@STCIssue BUGGED
+    # m1name=models.m1.name
+    # m2name=models.m2.name
+    # m3name=models.m3.name
 
     #get size from inputs rather than env
     x1 = inp['x1']
@@ -258,7 +256,7 @@ def stylize(models, inp):
     stop = time.time()
     totaltime = stop - start
     print("The time of the run:", totaltime)
-    res2 = dict(stylizedImage=img,totaltime=totaltime,x1=x1,x2=x2,x3=x3,m1name=m1name,m2name=m2name,m3name=m3name)
+    res2 = dict(stylizedImage=img,totaltime=totaltime,x1=x1,x2=x2,x3=x3,model1name=model1name,model2name=model2name,model3name=model3name)
     return res2
 
 
