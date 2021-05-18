@@ -44,7 +44,32 @@ else:
    pass3_image_size = os.getenv('PASS3IMAGESIZE')
    print("PASS3IMAGESIZE value:" + pass3_image_size)
 
+##########################################
+##   MODELS
+#model name for sending it in the response
+model1name = "UNNAMED"
+if not os.getenv('MODEL1NAME'):
+   print("MODEL1NAME env var non existent;using default:" + model1name)
+else:
+   model1name = os.getenv('MODEL1NAME')
+   print("MODEL1NAME value:" + model1name)
+#m2
+model2name = "UNNAMED"
+if not os.getenv('MODEL2NAME'):   print("MODEL2NAME env var non existent;using default:" + model2name)
+else:
+   model2name = os.getenv('MODEL2NAME')
+   print("MODEL2NAME value:" + model2name)
+#m3
+model3name = "UNNAMED"
+if not os.getenv('MODEL3NAME'):   print("MODEL3NAME env var non existent;using default:" + model3name)
+else:
+   model3name = os.getenv('MODEL3NAME')
+   print("MODEL3NAME value:" + model3name)
+#######################################################
 
+
+#########################################################
+# SETUP
 
 @runway.setup(options={'styleCheckpoint': runway.file(is_directory=True)})
 def setup(opts):
@@ -77,6 +102,9 @@ def setup(opts):
         dtprint("CONFIG::MODELNAME env var non existent;using default:" + model_name)
     else:
         model_name = os.getenv('MODELNAME')
+    
+    #keeping the name for later
+    model1name = model_name
 
     #Getting the model2 name
     model2_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][1]
@@ -84,14 +112,19 @@ def setup(opts):
         dtprint("CONFIG::MODEL2NAME env var non existent;using default:" + model2_name)
     else:
         model2_name = os.getenv('MODEL2NAME')
-        
+    #keeping the name for later
+    model2name = model2_name
+
     #Getting the model3 name
     model3_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][2]
     if not os.getenv('MODEL3NAME'):
         dtprint("CONFIG::MODEL3NAME env var non existent;using default:" + model3_name)
     else:
         model3_name = os.getenv('MODEL3NAME')
-        
+    
+    ##keeping the name for later
+    model3name = model3_name
+
     checkpoint_dir = os.path.join(path, model_name, 'checkpoint_long')
     checkpoint2_dir = os.path.join(path, model2_name, 'checkpoint_long')
     checkpoint3_dir = os.path.join(path, model3_name, 'checkpoint_long')
@@ -112,9 +145,9 @@ def setup(opts):
     saver.restore(sess, os.path.join(checkpoint_dir, ckpt_name))
     saver2.restore(sess2, os.path.join(checkpoint2_dir, ckpt2_name))
     saver3.restore(sess3, os.path.join(checkpoint3_dir, ckpt3_name))
-    m1 = dict(sess=sess, input_photo=input_photo, output_photo=output_photo)
-    m2 = dict(sess=sess2, input_photo=input_photo, output_photo=output_photo)
-    m3 = dict(sess=sess3, input_photo=input_photo, output_photo=output_photo)
+    m1 = dict(sess=sess, input_photo=input_photo, output_photo=output_photo,name=model1name)
+    m2 = dict(sess=sess2, input_photo=input_photo, output_photo=output_photo,name=model2name)
+    m3 = dict(sess=sess3, input_photo=input_photo, output_photo=output_photo,name=model3name)
     models = type('', (), {})()
     models.m1 = m1
     models.m2 = m2
@@ -134,12 +167,17 @@ def stylize(models, inp):
     model = models.m1
     model2 = models.m2
     model3 = models.m3
+    
+    #Getting our names back (even though I think we dont need)
+    m1name=models.m1.name
+    m2name=models.m2.name
+    m3name=models.m3.name
 
     #get size from inputs rather than env
     x1 = inp['x1']
     x2 = inp['x2']
     x3 = inp['x3']
-
+    
     #
     img = inp['contentImage']
     img = np.array(img)
@@ -220,7 +258,7 @@ def stylize(models, inp):
     stop = time.time()
     totaltime = stop - start
     print("The time of the run:", totaltime)
-    res2 = dict(stylizedImage=img,totaltime=totaltime)
+    res2 = dict(stylizedImage=img,totaltime=totaltime,x1=x1,x2=x2,x3=x3,m1name=m1name,m2name=m2name,m3name=m3name)
     return res2
 
 
