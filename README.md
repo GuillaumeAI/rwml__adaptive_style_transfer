@@ -1,3 +1,16 @@
+# GIA-AST-Servers
+
+## Intentions
+
+* Adequate servicing of model thru an API
+* What is required to manage them, test them
+* Be cool with myself, writing code is not all that I want to do in my life and I have a lot of writing for my thesis to do.
+
+
+----
+ORIGINAL README
+----
+
 # A Style-Aware Content Loss for Real-time HD Style Transfer
 ***Artsiom Sanakoyeu\*, Dmytro Kotovenko\*, Sabine Lang, Björn Ommer*, In ECCV 2018 (Oral)**
 
