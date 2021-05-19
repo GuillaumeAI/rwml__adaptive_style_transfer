@@ -18,12 +18,13 @@ export giaImg2Base64RequestScript=gia-ast-img2stylize-request
 export giaAstResponseStylizedToFileScript=gia-ast-response-stylizedImage2file
 export callContentType="Content-Type: application/json"
 #$TMP/
-export requestFileContentImage=$TMP/_request_raw$1.json
-export responseFile=$TMP/response$1.json
-export requestFile=$TMP/request$1.json
+cfn=$(echo "$1" |sed 's/\//_/g' )
+export requestFileContentImage=$TMP/_request_raw$cfn.json
+export responseFile=$TMP/response$cfn.json
+export requestFile=$TMP/request$cfn.json
 
-echo "Response File: $responseFile"
-echo "Request File: $requestFile"
+# echo "Response File: $responseFile"
+# echo "Request File: $requestFile"
 
 # Loads an ENV for the current host if exist
 hostenvfile="_henv_$HOSTNAME.sh"

@@ -1,5 +1,6 @@
 
 
+declare -r RWROOT=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 
 # ARTIST : CHG Model name
 
@@ -55,6 +56,13 @@ export compo3v2devcontainerrepotag="ast-210502-compo-three-v2-dev"
 export compo3v2devcontainerrepo="$compo3v2devcontainerns/$compo3v2devcontainerreponame"
 export compo3v2devcontainertag="$compo3v2devcontainerrepo:$compo3v2devcontainerrepotag"
 
+#COMPO Two v2 devContainer
+export compo2v2devcontainerns="guillaumeai"
+export compo2v2devcontainerreponame="server"
+export compo2v2devcontainerrepotag="ast-210518-compo-two-v2-dev"
+export compo2v2devcontainerrepo="$compo2v2devcontainerns/$compo2v2devcontainerreponame"
+export compo2v2devcontainertag="$compo2v2devcontainerrepo:$compo2v2devcontainerrepotag"
+
 
 export serverport=8000
 export serverhostport=9000
@@ -90,11 +98,11 @@ export run_cmd="bash"
 
 # Loads an ENV for the current host if exist
 hostenvfile="_henv_$HOSTNAME.sh"
-if [ -f $hostenvfile ]; then
-    . ./$hostenvfile
+if [ -f $RWROOT/$hostenvfile ]; then
+    . $RWROOT/$hostenvfile
 else
-    echo " ./$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
+    echo " $RWROOT/$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
 fi
 
-echo "Environment is loaded"
+#echo "Environment is loaded"
 

@@ -21,12 +21,12 @@ if [ "$9" != "" ];then
 
 fi
 
-if [ "$5" == "" ];then
+if [ "$4" == "" ];then
    echo "Infer a compo style with specific resolution "
    echo "the composite model three-v2-dev with custom resolution."
    echo "----------------------------"
    echo "USAGE :"
-   echo "$0 <file> <mid> <x1> <x2> <x3> ([vseq]) [--droxul TARGET_FOLDER] [Host]"
+   echo "$0 <file> <mid> <x1> <x2> [x3] ([vseq]) [--droxul TARGET_FOLDER] [Host]"
    echo "vseq: used to bypass the sequencial number at the end. default is x1"
    echo "mid:  57,58"
    echo "-----By Guillaume Descoteaux-Isabelle,2021"
@@ -49,6 +49,7 @@ export modelid=$2
 
 export x1=$3
 export x2=$4
+
 export x3=$5
 v1=$x1 #The one we alter
 v1l=1x
@@ -101,12 +102,22 @@ v3p=`printf %03d $v3`
 n=`printf %03d $v1`
 
 dvar vseq v1p v2p v3p n
+export req_p1='{"x1":'$x1',"x2":'$x2',"x3":'$x3','
+
+if [ "$x3" == "" ]; then #
+        export req_p1='{"x1":'$x1',"x2":'$x2','
+        v3l=$v1l
+        v3p=$v1p
+	v3=$v1
+fi
+
 export filetag=$modelid'_'$v3l$v3'_'$v2l$v2p
 
 export outfilebase=$outfile_prefix$filetag'_'
 export outfile=$outfilebase$vseq.$out_ext
 dvar filetag outfilebase outfile
-export req_p1='{"x1":'$x1',"x2":'$x2',"x3":'$x3','
+
+
 #make the request file
 echo "$req_p1" >$requestFile
 d "Generating the request JSON with input res as args"
@@ -121,6 +132,7 @@ outdir=$outdir_prefix$filetag
 dvar outdir
 
 mkdir -p $outdir
+
 
 export callurl="$callprotocol://$callhost:$callport$modelid/$callmethod"
 dvar callurl

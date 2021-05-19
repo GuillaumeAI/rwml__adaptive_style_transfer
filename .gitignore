@@ -1,4 +1,5 @@
 tests/*jpg
+tests/ohcrop*/*
 tests/*req*json
 tests/*res*json
 tests/out*
