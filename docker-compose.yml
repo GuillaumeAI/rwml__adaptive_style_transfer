@@ -1,0 +1,27 @@
+version: "3"
+services:
+        app:
+                image: jgwill/node
+                container_name: my_app1
+                command: sh -c "echo Voila;/app/service.sh"
+                ports:
+                        - 3000:3000
+                working_dir: /app
+                volumes:
+                        - ./:/app
+                environment:
+                        logfile: /app/log-firstservice.log
+                        MYVAL: allo
+                        MYVAL2: haha
+        
+        be:
+                image: guillaumeai/server:httpd
+                volumes:
+                        - /a:/a
+                        - todo-some-data:/var/lib/somedata
+                environment: 
+                        MYPASSWORD: MyPassw0rd
+                        MYKEY: MyKey
+        volumes:
+                todo-some-data:
+                        
