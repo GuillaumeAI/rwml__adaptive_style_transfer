@@ -162,12 +162,16 @@ $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
 mv $outfile $outdir
 ecd c "Should have a result in $outdir"
 export OUTPATH=$outdir/$outfile
-feh --edit -F $OUTPATH &
+#feh if a skip var is not defined
+if [ "$SKIPFEH" == "" ] ; then feh -F $OUTPATH &
+fi
+
 echo "export OUTPATH=$OUTPATH" > OUTPATH
 
 #echo "...$responseFile cleared"
-exit
+
 rm $responseFile
+exit
 #######################
 #exit
 #store the vars for other process
