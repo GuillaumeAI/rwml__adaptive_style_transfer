@@ -89,7 +89,7 @@ d $giaImg2Base64RequestScript $crpitemf $requestFileContentImage --verbose
 $giaImg2Base64RequestScript $crpitemf $requestFileContentImage --verbose
 
 
-echo "Cleaning $crpitemf"
+#echo "Cleaning $crpitemf"
 #rm $crpitemf 
 
 
@@ -161,7 +161,10 @@ dvar giaAstResponseStylizedToFileScript responseFile outfile
 $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
 mv $outfile $outdir
 ecd c "Should have a result in $outdir"
-feh -F $outdir/$outfile &
+export OUTPATH=$outdir/$outfile
+feh --edit -F $OUTPATH &
+echo "export OUTPATH=$OUTPATH" > OUTPATH
+
 #echo "...$responseFile cleared"
 exit
 rm $responseFile
