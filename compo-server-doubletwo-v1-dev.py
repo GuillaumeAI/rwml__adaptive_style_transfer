@@ -54,12 +54,12 @@ else:
    model1name = os.getenv('MODEL1NAME')
    print("MODEL1NAME value:" + model1name)
    
-#m2
-model2name = "UNNAMED"
-if not os.getenv('MODEL2NAME'):   print("MODEL2NAME env var non existent;using default:" + model2name)
-else:
-   model2name = os.getenv('MODEL2NAME')
-   print("MODEL2NAME value:" + model2name)
+# #m2
+# model2name = "UNNAMED"
+# if not os.getenv('MODEL2NAME'):   print("MODEL2NAME env var non existent;using default:" + model2name)
+# else:
+#    model2name = os.getenv('MODEL2NAME')
+#    print("MODEL2NAME value:" + model2name)
 
 # #m3
 # model3name = "UNNAMED"
@@ -77,13 +77,13 @@ else:
 @runway.setup(options={'styleCheckpoint': runway.file(is_directory=True)})
 def setup(opts):
     sess = tf.Session()
-    sess2 = tf.Session()
+    # sess2 = tf.Session()
     # sess3 = tf.Session()
     init_op = tf.global_variables_initializer()
-    init_op2 = tf.global_variables_initializer()
+    # init_op2 = tf.global_variables_initializer()
     # init_op3 = tf.global_variables_initializer()
     sess.run(init_op)
-    sess2.run(init_op2)
+    # sess2.run(init_op2)
     # sess3.run(init_op3)
     with tf.name_scope('placeholder'):
         input_photo = tf.placeholder(dtype=tf.float32,
@@ -96,7 +96,7 @@ def setup(opts):
                            options={'gf_dim': 32},
                            reuse=False)
     saver = tf.train.Saver()
-    saver2 = tf.train.Saver()
+    # saver2 = tf.train.Saver()
     # saver3 = tf.train.Saver()
     path = opts['styleCheckpoint']
     #Getting the model name
@@ -108,15 +108,15 @@ def setup(opts):
     
     
 
-    #Getting the model2 name
-    model2_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][1]
-    if not os.getenv('MODEL2NAME'):
-        dtprint("CONFIG::MODEL2NAME env var non existent;using default:" + model2_name)
-    else:
-        model2_name = os.getenv('MODEL2NAME')
+    # #Getting the model2 name
+    # model2_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][1]
+    # if not os.getenv('MODEL2NAME'):
+    #     dtprint("CONFIG::MODEL2NAME env var non existent;using default:" + model2_name)
+    # else:
+    #     model2_name = os.getenv('MODEL2NAME')
         
 
-    #Getting the model3 name
+    ##Getting the model3 name
     # model3_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][2]
     # if not os.getenv('MODEL3NAME'):
     #     dtprint("CONFIG::MODEL3NAME env var non existent;using default:" + model3_name)
@@ -126,37 +126,37 @@ def setup(opts):
     
 
     checkpoint_dir = os.path.join(path, model_name, 'checkpoint_long')
-    checkpoint2_dir = os.path.join(path, model2_name, 'checkpoint_long')
+    #checkpoint2_dir = os.path.join(path, model2_name, 'checkpoint_long')
     # checkpoint3_dir = os.path.join(path, model3_name, 'checkpoint_long')
     print("-----------------------------------------")
     print("modelname is : " + model_name)
-    print("model2name is : " + model2_name)
+    #print("model2name is : " + model2_name)
     # print("model3name is : " + model3_name)
     print("checkpoint_dir is : " + checkpoint_dir)
-    print("checkpoint2_dir is : " + checkpoint2_dir)
+    #print("checkpoint2_dir is : " + checkpoint2_dir)
     # print("checkpoint3_dir is : " + checkpoint3_dir)
     print("-----------------------------------------")
     ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
-    ckpt2 = tf.train.get_checkpoint_state(checkpoint2_dir)
+    #ckpt2 = tf.train.get_checkpoint_state(checkpoint2_dir)
     # ckpt3 = tf.train.get_checkpoint_state(checkpoint3_dir)
     ckpt_name = os.path.basename(ckpt.model_checkpoint_path)
-    ckpt2_name = os.path.basename(ckpt2.model_checkpoint_path)
+    #ckpt2_name = os.path.basename(ckpt2.model_checkpoint_path)
     # ckpt3_name = os.path.basename(ckpt3.model_checkpoint_path)
     saver.restore(sess, os.path.join(checkpoint_dir, ckpt_name))
-    saver2.restore(sess2, os.path.join(checkpoint2_dir, ckpt2_name))
+    #saver2.restore(sess2, os.path.join(checkpoint2_dir, ckpt2_name))
     # saver3.restore(sess3, os.path.join(checkpoint3_dir, ckpt3_name))
     m1 = dict(sess=sess, input_photo=input_photo, output_photo=output_photo)
-    m2 = dict(sess=sess2, input_photo=input_photo, output_photo=output_photo)
+    #m2 = dict(sess=sess2, input_photo=input_photo, output_photo=output_photo)
     # m3 = dict(sess=sess3, input_photo=input_photo, output_photo=output_photo)
     models = type('', (), {})()
     models.m1 = m1
-    models.m2 = m2
+    #models.m2 = m2
     # models.m3 = m3
     return models
 
 
 #@STCGoal add number or text to specify resolution of the three pass
-inputs={'contentImage': runway.image,'x1':number(default=512,min=24,max=7000),'x2':number(default=1100,min=24,max=7000)}
+inputs={'contentImage': runway.image,'x1':number(default=1024,min=24,max=7000),'x2':number(default=1600,min=24,max=7000)}
 outputs={'stylizedImage': runway.image,'totaltime':number,'x1': number,'x2': number,'model1name':text,'model2name':text}
 
 
@@ -165,7 +165,7 @@ def stylize(models, inp):
     start = time.time()
     dtprint("Composing...")
     model = models.m1
-    model2 = models.m2
+    #model2 = models.m2
     # model3 = models.m3
     
     #Getting our names back (even though I think we dont need)
@@ -222,9 +222,9 @@ def stylize(models, inp):
     img = np.array(img)
     img = img / 127.5 - 1.
     img = np.expand_dims(img, axis=0)
-    #@a INFERENCE PASS 2
+    #@a INFERENCE PASS 2 using the same model
     dtprint("INFO:Pass2 inference (STARTING)")
-    img = model2['sess'].run(model2['output_photo'], feed_dict={model2['input_photo']: img})
+    img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
     dtprint("INFO:Pass2 inference (DONE)")
     img = (img + 1.) * 127.5
     img = img.astype('uint8')
@@ -263,13 +263,14 @@ def stylize(models, inp):
     stop = time.time()
     totaltime = stop - start
     print("The time of the run:", totaltime)
-    res2 = dict(stylizedImage=img,totaltime=totaltime,x1=x1,x2=x2,model1name=model1name,model2name=model2name)
+    res2 = dict(stylizedImage=img,totaltime=totaltime,x1=x1,x2=x2,model1name=model1name,model2name=model1name)
     return res2
 
 
 
 def dtprint(msg):
-    print getdttag() + "::" + msg  
+    dttag=getdttag()
+    print(dttag + "::" + msg  )
 
 def getdttag():
     # datetime object containing current date and time
