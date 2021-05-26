@@ -64,6 +64,13 @@ export compo2v2devcontainerrepo="$compo2v2devcontainerns/$compo2v2devcontainerre
 export compo2v2devcontainertag="$compo2v2devcontainerrepo:$compo2v2devcontainerrepotag"
 
 
+#COMPO DoubleTwo v1 devContainer
+export compo2dtv1devcontainerns="guillaumeai"
+export compo2dtv1devcontainerreponame="server"
+export compo2dtv1devcontainerrepotag="guillaumeai/server:ast-210518-compo-doubletwo-v1-dev"
+export compo2dtv1devcontainerrepo="$compo2dtv1devcontainerns/$compo2dtv1devcontainerreponame"
+export compo2dtv1devcontainertag="$compo2dtv1devcontainerrepo:$compo2dtv1devcontainerrepotag"
+
 export serverport=8000
 export serverhostport=9000
 
