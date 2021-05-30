@@ -1,0 +1,47 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../x__etch-a-sketch__210224"
+		},
+		{
+			"path": "../gix-adaptive-style-transfer"
+		},
+		{
+			"path": "../gia-thumbsup"
+		},
+		{
+			"path": "../x__ast__watch__210512"
+		},
+		{
+			"path": "../x__ML__Course__2012/x/x__DRWAI_210409"
+		},
+		{
+			"path": "../../bin"
+		},
+		{
+			"path": "../../lib/datasets"
+		},
+		{
+			"path": "../../lib/results/gia-ds-DavidBouchardGagnon-v01b-210510-864"
+		},
+		{
+			"path": "../gia-RetinexNet"
+		},
+		{
+			"path": "../x__buts__210524"
+		},
+		{
+			"path": "../buts"
+		},
+		{
+			"path": "../giagenerate3D"
+		},
+		{
+			"path": "../ubunpy"
+		}
+	],
+	"settings": {}
+}
