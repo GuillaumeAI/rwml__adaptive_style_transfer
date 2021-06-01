@@ -15,9 +15,10 @@ export PASS2IMAGESIZE=1700
 
 
 ############################## BECAUSE WE ARE DEVELOPPING
-export scriptfn=custom-cli-start-script-docker-dev-specific-checkpoint.210430.sh
+export scriptfn=custom-cli-start-script-docker-dev-specific-checkpoint-doubletwo.210531.sh
+#custom-cli-start-script-docker-dev-specific-checkpoint.210430.sh
 #/a/src/rwml__adaptive_style_transfer/__launch-docker-dev-specific-checkpoint-doubletwo.210531.sh
 
 
-source $scriptfn "$modelname" $serverhostport $checkpointno $PASS1IMAGESIZE $PASS2IMAGESIZE 
+source $scriptfn "$modelname" $serverhostport  $PASS1IMAGESIZE $PASS2IMAGESIZE $checkpointno
 

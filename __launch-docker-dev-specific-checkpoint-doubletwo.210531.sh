@@ -51,26 +51,26 @@ mindexfile=$checkpointbasefilename$mfilepresuffix$mindex
 mmetafile=$checkpointbasefilename$mfilepresuffix$mmeta
 mdatafile=$checkpointbasefilename$mfilepresuffix$mdata
 
-testing=1
+testing=0
 if [ "$testing" == "1" ]; then
 
-echo "-----------------------------------------------Tests: "
-#echo "- tmpmodelfilename=$tmpmodelfilename"
-#echo "- replstring=$replstring"
-#echo "- checkpointbasefilename=$checkpointbasefilename"
-#echo "- mcheckpointfilecontent=$mcheckpointfilecontent"
-#echo "- remove : $replstring in $tmpmodelfilename and use to construct the checkpoint file"
-#echo "-- it gives: $tmpbasename"
-echo "-- So the checkpoint file content is >>"
-echo "$mcheckpointfilecontentline1"
-echo "$mcheckpointfilecontentline2"
-echo "<<"
-#echo "- checkpointbasefilename=$checkpointbasefilename"
-#echo "- mfilepresuffix=$mfilepresuffix"
-#echo "- mfilesuffix=$mfilesuffix"
-echo "- mindexfile=$mindexfile"
-echo "- mmetafile=$mmetafile"
-echo "- mdatafile=$mdatafile"
+	echo "-----------------------------------------------Tests: "
+	#echo "- tmpmodelfilename=$tmpmodelfilename"
+	#echo "- replstring=$replstring"
+	#echo "- checkpointbasefilename=$checkpointbasefilename"
+	#echo "- mcheckpointfilecontent=$mcheckpointfilecontent"
+	#echo "- remove : $replstring in $tmpmodelfilename and use to construct the checkpoint file"
+	#echo "-- it gives: $tmpbasename"
+	echo "-- So the checkpoint file content is >>"
+	echo "$mcheckpointfilecontentline1"
+	echo "$mcheckpointfilecontentline2"
+	echo "<<"
+	#echo "- checkpointbasefilename=$checkpointbasefilename"
+	#echo "- mfilepresuffix=$mfilepresuffix"
+	#echo "- mfilesuffix=$mfilesuffix"
+	echo "- mindexfile=$mindexfile"
+	echo "- mmetafile=$mmetafile"
+	echo "- mdatafile=$mdatafile"
 fi
 # Making the local checkpoint we will mount
 echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
@@ -89,7 +89,7 @@ export modellocalpointdata=$modellocalpoint/$mdatafile
 
 #############
 echo "-------------------------------------------------------------"
-echo "-   Running  Guillaume's M.A. AI Model Server      -"
+echo "-   Running  Guillaume's M.A. AI Model Server BoubleTwo     -"
 echo "- Model Name: $modelname"
 echo "- Model Checkpoint: $checkpointno"
 echo "- AccessURL : $callurl"
@@ -112,9 +112,10 @@ sleep 1
 
 $docker_cmd -v $(pwd):/work  \
 	-v /a/bin:/a/bin \ 
+	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE -e PASS2IMAGESIZE=$PASS2IMAGESIZE  -e MODELNAME=$modelname -e MODEL1NAME=$modelname  \
 	-v $modellocalpointmeta:$modelmountpointmeta \
 	-v $modellocalpointindex:$modelmountpointindex \
 	-v $modellocalpointdata:$modelmountpointdata \
 	-v $mcheckpointfilepath:$modelmountpointckfile \
-	-p $serverhostport:$serverport -e SPORT=$serverhostport $containertag
+	-p $serverhostport:$serverport -e SPORT=$serverhostport $compo2dtv1devcontainertag
 
