@@ -89,7 +89,7 @@ export modellocalpointdata=$modellocalpoint/$mdatafile
 
 #############
 echo "-------------------------------------------------------------"
-echo "-            Running  Guillaume's M.A. AI Model Server      -"
+echo "-   Running  Guillaume's M.A. AI Model Server      -"
 echo "- Model Name: $modelname"
 echo "- Model Checkpoint: $checkpointno"
 echo "- AccessURL : $callurl"
@@ -105,6 +105,7 @@ echo "-----------Installing $containername ------------"
 
 #echo $docker_cmd -v $(pwd):/work  -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport -e SPORT=$serverhostport $containertag
 echo $docker_cmd -v $(pwd):/work  \
+        -v /a/bin:/a/bin \
         -v $modellocalpointmeta:$modelmountpointmeta \
         -v $modellocalpointindex:$modelmountpointindex \
         -v $modellocalpointdata:$modelmountpointdata \

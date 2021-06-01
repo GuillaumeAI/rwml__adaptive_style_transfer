@@ -8,7 +8,10 @@
 #########################################################
 
 # 
-
+if [ "$1" == "--fg" ]; then 
+	docker_mode="it"
+	docker_run_args="--rm"
+fi
 export docker_cmd="docker run -$docker_mode $docker_run_args --name $containername "
 if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
 if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
@@ -42,8 +45,8 @@ secondString=""
 tmpbasename="${tmpmodelfilename/$replstring/$secondString}"
 
 checkpointbasefilename=$tmpbasename
-mcheckpointfilecontentline1='model_checkpoint_path: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
-mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
+# mcheckpointfilecontentline1='model_checkpoint_path: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
+# mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 astia_server_file_location='/tmp/astia'
 mkdir -p $astia_server_file_location
 mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
@@ -61,9 +64,7 @@ if [ "$testing" == "1" ]; then
 	#echo "- mcheckpointfilecontent=$mcheckpointfilecontent"
 	#echo "- remove : $replstring in $tmpmodelfilename and use to construct the checkpoint file"
 	#echo "-- it gives: $tmpbasename"
-	echo "-- So the checkpoint file content is >>"
-	echo "$mcheckpointfilecontentline1"
-	echo "$mcheckpointfilecontentline2"
+
 	echo "<<"
 	#echo "- checkpointbasefilename=$checkpointbasefilename"
 	#echo "- mfilepresuffix=$mfilepresuffix"
@@ -125,4 +126,6 @@ execme="$docker_cmd -v $(pwd):/work  \
 
 echo "$execme"
 sleep 1
+#echo "$serverhostport"
+
 $execme

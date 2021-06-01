@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Dev to mount specific checkpoint and launch an API Web service serving those checkpoints.
+source $binroot/__fn.sh
 
-
-# script.sh MODEL_NAME APIPORT CHECKPOINT_NUM
+# script.sh MODEL_NAME APIPORT IMGSIZE1 IMGSIZE2 CHECKPOINT_NUM [--fg(debug)] 
 
 source _env.sh
+
 showhelp=0
 if [ "$1" == "" ]; then
 	showhelp=1
@@ -25,7 +26,7 @@ fi
 if [ "$showhelp" == "1" ]; then
 	echo "Bad arguments"
 	echo "Usage:"
-	echo "	$0 MODELNAME APIPORT PASS1IMAGESIZE PASS2IMAGESIZE CHECKPOINT_NUM"
+	echo "	$0 MODELNAME APIPORT PASS1IMAGESIZE PASS2IMAGESIZE CHECKPOINT_NUM[--fg (debug)] "
 	echo "	# CHECKPOINT_NUM = 15 30 45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300"
         echo "        # API PORT = 01-99 		"
 	exit 1
@@ -57,7 +58,7 @@ export containername='ast_'$tmpname'_'$checkpointno'm_d2'
 
 
 
-source __launch-docker-dev-specific-checkpoint-doubletwo.210531.sh
+source __launch-docker-dev-specific-checkpoint-doubletwo.210531.sh $6
 #source __launch-docker-dev-specific-checkpoint.210430.sh
 #source __launch-docker.sh
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export checkpointno=90
+# export checkpointno="90 405 300"
 
 export serverhostport=9070
 export modelname=model_gia-ds-pierret_ds_210512-864-v02-210527-864_new
@@ -20,5 +21,5 @@ export scriptfn=custom-cli-start-script-docker-dev-specific-checkpoint-doubletwo
 #/a/src/rwml__adaptive_style_transfer/__launch-docker-dev-specific-checkpoint-doubletwo.210531.sh
 
 
-source $scriptfn "$modelname" $serverhostport  $PASS1IMAGESIZE $PASS2IMAGESIZE $checkpointno
+source $scriptfn "$modelname" $serverhostport  $PASS1IMAGESIZE $PASS2IMAGESIZE $checkpointno $1
 
