@@ -1,4 +1,5 @@
 tests/*jpg
+*.swp
 tests/xsc**
 tests/ohcrop*/*
 tests/*req*json
