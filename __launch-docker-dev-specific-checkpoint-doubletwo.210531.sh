@@ -103,8 +103,8 @@ echo "-------------------------------------------------------------"
 
 #$docker_cmd -v $(pwd):/work -p 8000:9000 -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport $containertag $run_cmd
 echo "----------Cleaning up $containername-------"
-docker stop $containername
-docker rm $containername
+docker stop $containername &> /dev/null 
+docker rm $containername &> /dev/null && echo "--Cleanup done"|| echo "-- nothing to cleanup" 
 echo "-----------Installing $containername ------------"
 
 
@@ -124,7 +124,7 @@ execme="$docker_cmd -v $(pwd):/work  \
 	-p $serverhostport:$serverport \
 	 -e SPORT=$serverhostport $compo2dtv1devcontainertag"
 
-echo "$execme"
+d "$execme"
 sleep 1
 #echo "$serverhostport"
 
