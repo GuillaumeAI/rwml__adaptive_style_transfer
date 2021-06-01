@@ -137,6 +137,7 @@ echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
 echo "\"containername\":\"$containername\",">>    $metafile
 echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
+echo "\"type\":\"doubletwo\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
 echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile

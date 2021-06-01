@@ -36,10 +36,38 @@ docker stop $containername
 docker rm $containername
 echo "-----------Installing $containername ------------"
 
+#@a Save model metadata for further id of results
+#@state We store by Port
+metarootdir=/www
+metabasepath=astia/info
+metarelfilepath=$metabasepath/$serverhostport.json
+mkdir -p $metarootdir/$metabasepath
+metafile=$metarootdir/$metarelfilepath
+getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
+
+echo "{ " >   $metafile
+echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"containername\":\"$containername\",">>    $metafile
+echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
+echo "\"type\":\"doubletwo\",">>    $metafile
+echo "\"callurl\":\"$callurl\",">>    $metafile
+echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
+echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile
+echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
+echo "\"created\":\"$(date)\"" >>    $metafile
+echo "}">>    $metafile
+
+#@STCGoal Central registration of currently running services
+export globallocationpath=/home/jgi/astiapreviz
+cdir=$(pwd)
+gtpath=$globallocationpath/svr/$HOSTNAME
+mkdir -p $gtpath
+(cp $metafile $gtpath && cd $gtpath && ls *json> list.txt)  &
+
 
 
 execme="$docker_cmd -v $(pwd):/work   -v $modellocalpoint:$modelmountpoint   -p $serverhostport:$serverport  -e PASS1IMAGESIZE=$PASS1IMAGESIZE -e PASS2IMAGESIZE=$PASS2IMAGESIZE  -e MODELNAME=$modelname -e MODEL1NAME=$modelname   -e SPORT=$serverhostport $dkrun_mount_binroot $dkrun_mount_droxconf_config_args $compo2dtv1devcontainertag"
-
+#
 echo $execme
 sleep 1
 $execme
