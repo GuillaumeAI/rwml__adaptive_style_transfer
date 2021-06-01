@@ -73,8 +73,11 @@ if [ "$testing" == "1" ]; then
 	echo "- mdatafile=$mdatafile"
 fi
 # Making the local checkpoint we will mount
-echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
-echo "$mcheckpointfilecontentline2" >> $mcheckpointfilepath
+#echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
+#echo "$mcheckpointfilecontentline2" >> $mcheckpointfilepath
+makecheckpointfile $modelname $checkpointno
+export mcheckpointfilepath="$MCHECKPOINTFILEPATH"
+
 # Making path to mount from local to the docker host foreach of the 3 files
 ##modelmountpoint modellocalpoint
 export modelmountpointmeta=$modelmountpoint/$mmetafile
@@ -104,18 +107,22 @@ docker rm $containername
 echo "-----------Installing $containername ------------"
 
 
-
-sleep 1
-
 #echo "Exting because we are testing" ;exit 1
 
 
-$docker_cmd -v $(pwd):/work  \
-	-v /a/bin:/a/bin \ 
-	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE -e PASS2IMAGESIZE=$PASS2IMAGESIZE  -e MODELNAME=$modelname -e MODEL1NAME=$modelname  \
+execme="$docker_cmd -v $(pwd):/work  \
+	-v /a/bin:/a/bin \
+	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
+	 -e PASS2IMAGESIZE=$PASS2IMAGESIZE  \
+	 -e MODELNAME=$modelname \
+	 -e MODEL1NAME=$modelname  \
 	-v $modellocalpointmeta:$modelmountpointmeta \
 	-v $modellocalpointindex:$modelmountpointindex \
 	-v $modellocalpointdata:$modelmountpointdata \
 	-v $mcheckpointfilepath:$modelmountpointckfile \
-	-p $serverhostport:$serverport -e SPORT=$serverhostport $compo2dtv1devcontainertag
+	-p $serverhostport:$serverport \
+	 -e SPORT=$serverhostport $compo2dtv1devcontainertag"
 
+echo "$execme"
+sleep 1
+$execme
