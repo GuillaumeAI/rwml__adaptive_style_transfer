@@ -17,7 +17,7 @@ if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated 
 if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
 
 
-export callurl="$callprotocol://$hostdns:$serverhostport"
+export callurl="$callprotocol://$hostdns:$serverhostport/stylize"
 # local path and container mount path : modelmountpoint modellocalpoint
 export modelmountpoint="$containermodelroot/$modelname/checkpoint_long"
 export modellocalpoint="$modelmountpath/$modelname/checkpoint_long"
@@ -93,8 +93,8 @@ export modellocalpointdata=$modellocalpoint/$mdatafile
 
 #############
 echo "-------------------------------------------------------------"
-echo "-   Running  Guillaume's M.A. AI Model Server BoubleTwo     -"
-echo "- Model Name: $modelname"
+echo "- Running  Guillaume's M.A. AI Model Server BoubleTwo     -"
+echo "- Model: $modelname"
 echo "- Model Checkpoint: $checkpointno"
 echo "- AccessURL : $callurl"
 echo "-------------------------------------------------------------"
@@ -124,8 +124,37 @@ execme="$docker_cmd -v $(pwd):/work  \
 	-p $serverhostport:$serverport \
 	 -e SPORT=$serverhostport $compo2dtv1devcontainertag"
 
+#@a Save model metadata for further id of results
+#@state We store by Port
+metarootdir=/www
+metabasepath=astia/info
+metarelfilepath=$metabasepath/$serverhostport.json
+mkdir -p $metarootdir/$metabasepath
+metafile=$metarootdir/$metarelfilepath
+getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
+
+echo "{ " >   $metafile
+echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"containername\":\"$containername\",">>    $metafile
+echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
+echo "\"callurl\":\"$callurl\",">>    $metafile
+echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
+echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile
+echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
+echo "\"created\":\"$(date)\"" >>    $metafile
+echo "}">>    $metafile
+
+#@STCGoal Central registration of currently running services
+export globallocationpath=/home/jgi/astiapreviz
+cdir=$(pwd)
+gtpath=$globallocationpath/svr/$HOSTNAME
+mkdir -p $gtpath
+(cp $metafile $gtpath && cd $gtpath && ls *json> list.txt)  &
+
+
 d "$execme"
 sleep 1
 #echo "$serverhostport"
 
 $execme
+sleep 1

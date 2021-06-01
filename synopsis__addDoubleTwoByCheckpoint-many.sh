@@ -25,8 +25,8 @@ for c in $checkpointno ; do
     echo $c
     source $scriptfntocall "$modelname" $serverhostport \
     $PASS1IMAGESIZE $PASS2IMAGESIZE \
-    $c $1
-
+    $c $1 &
+    sleep 1
     export serverhostport=$(expr $serverhostport + 1)
 done
 
