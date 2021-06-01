@@ -102,7 +102,7 @@ echo "-------------------------------------------------------------"
 #echo "Exting because we are testing" ;exit 1
 
 #$docker_cmd -v $(pwd):/work -p 8000:9000 -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport $containertag $run_cmd
-echo "----------Cleaning up-------"
+echo "----------Cleaning up $containername-------"
 docker stop $containername
 docker rm $containername
 echo "-----------Installing $containername ------------"

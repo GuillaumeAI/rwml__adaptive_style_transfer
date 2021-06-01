@@ -72,7 +72,7 @@ export compo2dtv1devcontainerrepo="$compo2dtv1devcontainerns/$compo2dtv1devconta
 export compo2dtv1devcontainertag="$compo2dtv1devcontainerrepo:$compo2dtv1devcontainerrepotag"
 
 export serverport=8000
-export serverhostport=9000
+#export serverhostport=9000
 
 export callprotocol="http"
 
