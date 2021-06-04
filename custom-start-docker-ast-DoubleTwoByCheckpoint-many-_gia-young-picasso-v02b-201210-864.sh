@@ -3,13 +3,14 @@
 #export checkpointno=90
 export checkpointno="90 405 300"
 export checkpointno="45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300 315 330 345 360 375 390 405"
+export checkpointno="15 30 45 60 75 90 105 120 135 150 165"
 #keep only good
 #export checkpointno="30 60 75 90 270"
 
 export serverhostport=9060
-export modelname=model_gia-ds-pierret_ds_210512-864-v02-210527-864_new
-export PASS1IMAGESIZE=1200
-export PASS2IMAGESIZE=1700
+export modelname=model_gia-young-picasso-v02b-201210-864_new
+export PASS1IMAGESIZE=1700
+export PASS2IMAGESIZE=2200
 
 
 # ./addDoubleTwoChk.sh \

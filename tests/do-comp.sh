@@ -162,6 +162,8 @@ $giaAstResponseStylizedToFileScript $responseFile $outfile --quiet
 mv $outfile $outdir
 ecd c "Should have a result in $outdir"
 export OUTPATH=$outdir/$outfile
+ecd b "$OUTPATH"
+
 #feh if a skip var is not defined
 if [ "$SKIPFEH" == "" ] ; then feh -F $OUTPATH &
 fi

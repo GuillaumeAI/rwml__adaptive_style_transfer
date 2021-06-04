@@ -58,7 +58,7 @@ export containername='ast_'$tmpname'_'$checkpointno'm_d2'
 
 
 
-source __launch-docker-dev-specific-checkpoint-doubletwo.210531.sh $6
+source __launch-docker-dev-specific-checkpoint-doubletwo.210531.sh $6 $7
 #source __launch-docker-dev-specific-checkpoint.210430.sh
 #source __launch-docker.sh
 
