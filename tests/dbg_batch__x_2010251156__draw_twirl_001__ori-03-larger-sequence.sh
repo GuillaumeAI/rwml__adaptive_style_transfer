@@ -9,9 +9,10 @@ secdir=$endresultdir/seq
 mkdir -p $secdir || (echo "could not create or access $endresultdir"; exit 1)
 
 s=./do-comp.sh
+export SKIPFEH=1
 p=37
-minrez=300
-inc=50
+minrez=200
+inc=5
 lastrez=2700
 c=0
 if [ "$1" != "--restart" ]; then #We start from scratch
@@ -20,7 +21,7 @@ if [ "$1" != "--restart" ]; then #We start from scratch
 	if [ "$2" != "" ] ;then # a res was spec
 		minrez=$2
 	fi
-	ft=`printf %02d $c`
+	ft=`printf %04d $c`
 	convert -geometry $lastrez'x' $f $secdir/$ft'.jpg'  &
 	c=$(expr $c + 1)
 
@@ -42,8 +43,8 @@ for i in $(seq $minrez $inc $lastrez) ; do
 
 	ft=`printf %02d $c`
 	#cp $OUTPATH $ft'.jpg'
-	convert -geometry $lastrez'x' $OUTPATH $secdir/$ft'.jpg'  &
-	
+	(convert -geometry $lastrez'x' $OUTPATH $secdir/$ft'.jpg'  &&  \
+		feh -F $secdir/$ft'.jpg')	 &
         
 	c=$(expr $c + 1)
 done
