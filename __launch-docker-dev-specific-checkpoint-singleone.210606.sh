@@ -121,7 +121,7 @@ execme="$docker_cmd -v $(pwd):/work  \
 	-v $modellocalpointdata:$modelmountpointdata \
 	-v $mcheckpointfilepath:$modelmountpointckfile \
 	-p $serverhostport:$serverport \
-	 -e SPORT=$serverhostport $compo2dtv1devcontainertag"
+	 -e SPORT=$serverhostport $singleonev1devcontainertag"
 
 #@a Save model metadata for further id of results
 #@state We store by Port
