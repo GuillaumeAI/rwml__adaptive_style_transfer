@@ -113,7 +113,7 @@ echo "-----------Installing $containername ------------"
 
 execme="$docker_cmd -v $(pwd):/work  \
 	-v /a/bin:/a/bin \
-	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \ 
+	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
 	 -e MODELNAME=$modelname \
 	 -e MODEL1NAME=$modelname  \
 	-v $modellocalpointmeta:$modelmountpointmeta \
@@ -156,4 +156,4 @@ sleep 1
 #echo "$serverhostport"
 
 $execme
-sleep 1
+#sleep 1
