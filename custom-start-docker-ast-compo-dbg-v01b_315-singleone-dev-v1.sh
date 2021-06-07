@@ -20,7 +20,11 @@ export docker_mode="d"
 export docker_run_args="--restart unless-stopped "
 
 
-source custom-cli-start-script-docker-dev-specific-checkpoint-singleone.210606.sh $modelname $PASS1IMAGESIZE $serverhostport $checkpointno
+source custom-cli-start-script-docker-dev-specific-checkpoint-singleone.210606.sh \
+	$modelname \
+	$serverhostport \
+	$PASS1IMAGESIZE \
+       	$checkpointno
 
 ## MODELNAME APIPORT PASS1IMAGESIZE CHECKPOINT_NUM [--fg (debug)] "
 #source __launch-docker-compo-doubletwo-v1-dev.sh $1 $2
