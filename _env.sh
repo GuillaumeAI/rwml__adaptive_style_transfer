@@ -75,7 +75,7 @@ export compo2dtv1devcontainertag="$compo2dtv1devcontainerrepo:$compo2dtv1devcont
 
 export singleonev1devcontainerns="guillaumeai"
 export singleonev1devcontainerreponame="server"
-export singleonev1devcontainerrepotag="guillaumeai/server:ast-210606-singleone-v1-dev"
+export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev"
 export singleonev1devcontainerrepo="$singleonev1devcontainerns/$singleonev1devcontainerreponame"
 export singleonev1devcontainertag="$singleonev1devcontainerrepo:$singleonev1devcontainerrepotag"
 
