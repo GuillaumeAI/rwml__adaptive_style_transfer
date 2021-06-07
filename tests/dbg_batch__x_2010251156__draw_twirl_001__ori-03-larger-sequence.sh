@@ -11,14 +11,17 @@ mkdir -p $secdir || (echo "could not create or access $endresultdir"; exit 1)
 s=./do-comp.sh
 p=37
 minrez=300
+inc=50
 lastrez=2700
 c=0
 if [ "$1" != "--restart" ]; then #We start from scratch
+	echo "Restarting from original source $f"
+	sleep 1
 	if [ "$2" != "" ] ;then # a res was spec
 		minrez=$2
 	fi
 	ft=`printf %02d $c`
-	convert -geometry $lastrez'x' $OUTPATH $secdir/$ft'.jpg'  &
+	convert -geometry $lastrez'x' $f $secdir/$ft'.jpg'  &
 	c=$(expr $c + 1)
 
 	$s $f $p $minrez 0
@@ -32,8 +35,9 @@ convert -geometry $lastrez'x' $OUTPATH $secdir/$ft'.jpg'  &
 c=$(expr $c + 1)
 
 
-for i in 600 800 1000 1200 1400 1600 1800 1900 2100 2250 2375 2450 2550 2625 $lastrez; do
-	$s $OUTPATH $p $i 0 && \
+for i in $(seq $minrez $inc $lastrez) ; do
+	echo "------------Processing $i-------------"
+	$s $OUTPATH $p $i 0 &> /dev/null && \
 	. OUTPATH
 
 	ft=`printf %02d $c`
