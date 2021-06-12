@@ -8,7 +8,7 @@
 
 export modelname="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-315ik"
 export checkpointno=315
-export serverhostport=36
+export serverhostport=9036
 
 ############################## BECAUSE WE ARE DEVELOPPING
 export scriptfn=custom-cli-start-script-docker-dev-specific-checkpoint.210430.sh
