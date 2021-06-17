@@ -40,7 +40,7 @@ astlaunchsslproxy() {
         echo "-----------Installing $proxycontainername ------------"
 
 
-     	$docker_cmd_proxy \
+     	echo $docker_cmd_proxy \
                 -e DOMAIN=$tdomain  \
                 -e TARGET_PORT=$tport  \
                 -e TARGET_HOST=$thost   \
