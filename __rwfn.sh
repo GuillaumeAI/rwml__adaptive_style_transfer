@@ -5,7 +5,7 @@
 astlaunchsslproxy() {
 	containername="$1"
 	serverhostport=$2
-	sport=$3
+#	sport=$3
 	#proxycontainertag=$4
 	#tdomain=$5
 	#thost=$6
@@ -37,7 +37,7 @@ astlaunchsslproxy() {
         echo "-----------Installing $proxycontainername ------------"
 
 
-echo     $docker_cmd_proxy \
+     	$docker_cmd_proxy \
                 -e DOMAIN=$tdomain  \
                 -e TARGET_PORT=$tport  \
                 -e TARGET_HOST=$thost   \
