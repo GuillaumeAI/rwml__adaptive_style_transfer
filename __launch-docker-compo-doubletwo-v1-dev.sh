@@ -32,8 +32,8 @@ echo "- AccessURL : $callurl"
 echo "------------------------------------------------------"
 #$docker_cmd -v $(pwd):/work -p 8000:9000 -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport $containertag $run_cmd
 echo "----------Cleaning up $containername-------"
-docker stop $containername
-docker rm $containername
+docker stop $containername &> /dev/null
+docker rm $containername &> /dev/null
 echo "-----------Installing $containername ------------"
 
 #@a Save model metadata for further id of results
