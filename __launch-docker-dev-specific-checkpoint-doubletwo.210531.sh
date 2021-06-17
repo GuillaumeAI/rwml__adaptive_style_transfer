@@ -13,6 +13,8 @@ if [ "$1" == "--fg" ]; then
 	docker_run_args="--rm"
 fi
 export docker_cmd="docker run -$docker_mode $docker_run_args --name $containername "
+#export proxycontainername=$containername-xi
+export docker_cmd_proxy="docker run -$docker_mode $docker_run_args --name $proxycontainername "
 if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
 if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
 
@@ -159,3 +161,40 @@ sleep 1
 
 $execme
 sleep 1
+
+astlaunchsslproxy() {
+
+	echo "------------------Launching SSL Proxy --------------------------"
+	sslport=$(expr $serverhostport + 100)
+	export proxycontainername=$containername-xi
+	echo "--- curl --insecure https://$hostdns:$sslport/stylize"
+
+
+	#export thost=svr.astia.xyz
+	#export tdomain=api.astia.xyz
+
+
+	tport=$serverhostport
+	sport=$sslport
+
+
+	echo "----------Proxy Cleaning up $proxycontainername-------"
+	docker stop $proxycontainername  &> /dev/null
+	docker rm $proxycontainername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup"
+	echo "-----------Installing $proxycontainername ------------"
+
+
+	$docker_cmd_proxy \
+		-e DOMAIN=$tdomain  \
+		-e TARGET_PORT=$tport  \
+		-e TARGET_HOST=$thost   \
+		-e SSL_PORT=$sport   \
+		-p $sport:$sport \
+		-e CLIENT_MAX_BODY_SIZE=$maxupload  \
+		$proxycontainertag && \
+	echo "------Oh yeah, should have a proxy running"
+}
+
+astlaunchsslproxy $containername $serverhostport $sport
+
+
