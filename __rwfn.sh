@@ -32,8 +32,11 @@ astlaunchsslproxy() {
 
 
         echo "----------Proxy Cleaning up $proxycontainername-------"
+        echo docker stop $proxycontainername 
         docker stop $proxycontainername  &> /dev/null
+        echo docker rm $proxycontainername 
         docker rm $proxycontainername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup"
+	sleep 1
         echo "-----------Installing $proxycontainername ------------"
 
 
