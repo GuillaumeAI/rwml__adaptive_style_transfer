@@ -3,9 +3,18 @@
 declare -r RWROOT=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 
 # ARTIST : CHG Model name
-
+. $binroot/__fn.sh
+. $RWROOT/__rwfn.sh
 
 # ARTIST : Probably dont change anything bellow 
+
+
+# Proxy Conf
+export thost=svr.astia.xyz
+export tdomain=api.astia.xyz
+export maxupload=40M 
+export proxycontainertag=fsouza/docker-ssl-proxy
+
 
 ## Environment path related
 

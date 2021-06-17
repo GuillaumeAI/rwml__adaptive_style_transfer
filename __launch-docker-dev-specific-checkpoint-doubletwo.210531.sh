@@ -8,13 +8,15 @@
 #########################################################
 
 # 
+#. _env.sh
+
 if [ "$1" == "--fg" ]; then 
 	docker_mode="it"
 	docker_run_args="--rm"
 fi
 export docker_cmd="docker run -$docker_mode $docker_run_args --name $containername "
 #export proxycontainername=$containername-xi
-export docker_cmd_proxy="docker run -$docker_mode $docker_run_args --name $proxycontainername "
+#export docker_cmd_proxy="docker run -$docker_mode $docker_run_args --name $proxycontainername "
 if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
 if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
 
@@ -27,6 +29,10 @@ export modellocalpoint="$modelmountpath/$modelname/checkpoint_long"
 ####@TODO MAke the 3 model file and checkpoint specific file
 # $modelmountpath  = /a/model/models/$modelname/checkpoint_long
 # $modellocalpoint # The root where we will mount the files
+#@TODO Migrate the whole thing to function
+#makecheckpointfile
+
+
 # Files :
 # .ckpt-195000.index .ckpt-195000.meta .data-00000-of-00001 model_gia-ds-fpolsonwill_v02_210424_new_195000. checkpoint
 # 3 files
@@ -52,6 +58,8 @@ checkpointbasefilename=$tmpbasename
 astia_server_file_location='/tmp/astia'
 mkdir -p $astia_server_file_location
 mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
+sudo rmdir $astia_server_file_location/* &> /dev/null
+
 mindexfile=$checkpointbasefilename$mfilepresuffix$mindex
 mmetafile=$checkpointbasefilename$mfilepresuffix$mmeta
 mdatafile=$checkpointbasefilename$mfilepresuffix$mdata
@@ -162,39 +170,9 @@ sleep 1
 $execme
 sleep 1
 
-astlaunchsslproxy() {
 
-	echo "------------------Launching SSL Proxy --------------------------"
-	sslport=$(expr $serverhostport + 100)
-	export proxycontainername=$containername-xi
-	echo "--- curl --insecure https://$hostdns:$sslport/stylize"
-
-
-	#export thost=svr.astia.xyz
-	#export tdomain=api.astia.xyz
-
-
-	tport=$serverhostport
-	sport=$sslport
-
-
-	echo "----------Proxy Cleaning up $proxycontainername-------"
-	docker stop $proxycontainername  &> /dev/null
-	docker rm $proxycontainername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup"
-	echo "-----------Installing $proxycontainername ------------"
-
-
-	$docker_cmd_proxy \
-		-e DOMAIN=$tdomain  \
-		-e TARGET_PORT=$tport  \
-		-e TARGET_HOST=$thost   \
-		-e SSL_PORT=$sport   \
-		-p $sport:$sport \
-		-e CLIENT_MAX_BODY_SIZE=$maxupload  \
-		$proxycontainertag && \
-	echo "------Oh yeah, should have a proxy running"
-}
 
 astlaunchsslproxy $containername $serverhostport $sport
+
 
 
