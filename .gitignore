@@ -1,4 +1,5 @@
 tests/*jpg
+.env
 *.swp
 tests/xsc**
 tests/ohcrop*/*
