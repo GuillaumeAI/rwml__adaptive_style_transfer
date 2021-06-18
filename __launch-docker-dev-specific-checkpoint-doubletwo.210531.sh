@@ -163,12 +163,12 @@ mkdir -p $gtpath
 (cp $metafile $gtpath && cd $gtpath && ls *json> list.txt)  &
 
 
-d "$execme"
+echo "$execme"
 sleep 1
 #echo "$serverhostport"
 
 $execme
-sleep 1
+
 
 
 
