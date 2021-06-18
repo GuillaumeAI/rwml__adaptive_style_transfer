@@ -30,6 +30,6 @@ export requestFile=$TMP/request$cfn.json
 hostenvfile="_henv_$HOSTNAME.sh"
 if [ -f $hostenvfile ]; then
     . ./$hostenvfile
-else
-    echo " ./$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
+#else
+#    echo " ./$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
 fi
