@@ -62,3 +62,29 @@ astlaunchsslproxy() {
 		
 }
 
+
+mkcontainername() {
+	modelname=$1
+	checkpointno=$2
+	prefix=$3
+	suffix=$4
+	if [ "$prefix" == "" ]; then  prefix='ast_';fi
+	separator=$5
+	if [ "$separator" == "" ]; then separator='_';fi
+
+	replacerstr="model_gia-ds-"
+	secondString=""
+	modelnametmp=$modelname
+	tmpname="${modelnametmp/$replacerstr/$secondString}"
+	replacerstr="model_gia"
+	modelnametmp=$tmpname
+	tmpname="${modelnametmp/$replacerstr/$secondString}"
+	replacerstr="model_"
+	modelnametmp=$tmpname
+	tmpname="${modelnametmp/$replacerstr/$secondString}"
+	replacerstr="_new"
+	modelnametmp=$tmpname
+	tmpname="${modelnametmp/$replacerstr/$secondString}"
+	_containername=$prefix$tmpname$separator$checkpointno$suffix
+	echo $_containername
+}
