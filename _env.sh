@@ -125,8 +125,9 @@ export run_cmd="bash"
 hostenvfile="_henv_$HOSTNAME.sh"
 if [ -f $RWROOT/$hostenvfile ]; then
     . $RWROOT/$hostenvfile
-else
-    echo " $RWROOT/$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
+#else
+#	if [ ! -e "~/.bequiet" ] ; then    echo " $RWROOT/$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
+#	fi
 fi
 
 #echo "Environment is loaded"
