@@ -132,3 +132,9 @@ fi
 
 #echo "Environment is loaded"
 
+
+if [ -f $RWROOT/.env ]; then
+    . $RWROOT/.env
+fi
+
+
