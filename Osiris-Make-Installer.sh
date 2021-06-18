@@ -5,6 +5,8 @@ o=$ob-installer
 ou=$ob-uninstaller
 
 echo "s=./custom-cli-start-script-docker-dev-specific-checkpoint-doubletwo.210531.sh" > $o
+echo "cmd=\$1" >> $o
+echo "if [ \"\$cmd\" == \"\" ] ; then echo \"usage: \$0 <--stop|--start|--remove>\";exit 1;fi " >> $o
 
 curport=9060
 c=0
@@ -17,5 +19,6 @@ cat $o > $ou
 
 for m in $(./getAllModels.sh );do 
 	ckp=$($binroot/mckinfo.sh $m)
-	echo "\$s $m \$(expr \$curport + $c ) \$x1 \$x2 $ckp" >> $o; echo "$s $m $ckp --stop" >> $ou;c=$(expr $c + 1)
+	echo "\$s $m \$(expr \$curport + $c ) \$x1 \$x2 $ckp" >> $o; echo "\$s $m $ckp \$cmd" >> $ou;c=$(expr $c + 1)
 done
+chmod +x $o $ou

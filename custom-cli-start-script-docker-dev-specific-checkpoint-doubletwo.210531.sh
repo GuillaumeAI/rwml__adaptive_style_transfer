@@ -16,7 +16,7 @@ if [ "$2" == "" ]; then
         showhelp=1
 fi
 
-if [ "$3" != "--stop" ]; then
+if [ "$3" != "--stop" ] && [ "$3" != "--start" ] && [ "$3" != "--remove" ]  ; then
 
 if [ "$3" == "" ]; then
         showhelp=1
@@ -63,17 +63,26 @@ modelnametmp=$tmpname
 tmpname="${modelnametmp/$replacerstr/$secondString}"
 #export containername='ast_'$tmpname'_'$checkpointno'm_d2'
 #echo mkcontainername $modelname $checkpointno 'ast_' 'm_d2'
-mkcontainername $modelname $checkpointno 'ast_' 'm_d2'
+#mkcontainername $modelname $checkpointno 'ast_' 'm_d2'
 #exit
 export containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2')
 
-if [ "$3" != "--stop" ] ; then 
-	source __launch-docker-dev-specific-checkpoint-doubletwo.210531.sh $6 $7
-else
-	checkpointno=$serverhostport
-	containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2')
-	 /a/bin/dkcRemove.sh $containername
+if [ "$3" == "--stop" ] ; then
+	checkpointno=$serverhostport; containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2') ; (docker stop $containername'-xi' &> /dev/null ; docker stop $containername &> /dev/null) && echo "$containername stopped"
+	exit 0
 fi
-#source __launch-docker-dev-specific-checkpoint.210430.sh
-#source __launch-docker.sh
+if [ "$3" == "--start" ] ; then
+	checkpointno=$serverhostport; containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2') ; (docker start $containername  &> /dev/null ; docker start $containename'-xi'  &> /dev/null)  && echo "$containername started" || \
+		$0 $modelname $serverhostport $PASS1IMAGESIZE $PASS2IMAGESIZE $checkpointno # Launched this script to instal it as start did not worked
+        exit 0
+fi
+
+if [ "$3" == "--rm" ] || [ "$3" == "--remove" ]; then
+        checkpointno=$serverhostport; containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2') ;/a/bin/dkcRemove.sh $containername ; /a/bin/dkcRemove.sh $containername'-xi'
+	exit 0
+fi
+ 
+source __launch-docker-dev-specific-checkpoint-doubletwo.210531.sh $6 $7
+
+
 
