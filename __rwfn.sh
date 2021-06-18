@@ -31,23 +31,23 @@ astlaunchsslproxy() {
         sport=$sslport
 
 
-        echo "----------Proxy Cleaning up $proxycontainername-------"
-        echo docker stop $proxycontainername 
+        echo -n "----Proxy Cleaning up $proxycontainername---"
+        echo -n "...stop..."  
         docker stop $proxycontainername  &> /dev/null
-        echo docker rm $proxycontainername 
+        echo -n ..removing..
         docker rm $proxycontainername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup"
-	sleep 1
-        echo "-----------Installing $proxycontainername ------------"
+
+        echo "...Installing"
 
 
-     	echo $docker_cmd_proxy \
-                -e DOMAIN=$tdomain  \
-                -e TARGET_PORT=$tport  \
-                -e TARGET_HOST=$thost   \
-                -e SSL_PORT=$sport   \
-                -p $sport:$sport \
-                -e CLIENT_MAX_BODY_SIZE=$maxupload  \
-                $proxycontainertag
+#     	echo $docker_cmd_proxy \
+#                -e DOMAIN=$tdomain  \
+#                -e TARGET_PORT=$tport  \
+#                -e TARGET_HOST=$thost   \
+#                -e SSL_PORT=$sport   \
+#                -p $sport:$sport \
+#                -e CLIENT_MAX_BODY_SIZE=$maxupload  \
+#                $proxycontainertag
 		
 		$docker_cmd_proxy \
                 -e DOMAIN=$tdomain  \
@@ -57,25 +57,27 @@ astlaunchsslproxy() {
                 -p $sport:$sport \
                 -e CLIENT_MAX_BODY_SIZE=$maxupload  \
                 $proxycontainertag && \
-        echo "------Oh yeah, should have a proxy running" && \
+#        echo "------Oh yeah, should have a proxy running" && \
 	echo "https://$tdomain:$sport"
 		
 }
 
 
 mkcontainername() {
-	modelname=$1
-	checkpointno=$2
-	prefix=$3
-	suffix=$4
-	if [ "$prefix" == "" ]; then  prefix='ast_';fi
-	separator=$5
-	if [ "$separator" == "" ]; then separator='_';fi
+	local modelname=$1
+	local checkpointno=$2
+	local prefix="$3"
+	if [ "$prefix" == "" ]; then  prefix="ast_";fi
+	
+	local suffix="$4"
+	
+	local separator="$5"
+	if [ "$separator" == "" ]; then separator="_";fi
 
-	replacerstr="model_gia-ds-"
-	secondString=""
-	modelnametmp=$modelname
-	tmpname="${modelnametmp/$replacerstr/$secondString}"
+	local replacerstr="model_gia-ds-"
+	local secondString=""
+	local modelnametmp=$modelname
+	local tmpname="${modelnametmp/$replacerstr/$secondString}"
 	replacerstr="model_gia"
 	modelnametmp=$tmpname
 	tmpname="${modelnametmp/$replacerstr/$secondString}"
@@ -85,6 +87,6 @@ mkcontainername() {
 	replacerstr="_new"
 	modelnametmp=$tmpname
 	tmpname="${modelnametmp/$replacerstr/$secondString}"
-	_containername=$prefix$tmpname$separator$checkpointno$suffix
+	local _containername=$prefix$tmpname$separator$checkpointno$suffix
 	echo $_containername
 }
