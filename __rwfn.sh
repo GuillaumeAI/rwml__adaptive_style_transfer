@@ -57,6 +57,8 @@ astlaunchsslproxy() {
                 -p $sport:$sport \
                 -e CLIENT_MAX_BODY_SIZE=$maxupload  \
                 $proxycontainertag && \
-        echo "------Oh yeah, should have a proxy running"
+        echo "------Oh yeah, should have a proxy running" && \
+	echo "https://$tdomain:$sport"
+		
 }
 
