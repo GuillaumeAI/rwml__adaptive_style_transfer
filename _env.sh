@@ -8,6 +8,9 @@ declare -r RWROOT=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 
 # ARTIST : Probably dont change anything bellow 
 
+export astia_server_file_location='/tmp/astia'
+#chmod 777 $astia_server_file_location
+
 
 # Proxy Conf
 export thost=svr.astia.xyz

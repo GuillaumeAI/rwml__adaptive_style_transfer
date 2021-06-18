@@ -46,6 +46,8 @@ mcheckpointfilecontentline1='model_checkpoint_path: "'$checkpointbasefilename$mf
 mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 astia_server_file_location='/tmp/astia'
 mkdir -p $astia_server_file_location
+chmod 777 $astia_server_file_location
+
 mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
 mindexfile=$checkpointbasefilename$mfilepresuffix$mindex
 mmetafile=$checkpointbasefilename$mfilepresuffix$mmeta
