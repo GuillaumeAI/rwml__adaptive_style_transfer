@@ -15,7 +15,7 @@ if [ "$1" == "--fg" ]; then
 	docker_run_args="--rm"
 fi
 export docker_cmd="docker run -$docker_mode $docker_run_args --name $containername "
-#export proxycontainername=$containername-xi
+#export proxycontainername=$containername$sslcontainersuffix
 #export docker_cmd_proxy="docker run -$docker_mode $docker_run_args --name $proxycontainername "
 if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
 if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi

@@ -17,6 +17,7 @@ export thost=svr.astia.xyz
 export tdomain=api.astia.xyz
 export maxupload=40M 
 #export proxycontainertag=fsouza/docker-ssl-proxy
+export sslcontainersuffix="-sslproxy"
 export proxycontainertag=guillaumeai/server:sslproxy
 
 

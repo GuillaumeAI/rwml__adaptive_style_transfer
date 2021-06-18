@@ -10,14 +10,14 @@ astlaunchsslproxy() {
 	#tdomain=$5
 	#thost=$6
 	#maxupload=$7
-	export proxycontainername=$containername-xi
+	export proxycontainername=$containername$sslcontainersuffix
 	export docker_cmd_proxy="docker run -$docker_mode $docker_run_args --name $proxycontainername "
 
 	echo "docker_cmd_proxy=$docker_cmd_proxy"
 
         echo "--------------- Launching SSL Proxy for $containername -----------------"
         sslport=$(expr $serverhostport + 100)
-        export proxycontainername=$containername-xi
+        export proxycontainername=$containername$sslcontainersuffix
 	echo "proxycontainername=$proxycontainername"
 	echo "\$proxycontainertag=$proxycontainertag"
         echo "--- curl --insecure https://$hostdns:$sslport/stylize"
@@ -78,6 +78,9 @@ mkcontainername() {
 	local secondString=""
 	local modelnametmp=$modelname
 	local tmpname="${modelnametmp/$replacerstr/$secondString}"
+	replacerstr="model_gia-"
+        modelnametmp=$tmpname
+        tmpname="${modelnametmp/$replacerstr/$secondString}" 
 	replacerstr="model_gia"
 	modelnametmp=$tmpname
 	tmpname="${modelnametmp/$replacerstr/$secondString}"
