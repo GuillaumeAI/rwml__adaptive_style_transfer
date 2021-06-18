@@ -11,9 +11,13 @@ showhelp=0
 if [ "$1" == "" ]; then
 	showhelp=1
 fi
+
 if [ "$2" == "" ]; then
         showhelp=1
 fi
+
+if [ "$3" != "--stop" ]; then
+
 if [ "$3" == "" ]; then
         showhelp=1
 fi
@@ -29,9 +33,12 @@ if [ "$showhelp" == "1" ]; then
 	echo "	$0 MODELNAME APIPORT PASS1IMAGESIZE PASS2IMAGESIZE CHECKPOINT_NUM[--fg (debug)] "
 	echo "	# CHECKPOINT_NUM = 15 30 45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300"
         echo "        # API PORT = 01-99 		"
+	echo "-----------------------------------or-----------------"
+	echo "Stop remove container"
+	echo "  $0 MODELNAME CHECKPOINTNO --stop"
 	exit 1
 fi
-
+fi
 
 
 export modelname="$1"
@@ -54,11 +61,19 @@ tmpname="${modelnametmp/$replacerstr/$secondString}"
 replacerstr="_new"
 modelnametmp=$tmpname
 tmpname="${modelnametmp/$replacerstr/$secondString}"
-export containername='ast_'$tmpname'_'$checkpointno'm_d2'
+#export containername='ast_'$tmpname'_'$checkpointno'm_d2'
+#echo mkcontainername $modelname $checkpointno 'ast_' 'm_d2'
+mkcontainername $modelname $checkpointno 'ast_' 'm_d2'
+#exit
+export containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2')
 
-
-
-source __launch-docker-dev-specific-checkpoint-doubletwo.210531.sh $6 $7
+if [ "$3" != "--stop" ] ; then 
+	source __launch-docker-dev-specific-checkpoint-doubletwo.210531.sh $6 $7
+else
+	checkpointno=$serverhostport
+	containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2')
+	 /a/bin/dkcRemove.sh $containername
+fi
 #source __launch-docker-dev-specific-checkpoint.210430.sh
 #source __launch-docker.sh
 
