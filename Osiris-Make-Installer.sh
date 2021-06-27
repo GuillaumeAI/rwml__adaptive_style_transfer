@@ -10,8 +10,8 @@ echo "if [ \"\$cmd\" == \"\" ] ; then echo \"usage: \$0 <--stop|--start|--remove
 
 curport=9060
 c=0
-x1=500
-x2=700
+x1=2300
+x2=2700
 echo "curport=$curport" >> $o
 echo "x1=$x1" >> $o
 echo "x2=$x2" >> $o
