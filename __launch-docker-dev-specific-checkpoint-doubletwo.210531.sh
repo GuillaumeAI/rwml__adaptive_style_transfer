@@ -172,7 +172,10 @@ $execme
 
 
 
-astlaunchsslproxy $containername $serverhostport
+if [ "$LAUNCHPROXY" != "" ] ; then astlaunchsslproxy $containername $serverhostport 
+	else
+		echo "Proxy launch skipped ( export LAUNCHPROXY=TRUE ) to bypass and launch"
+fi
 #$sport
 
 
