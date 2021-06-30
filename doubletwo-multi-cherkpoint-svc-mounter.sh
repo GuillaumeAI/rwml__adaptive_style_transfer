@@ -20,6 +20,6 @@ for chp in $chks; do
 echo 	$s $m $p $x1 $x2 $chp
  	$s $m $p $x1 $x2 $chp &
 	p=$(expr $p + 1 )
-	sleep 1
+	sleep 2
 done
 
