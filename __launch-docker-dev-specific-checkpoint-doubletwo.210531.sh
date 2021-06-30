@@ -20,7 +20,13 @@ export docker_cmd="docker run -$docker_mode $docker_run_args --name $containerna
 if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
 if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
 
+echo "----------Cleaning up $containername-------"
+docker stop $containername  &> /dev/null
+docker rm $containername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup"
+echo "-----------Installing $containername ------------"
+echo "-----Was it stopped and worked debugging??"
 
+sleep 3
 export callurl="$callprotocol://$hostdns:$serverhostport/stylize"
 # local path and container mount path : modelmountpoint modellocalpoint
 export modelmountpoint="$containermodelroot/$modelname/checkpoint_long"
@@ -56,9 +62,9 @@ checkpointbasefilename=$tmpbasename
 # mcheckpointfilecontentline1='model_checkpoint_path: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 # mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 astia_server_file_location='/tmp/astia'
-mkdir -p $astia_server_file_location
+#mkdir -p $astia_server_file_location
 mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
-sudo rmdir $astia_server_file_location/* &> /dev/null
+#sudo rmdir $astia_server_file_location/* &> /dev/null
 
 mindexfile=$checkpointbasefilename$mfilepresuffix$mindex
 mmetafile=$checkpointbasefilename$mfilepresuffix$mmeta
