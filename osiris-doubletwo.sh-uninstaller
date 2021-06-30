@@ -2,8 +2,8 @@ s=./custom-cli-start-script-docker-dev-specific-checkpoint-doubletwo.210531.sh
 cmd=$1
 if [ "$cmd" == "" ] ; then echo "usage: $0 <--stop|--start|--remove>";exit 1;fi 
 curport=9060
-x1=500
-x2=700
+x1=2300
+x2=2700
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-120ik 120 $cmd
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-135ik 135 $cmd
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-150ik 150 $cmd
@@ -16,12 +16,14 @@ $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-45ik 45 $cmd
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-60ik 60 $cmd
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-90ik 90 $cmd
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-90ik_ 90 $cmd
+$s model_gia-ds-daliwill-210123-v01_new-240ik 240 $cmd
 $s model_gia-ds-fpolsonwill_v02_210424_new-195ik 195 $cmd
-$s model_gia-ds-pierret_ds_210512-864-v02-210527-864_new-150ik 150 $cmd
-$s model_gia-ds-pierret_ds_210512-864-v02-210527-864_new-270ik 270 $cmd
 $s model_gia-young-picasso-v02b-201210-864_new-120ik 120 $cmd
 $s model_gia-young-picasso-v02b-201210-864_new-15ik 15 $cmd
 $s model_gia-young-picasso-v02b-201210-864_new-375ik 375 $cmd
 $s model_gia-young-picasso-v03-201216_new-075ik 75 $cmd
+$s model_gia-young-picasso-v03-201216_new-120ik 120 $cmd
 $s model_gia-young-picasso-v03-201216_new_225000 225 $cmd
 $s model_gia-young-picasso-v03-201216_new_30000 30 $cmd
+$s model_gia-young-picasso-v04-2012211928_new-195ik 195 $cmd
+$s model_gia-young-picasso-v05-2101082232_new-150ik 150 $cmd

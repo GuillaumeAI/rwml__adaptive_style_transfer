@@ -62,7 +62,7 @@ checkpointbasefilename=$tmpbasename
 # mcheckpointfilecontentline1='model_checkpoint_path: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 # mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 astia_server_file_location='/tmp/astia'
-#mkdir -p $astia_server_file_location
+mkdir -p -m 777 $astia_server_file_location
 mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
 #sudo rmdir $astia_server_file_location/* &> /dev/null
 
@@ -178,7 +178,10 @@ $execme
 
 
 
-astlaunchsslproxy $containername $serverhostport
+if [ "$LAUNCHPROXY" != "" ] ; then astlaunchsslproxy $containername $serverhostport 
+	else
+		echo "Proxy launch skipped ( export LAUNCHPROXY=TRUE ) to bypass and launch"
+fi
 #$sport
 
 

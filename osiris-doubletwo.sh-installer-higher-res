@@ -2,7 +2,7 @@ s=./custom-cli-start-script-docker-dev-specific-checkpoint-doubletwo.210531.sh
 cmd=$1
 if [ "$cmd" == "" ] ; then echo "usage: $0 <--stop|--start|--remove>";exit 1;fi 
 curport=9060
-x1=2300
+x1=2200
 x2=2700
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-120ik $(expr $curport + 0 ) $x1 $x2 120
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-135ik $(expr $curport + 1 ) $x1 $x2 135
@@ -16,14 +16,12 @@ $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-45ik $(expr $curport + 8
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-60ik $(expr $curport + 9 ) $x1 $x2 60
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-90ik $(expr $curport + 10 ) $x1 $x2 90
 $s model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-90ik_ $(expr $curport + 11 ) $x1 $x2 90
-$s model_gia-ds-daliwill-210123-v01_new-240ik $(expr $curport + 12 ) $x1 $x2 240
-$s model_gia-ds-fpolsonwill_v02_210424_new-195ik $(expr $curport + 13 ) $x1 $x2 195
-$s model_gia-young-picasso-v02b-201210-864_new-120ik $(expr $curport + 14 ) $x1 $x2 120
-$s model_gia-young-picasso-v02b-201210-864_new-15ik $(expr $curport + 15 ) $x1 $x2 15
-$s model_gia-young-picasso-v02b-201210-864_new-375ik $(expr $curport + 16 ) $x1 $x2 375
-$s model_gia-young-picasso-v03-201216_new-075ik $(expr $curport + 17 ) $x1 $x2 75
-$s model_gia-young-picasso-v03-201216_new-120ik $(expr $curport + 18 ) $x1 $x2 120
+$s model_gia-ds-fpolsonwill_v02_210424_new-195ik $(expr $curport + 12 ) $x1 $x2 195
+$s model_gia-ds-pierret_ds_210512-864-v02-210527-864_new-150ik $(expr $curport + 13 ) $x1 $x2 150
+$s model_gia-ds-pierret_ds_210512-864-v02-210527-864_new-270ik $(expr $curport + 14 ) $x1 $x2 270
+$s model_gia-young-picasso-v02b-201210-864_new-120ik $(expr $curport + 15 ) $x1 $x2 120
+$s model_gia-young-picasso-v02b-201210-864_new-15ik $(expr $curport + 16 ) $x1 $x2 15
+$s model_gia-young-picasso-v02b-201210-864_new-375ik $(expr $curport + 17 ) $x1 $x2 375
+$s model_gia-young-picasso-v03-201216_new-075ik $(expr $curport + 18 ) $x1 $x2 75
 $s model_gia-young-picasso-v03-201216_new_225000 $(expr $curport + 19 ) $x1 $x2 225
 $s model_gia-young-picasso-v03-201216_new_30000 $(expr $curport + 20 ) $x1 $x2 30
-$s model_gia-young-picasso-v04-2012211928_new-195ik $(expr $curport + 21 ) $x1 $x2 195
-$s model_gia-young-picasso-v05-2101082232_new-150ik $(expr $curport + 22 ) $x1 $x2 150

@@ -1,4 +1,5 @@
 tests/*jpg
+tests/**
 .env
 *.swp
 tests/xsc**
