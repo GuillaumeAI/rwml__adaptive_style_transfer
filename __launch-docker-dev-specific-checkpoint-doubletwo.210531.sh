@@ -119,14 +119,14 @@ echo "-------------------------------------------------------------"
 
 #$docker_cmd -v $(pwd):/work -p 8000:9000 -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport $containertag $run_cmd
 echo -n "----------Cleaning up $containername ------- "
-docker stop $containername 
+docker stop $containername 2> /dev/null
 #&> /dev/null
-docker rm $containername  
+docker rm $containername  2> /dev/null
 #&> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup" 
 echo " "
 
 echo "-----------Installing $containername ------------"
-sleep 1
+#sleep 1
 
 #echo "Exting because we are testing" ;exit 1
 
@@ -152,16 +152,31 @@ metarelfilepath=$metabasepath/$serverhostport.json
 mkdir -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath
 getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
+getfnamefrommodel() {
+	local _modelname=$1
+	local r="$1"
+	for ml in $(cat ds-modelname-fname); do
+		m=$(echo $ml | tr ";" " " | awk '// { print $1 }')
+		f=$(echo $ml | tr ";" " " | awk '// { print $2 }')
+		r=$(echo $r | sed -e 's/'"$m"'/'"$f"'/g')
 
+	done
+	echo $r
+
+}
+fname=$(getfnamefrommodel $modelname)
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"fname\":\"$fname\"," >>  $metafile
 echo "\"containername\":\"$containername\",">>    $metafile
+echo "\"containertag\":\"$compo2dtv1devcontainertag\",">>    $metafile
 echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
-echo "\"type\":\"doubletwo\",">>    $metafile
+echo "\"svrtype\":\"d2\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
 echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile
-echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
+echo "\"PASS3IMAGESIZE\":\"-1\"," >>    $metafile
+#echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
 echo "\"created\":\"$(date)\"" >>    $metafile
 echo "}">>    $metafile
 
@@ -174,7 +189,7 @@ mkdir -p $gtpath
 
 
 echo "$execme"
-sleep 1
+#sleep 1
 #echo "$serverhostport"
 
 $execme
