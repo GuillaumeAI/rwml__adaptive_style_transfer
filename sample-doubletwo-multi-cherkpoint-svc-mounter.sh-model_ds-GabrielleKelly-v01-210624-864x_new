@@ -3,3 +3,9 @@
 #With rendered checkpoint
 ./doubletwo-multi-cherkpoint-svc-mounter.sh model_ds-GabrielleKelly-v01-210624-864x_new 9060 1500 2000 "$(mckinfo model_ds-GabrielleKelly-v01-210624-864x_new)"
 
+# higher res, if that works
+./doubletwo-multi-cherkpoint-svc-mounter.sh model_ds-GabrielleKelly-v01-210624-864x_new 9060 2300 2300 "$(mckinfo model_ds-GabrielleKelly-v01-210624-864x_new)"
+
+#One
+./doubletwo-multi-cherkpoint-svc-mounter.sh model_ds-GabrielleKelly-v01-210624-864x_new 9086 2300 2300 "420"
+

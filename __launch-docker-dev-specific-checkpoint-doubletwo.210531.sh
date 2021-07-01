@@ -118,11 +118,15 @@ echo "-------------------------------------------------------------"
 #echo "Exting because we are testing" ;exit 1
 
 #$docker_cmd -v $(pwd):/work -p 8000:9000 -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport $containertag $run_cmd
-echo "----------Cleaning up $containername-------"
-docker stop $containername  &> /dev/null
-docker rm $containername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup" 
-echo "-----------Installing $containername ------------"
+echo -n "----------Cleaning up $containername ------- "
+docker stop $containername 
+#&> /dev/null
+docker rm $containername  
+#&> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup" 
+echo " "
 
+echo "-----------Installing $containername ------------"
+sleep 1
 
 #echo "Exting because we are testing" ;exit 1
 
