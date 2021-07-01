@@ -172,6 +172,7 @@ echo "\"containername\":\"$containername\",">>    $metafile
 echo "\"containertag\":\"$compo2dtv1devcontainertag\",">>    $metafile
 echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
 echo "\"svrtype\":\"d2\",">>    $metafile
+echo "\"mtype\":\"ast\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
 echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile
