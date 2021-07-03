@@ -24,9 +24,9 @@ echo "----------Cleaning up $containername-------"
 docker stop $containername  &> /dev/null
 docker rm $containername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup"
 echo "-----------Installing $containername ------------"
-echo "-----Was it stopped and worked debugging??"
+#echo "-----Was it stopped and worked debugging??"
 
-sleep 3
+sleep 1
 export callurl="$callprotocol://$hostdns:$serverhostport/stylize"
 # local path and container mount path : modelmountpoint modellocalpoint
 export modelmountpoint="$containermodelroot/$modelname/checkpoint_long"
