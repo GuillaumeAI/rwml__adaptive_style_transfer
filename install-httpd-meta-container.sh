@@ -17,6 +17,7 @@ export httpcontainername=ast_meta_server
 
 #echo docker run -d $docker_run_args --name $httpcontainername -p $httpserverserverport:$httpservercontainerport -v $(pwd):/work -v $httpserverserverhtdocs:$httpservercontainerhtdocs -v /a:/a -v /a:$httpservercontainerhtdocs/a $httpservercontainertag
 echo "--- Cleaning up if existing container----"
+docker stop $httpcontainername
 docker rm $httpcontainername
 echo "--- Cleanup done (if was required, otherwise ignore the errors-------"
 echo "---------------------------------------------------------------------"
