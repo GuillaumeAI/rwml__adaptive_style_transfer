@@ -20,7 +20,13 @@ export docker_cmd="docker run -$docker_mode $docker_run_args --name $containerna
 if [ $docker_mode = "d" ] ; then echo "Background infrastructure mode activated (will run in background until stopped or server rebooted)" ; fi
 if [ $docker_mode = "it" ] ; then echo "Foreground infrastructure mode activated (require to keep the startup shell active)" ; fi
 
+echo "----------Cleaning up $containername-------"
+docker stop $containername  &> /dev/null
+docker rm $containername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup"
+echo "-----------Installing $containername ------------"
+#echo "-----Was it stopped and worked debugging??"
 
+#sleep 1
 export callurl="$callprotocol://$hostdns:$serverhostport/stylize"
 # local path and container mount path : modelmountpoint modellocalpoint
 export modelmountpoint="$containermodelroot/$modelname/checkpoint_long"
@@ -56,9 +62,9 @@ checkpointbasefilename=$tmpbasename
 # mcheckpointfilecontentline1='model_checkpoint_path: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 # mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 astia_server_file_location='/tmp/astia'
-mkdir -p $astia_server_file_location
+mkdir -p -m 777 $astia_server_file_location
 mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
-sudo rmdir $astia_server_file_location/* &> /dev/null
+#sudo rmdir $astia_server_file_location/* &> /dev/null
 
 mindexfile=$checkpointbasefilename$mfilepresuffix$mindex
 mmetafile=$checkpointbasefilename$mfilepresuffix$mmeta
@@ -112,11 +118,15 @@ echo "-------------------------------------------------------------"
 #echo "Exting because we are testing" ;exit 1
 
 #$docker_cmd -v $(pwd):/work -p 8000:9000 -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport $containertag $run_cmd
-echo "----------Cleaning up $containername-------"
-docker stop $containername  &> /dev/null
-docker rm $containername  &> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup" 
-echo "-----------Installing $containername ------------"
+echo -n "----------Cleaning up $containername ------- "
+docker stop $containername 2> /dev/null
+#&> /dev/null
+docker rm $containername  2> /dev/null
+#&> /dev/null && echo "--Cleanup done" || echo "-- nothing to cleanup" 
+echo " "
 
+echo "-----------Installing $containername ------------"
+#sleep 1
 
 #echo "Exting because we are testing" ;exit 1
 
@@ -142,16 +152,32 @@ metarelfilepath=$metabasepath/$serverhostport.json
 mkdir -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath
 getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
+getfnamefrommodel() {
+	local _modelname=$1
+	local r="$1"
+	for ml in $(cat ds-modelname-fname); do
+		m=$(echo $ml | tr ";" " " | awk '// { print $1 }')
+		f=$(echo $ml | tr ";" " " | awk '// { print $2 }')
+		r=$(echo $r | sed -e 's/'"$m"'/'"$f"'/g')
 
+	done
+	echo $r
+
+}
+fname=$(getfnamefrommodel $modelname)
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"fname\":\"$fname\"," >>  $metafile
 echo "\"containername\":\"$containername\",">>    $metafile
+echo "\"containertag\":\"$compo2dtv1devcontainertag\",">>    $metafile
 echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
-echo "\"type\":\"doubletwo\",">>    $metafile
+echo "\"svrtype\":\"d2\",">>    $metafile
+echo "\"mtype\":\"ast\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
 echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile
-echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
+echo "\"PASS3IMAGESIZE\":\"-1\"," >>    $metafile
+#echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
 echo "\"created\":\"$(date)\"" >>    $metafile
 echo "}">>    $metafile
 
@@ -164,7 +190,7 @@ mkdir -p $gtpath
 
 
 echo "$execme"
-sleep 1
+#sleep 1
 #echo "$serverhostport"
 
 $execme
@@ -172,7 +198,10 @@ $execme
 
 
 
-astlaunchsslproxy $containername $serverhostport
+if [ "$LAUNCHPROXY" != "" ] ; then astlaunchsslproxy $containername $serverhostport 
+	else
+		echo "Proxy launch skipped ( export LAUNCHPROXY=TRUE ) to bypass and launch"
+fi
 #$sport
 
 
