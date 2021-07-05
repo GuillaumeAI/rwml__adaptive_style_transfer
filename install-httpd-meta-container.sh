@@ -1,6 +1,7 @@
 #!/bin/bash
 # Will be moved to all host - keep it here to stay compatible with new host and ol0d ones
 export httpserverserverhtdocs=/www/astia/info
+mkdir -p $httpserverserverhtdocs && echo "Created folders to store Meta at: $httpserverserverhtdocs"
 source _env.sh
 
 # Exports...
