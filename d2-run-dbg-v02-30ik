@@ -3,9 +3,10 @@
 #DBG
 s=./doubletwo-multi-cherkpoint-svc-mounter.sh
 ps=9010
-ps=9014
+ps=9011
 x1=600
 x2=1800
-m=model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new
+ik=30
+m=model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new-$ik'ik'
 #$s $m $ps $x1 $x2 "$(mckinfo $m)"
-$s $m $ps $x1 $x2 "75"
+$s $m $ps $x1 $x2 "$ik"
