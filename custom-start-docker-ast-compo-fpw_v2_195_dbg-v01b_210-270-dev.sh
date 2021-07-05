@@ -1,11 +1,8 @@
 source _env.sh
 
 # ARTIST : CHG Model name
-#export modelname="model_gia-ds-fpolsonwill_v02_210424_new-195ik"
-#export model2name="model_gia-young-picasso-v05-2101082232_new-150ik"
 
-#export modelname="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new"
-#model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-90ik_
+
 export modelname="model_gia-ds-fpolsonwill_v02_210424_new-195ik"
 export model2name="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-210ik"
 export model3name="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-270ik"

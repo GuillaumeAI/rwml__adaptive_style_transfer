@@ -4,7 +4,7 @@ source _env.sh
 
 export modelname="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-45ik"
 export model2name="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-135ik"
-#export model2name="model_gia-young-picasso-v04-2012211928_new-75ikb"
+
 # The resolution of the two passes
 export PASS1IMAGESIZE=512
 export PASS2IMAGESIZE=2060
