@@ -14,6 +14,10 @@ if [ "$1" == "--fg" ]; then
 	docker_mode="it"
 	docker_run_args="--rm"
 fi
+
+#fix perm made root by docker
+$binroot/tmpunlock.sh
+
 export docker_cmd="docker run -$docker_mode $docker_run_args --name $containername "
 #export proxycontainername=$containername$sslcontainersuffix
 #export docker_cmd_proxy="docker run -$docker_mode $docker_run_args --name $proxycontainername "
