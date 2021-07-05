@@ -6,6 +6,11 @@ source _env.sh
 export modelname="model_gia-ds-fpolsonwill_v02_210424_new-195ik"
 export model2name="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-210ik"
 export model3name="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-270ik"
+
+#we use it for meta for now
+#export checkpointno="195-210-270"
+
+
 # The resolution of the two passes
 #export PASS1IMAGESIZE=1328
 #export PASS2IMAGESIZE=1024

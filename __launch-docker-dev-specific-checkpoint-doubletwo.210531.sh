@@ -156,18 +156,19 @@ metarelfilepath=$metabasepath/$serverhostport.json
 mkdir -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath
 getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
-getfnamefrommodel() {
-	local _modelname=$1
-	local r="$1"
-	for ml in $(cat ds-modelname-fname); do
-		m=$(echo $ml | tr ";" " " | awk '// { print $1 }')
-		f=$(echo $ml | tr ";" " " | awk '// { print $2 }')
-		r=$(echo $r | sed -e 's/'"$m"'/'"$f"'/g')
-
-	done
-	echo $r
-
-}
+#moved in __rwfn.sh
+#getfnamefrommodel() {
+#	local _modelname=$1
+#	local r="$1"
+#	for ml in $(cat ds-modelname-fname); do
+#		m=$(echo $ml | tr ";" " " | awk '// { print $1 }')
+#		f=$(echo $ml | tr ";" " " | awk '// { print $2 }')
+#		r=$(echo $r | sed -e 's/'"$m"'/'"$f"'/g')
+#
+#	done
+#	echo $r
+#
+#}
 fname=$(getfnamefrommodel $modelname)
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile

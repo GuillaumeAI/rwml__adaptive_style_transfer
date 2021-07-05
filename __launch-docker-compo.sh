@@ -23,8 +23,8 @@ echo "- AccessURL : $callurl"
 echo "-------------------------------------------------------------"
 #$docker_cmd -v $(pwd):/work -p 8000:9000 -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport $containertag $run_cmd
 echo "----------Cleaning up $containername-------"
-docker stop $containername
-docker rm $containername
+docker stop $containername 2> /dev/null
+docker rm $containername 2> /dev/null
 echo "-----------Installing $containername ------------"
 
 #@a Save model metadata for further id of results
@@ -36,17 +36,26 @@ mkdir -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath
 getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
 
+
+
+fname=$(getfnamefrommodel $modelname-$model2name)
+
 echo "{ " >   $metafile
-echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"modelname\":\"$modelname;$model2name\"," >>  $metafile
+echo "\"fname\":\"$fname\"," >>  $metafile
 echo "\"containername\":\"$containername\",">>    $metafile
+echo "\"containertag\":\"$compo2dtv1devcontainertag\",">>    $metafile
 echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
-echo "\"type\":\"compo\",">>    $metafile
+echo "\"svrtype\":\"c2\",">>    $metafile
+echo "\"mtype\":\"ast\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
 echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile
-echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
+echo "\"PASS3IMAGESIZE\":\"-1\"," >>    $metafile
+#echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
 echo "\"created\":\"$(date)\"" >>    $metafile
 echo "}">>    $metafile
+
 
 #@STCGoal Central registration of currently running services
 export globallocationpath=/home/jgi/astiapreviz
