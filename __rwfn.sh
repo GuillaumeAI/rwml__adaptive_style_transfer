@@ -93,3 +93,20 @@ mkcontainername() {
 	local _containername=$prefix$tmpname$separator$checkpointno$suffix
 	echo $_containername
 }
+
+
+
+getfnamefrommodel() {
+        local _modelname=$1
+        local r="$1"
+        for ml in $(cat ds-modelname-fname); do
+                m=$(echo $ml | tr ";" " " | awk '// { print $1 }')
+                f=$(echo $ml | tr ";" " " | awk '// { print $2 }')
+                r=$(echo $r | sed -e 's/'"$m"'/'"$f"'/g')
+
+        done
+        echo $r
+
+}
+
+

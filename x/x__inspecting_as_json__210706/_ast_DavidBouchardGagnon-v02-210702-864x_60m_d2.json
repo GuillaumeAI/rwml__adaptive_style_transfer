@@ -1,0 +1,301 @@
+[
+    {
+        "Id": "92ca5632587fb748a54032868df013aae24941bc886a2501f7f8b98f832ea99d",
+        "Created": "2021-07-05T15:09:28.039571901Z",
+        "Path": "/bin/sh",
+        "Args": [
+            "-c",
+            "python compo-server-doubletwo-v1-dev.py"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 4538,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-07-05T15:09:30.158920328Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:98d9829b0c5ae117ab2d1112cbf0575f829ecc7ed337cb964726d4b93d7100d2",
+        "ResolvConfPath": "/var/lib/docker/containers/92ca5632587fb748a54032868df013aae24941bc886a2501f7f8b98f832ea99d/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/92ca5632587fb748a54032868df013aae24941bc886a2501f7f8b98f832ea99d/hostname",
+        "HostsPath": "/var/lib/docker/containers/92ca5632587fb748a54032868df013aae24941bc886a2501f7f8b98f832ea99d/hosts",
+        "LogPath": "/var/lib/docker/containers/92ca5632587fb748a54032868df013aae24941bc886a2501f7f8b98f832ea99d/92ca5632587fb748a54032868df013aae24941bc886a2501f7f8b98f832ea99d-json.log",
+        "Name": "/ast_DavidBouchardGagnon-v02-210702-864x_60m_d2",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/a/src/rwml__adaptive_style_transfer:/work",
+                "/a/bin:/a/bin",
+                "/a/model/models/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.meta:/data/styleCheckpoint/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.meta",
+                "/a/model/models/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.index:/data/styleCheckpoint/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.index",
+                "/a/model/models/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.data-00000-of-00001:/data/styleCheckpoint/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.data-00000-of-00001",
+                "/tmp/astiatmp/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_checkpoint_60:/data/styleCheckpoint/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/checkpoint"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {
+                "8000/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "9013"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "unless-stopped",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "Capabilities": null,
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/fb38e05f1f99c6b5c79bd6d40b4adbedbc978e5863392ff24779d5de46d35bd4-init/diff:/var/lib/docker/overlay2/a2f464aacc55c9f02b3d19383c1aefc7aca754049f232505d125db90bb178a22/diff:/var/lib/docker/overlay2/513eeadf4179cd57b568ea139a85369596c5ab6ddc87e84b85804ec85bd967de/diff:/var/lib/docker/overlay2/0a42c5803f1cb2b6a1bf7feeb6c573ed15404cec1d1480e02bf84a1e6d5c45cc/diff:/var/lib/docker/overlay2/6cf9a852c2bb3ffc5f98cc6e6b6574d61caf5e14ee1510773f66c7a1922df610/diff:/var/lib/docker/overlay2/4de4d46e03094d1fa7e48a3bc302f0da47496a8a1a41019e0cc09ae2c25ad45d/diff:/var/lib/docker/overlay2/c4b759f61cab954c4f43bb1dc3ace4bf585e78b5803554bd76955bf93210bea5/diff:/var/lib/docker/overlay2/d506c944d5b150a41cec7cd3d8cb95d48b181643bf3170c98b0ab297ce61e983/diff:/var/lib/docker/overlay2/71d80f8beb4c8628440eda6e1c0207260fc9c4c7f4d16cbcd4de55458556433e/diff:/var/lib/docker/overlay2/d782ada906da64096bc67ab62b0a294843440d9ead60d2b0f6bd87c4988de6bc/diff:/var/lib/docker/overlay2/604ff32b50bb84a835cb3fccfed6096e0877f0a981a5fb020c114e6f974a6818/diff:/var/lib/docker/overlay2/3be1108fdbd8828b89d7d36a5742ec93e300f5c0342b4b55e095b4655d3f9f96/diff:/var/lib/docker/overlay2/8465906ffaee816f799c9000996bf689492b864c443bacd0d92d66b21fc28cf1/diff:/var/lib/docker/overlay2/476d21d0d4126df3bd89d237a74138706f631bb5ed27a7155ea57069870f58ce/diff:/var/lib/docker/overlay2/bbe86cc08a0f5849a97da6ef899d338ea54981ad16916d5f723c7aaf48002848/diff:/var/lib/docker/overlay2/38ebb4f89c69a539a69050d78d7401742f6d7da92e93405acf503e1e0d4471fe/diff:/var/lib/docker/overlay2/2081a92c85333bdcc97846088775c53313b053714e602f6510b0899704f61740/diff:/var/lib/docker/overlay2/8cbd3fb6b88c32850ddf319863aab77b346f6d12236cde4a9b828461f8cdd7ae/diff:/var/lib/docker/overlay2/e38d14015884f50ef579dc84aa5a9551c058d0d654d715d110223f6f71499ef3/diff:/var/lib/docker/overlay2/a7910f389365eea81a53fb199138be595eac133e50adb7117d24a7820ea31513/diff:/var/lib/docker/overlay2/b78029ef1a52f3de27a068347399480e5346f579b3e7157f18bd776ccb3da5fe/diff",
+                "MergedDir": "/var/lib/docker/overlay2/fb38e05f1f99c6b5c79bd6d40b4adbedbc978e5863392ff24779d5de46d35bd4/merged",
+                "UpperDir": "/var/lib/docker/overlay2/fb38e05f1f99c6b5c79bd6d40b4adbedbc978e5863392ff24779d5de46d35bd4/diff",
+                "WorkDir": "/var/lib/docker/overlay2/fb38e05f1f99c6b5c79bd6d40b4adbedbc978e5863392ff24779d5de46d35bd4/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/a/model/models/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.data-00000-of-00001",
+                "Destination": "/data/styleCheckpoint/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.data-00000-of-00001",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/tmp/astiatmp/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_checkpoint_60",
+                "Destination": "/data/styleCheckpoint/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/checkpoint",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "volume",
+                "Name": "c2146d8343476f9e075c45e8698a85b8704e071387c428210675b06a123f157d",
+                "Source": "/var/lib/docker/volumes/c2146d8343476f9e075c45e8698a85b8704e071387c428210675b06a123f157d/_data",
+                "Destination": "/data/styleCheckpoint",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            },
+            {
+                "Type": "bind",
+                "Source": "/a/src/rwml__adaptive_style_transfer",
+                "Destination": "/work",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/a/bin",
+                "Destination": "/a/bin",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/a/model/models/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.meta",
+                "Destination": "/data/styleCheckpoint/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.meta",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/a/model/models/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.index",
+                "Destination": "/data/styleCheckpoint/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new/checkpoint_long/model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new_60000.ckpt-60000.index",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "92ca5632587f",
+            "Domainname": "",
+            "User": "jgi",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8000/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "SPORT=9013",
+                "PASS1IMAGESIZE=600",
+                "PASS2IMAGESIZE=1800",
+                "MODELNAME=model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new",
+                "MODEL1NAME=model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new",
+                "RW_MODEL_OPTIONS={\"styleCheckpoint\":\"/data/styleCheckpoint\"}",
+                "RW_DEBUG=0",
+                "RW_PORT=8000",
+                "RW_HOST=0.0.0.0",
+                "PATH=/miniconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "GPU=0"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "python compo-server-doubletwo-v1-dev.py"
+            ],
+            "Image": "guillaumeai/server:ast-210518-compo-doubletwo-v1-dev",
+            "Volumes": {
+                "/data/styleCheckpoint": {}
+            },
+            "WorkingDir": "/model",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "desktop.docker.io/binds/0/Source": "C:\\Users\\jeang\\.runway\\checkpoints\\a88924af2ec4bf31d2bcddef8560ac46",
+                "desktop.docker.io/binds/0/SourceKind": "hostFile",
+                "desktop.docker.io/binds/0/Target": "/data/styleCheckpoint"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "7639fe30a30beba2007f48d43367b9c452fae846a3e7816db41445285c93d9ba",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "8000/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "9013"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/7639fe30a30b",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "c6eaf81f983cf369efd17b7e4ba2e84a29bb7d53142ac87f11f66cf717ad3dab",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.7",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:07",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "3f69d2b1fd753a802ca50c5c1de4f3c1b1d6b620b520022745882e21c1eaf85a",
+                    "EndpointID": "c6eaf81f983cf369efd17b7e4ba2e84a29bb7d53142ac87f11f66cf717ad3dab",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.7",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:07",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]

@@ -45,14 +45,20 @@ mkdir -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath
 getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
 
+fname=$(getfnamefrommodel $modelname-$model2name-$model3name)
+
 echo "{ " >   $metafile
-echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"modelname\":\"$modelname;$model2name;$model3name\"," >>  $metafile
+echo "\"fname\":\"$fname\"," >>  $metafile
 echo "\"containername\":\"$containername\",">>    $metafile
-echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
-echo "\"type\":\"compothree\",">>    $metafile
+echo "\"containertag\":\"$compo3v2devcontainertag\",">>    $metafile
+echo "\"checkpointno\":\"$checkpointno\",">>    $metafile 
+echo "\"svrtype\":\"c3\",">>    $metafile
+echo "\"mtype\":\"ast\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
 echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile
+echo "\"PASS3IMAGESIZE\":\"$PASS3IMAGESIZE\"," >>    $metafile
 echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
 echo "\"created\":\"$(date)\"" >>    $metafile
 echo "}">>    $metafile
@@ -74,5 +80,8 @@ sleep 1
 $execme
 
 # Proxy
-astlaunchsslproxy $containername $serverhostport
+if [ "$LAUNCHPROXY" != "" ] ; then astlaunchsslproxy $containername $serverhostport
+        else
+                echo "Proxy launch skipped ( export LAUNCHPROXY=TRUE ) to bypass and launch"
+fi
 

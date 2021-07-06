@@ -1,0 +1,12 @@
+
+
+#DBG
+s=./doubletwo-multi-cherkpoint-svc-mounter.sh
+
+ps=9082
+x1=600
+x2=1800
+ik=330
+m=model_ds-GabrielleKelly-v01-210624-864x_new-$ik'ik'
+#$s $m $ps $x1 $x2 "$(mckinfo $m)"
+$s $m $ps $x1 $x2 "$ik"
