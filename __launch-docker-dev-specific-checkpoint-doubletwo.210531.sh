@@ -165,6 +165,8 @@ getfnamefrommodel() {
 
 }
 fname=$(getfnamefrommodel $modelname)
+sudo chmod 777  $metafile &> /dev/null
+
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
 echo "\"fname\":\"$fname\"," >>  $metafile
