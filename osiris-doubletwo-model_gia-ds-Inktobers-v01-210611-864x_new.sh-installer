@@ -1,0 +1,7 @@
+s=./custom-cli-start-script-docker-dev-specific-checkpoint-doubletwo.210531.sh
+cmd=$1
+if [ "$cmd" == "" ] ; then echo "usage: $0 <--stop|--start|--remove>";exit 1;fi 
+curport=9060
+x1=1500
+x2=1700
+$s model_gia-ds-Inktobers-v01-210611-864x_new $(expr $curport + 0 ) $x1 $x2 15 30 45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300 315 330 345 360 375 390 405

@@ -192,7 +192,8 @@ echo "}">>    $metafile
 export globallocationpath=/home/jgi/astiapreviz
 cdir=$(pwd)
 gtpath=$globallocationpath/svr/$HOSTNAME
-mkdir -p $gtpath
+sudo mkdir -p $gtpath
+sudo chmod 777 $gtpath/* &> /dev/null && echo "Permission fixed"
 (cp $metafile $gtpath && cd $gtpath && ls *json> list.txt)  &
 
 
