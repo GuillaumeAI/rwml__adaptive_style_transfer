@@ -1,1 +1,5 @@
-for f in d2-run-gk-v01-*ik ; do . $f ; done
+$binroot/tmpunlock.sh
+
+for f in d2-run-gk-v01-*ik ; do 
+	. $f 
+done
