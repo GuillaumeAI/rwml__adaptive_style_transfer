@@ -2,7 +2,7 @@
 
 #DBG
 s=./doubletwo-multi-cherkpoint-svc-mounter.sh
-ps=9010
+
 ps=9025
 x1=600
 x2=1800

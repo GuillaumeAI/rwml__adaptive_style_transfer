@@ -2,7 +2,7 @@
 
 #DBG
 s=./doubletwo-multi-cherkpoint-svc-mounter.sh
-ps=9030
+ps=9010
 x1=600
 x2=1800
 m=model_gia-ds-DavidBouchardGagnon-v01a-210510_new

@@ -125,16 +125,27 @@ mkdir -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath
 getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
 
+
+fname=$(getfnamefrommodel $modelname )
+sudo chmod 777  $metafile &> /dev/null
+
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"fname\":\"$fname\"," >>  $metafile
 echo "\"containername\":\"$containername\",">>    $metafile
+echo "\"containertag\":\"$containertag\",">>    $metafile
 echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
+echo "\"svrtype\":\"d2\",">>    $metafile
+echo "\"mtype\":\"ast\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile
-echo "\"PASS2IMAGESIZE\":\"$PASS2IMAGESIZE\"," >>    $metafile
-echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
+echo "\"PASS2IMAGESIZE\":\"-1\"," >>    $metafile
+echo "\"PASS3IMAGESIZE\":\"-1\"," >>    $metafile
+#echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
 echo "\"created\":\"$(date)\"" >>    $metafile
 echo "}">>    $metafile
+
+
 
 #@STCGoal Central registration of currently running services
 export globallocationpath=/home/jgi/astiapreviz
