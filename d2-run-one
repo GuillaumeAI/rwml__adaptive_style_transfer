@@ -3,15 +3,17 @@
 
 if [ "$1" == "" ] ||  [ "$2" == "" ] || [ "$3" == "" ] ; then
 	echo "Usage: $0 <modelname> <fullStartPort> \"<checkpoint1 2 3...>\""
-	exit 1
+	
+
+else
+	#
+	s=./doubletwo-multi-cherkpoint-svc-mounter.sh
+	ps=$2
+	
+	x1=600
+	x2=2000
+	m=$1
+	#$s $m $ps $x1 $x2 "$(mckinfo $m)"
+	$s $m $ps $x1 $x2 "$3"
+
 fi
-
-#
-s=./doubletwo-multi-cherkpoint-svc-mounter.sh
-ps=$2
-
-x1=600
-x2=2000
-m=$1
-#$s $m $ps $x1 $x2 "$(mckinfo $m)"
-$s $m $ps $x1 $x2 "$3"
