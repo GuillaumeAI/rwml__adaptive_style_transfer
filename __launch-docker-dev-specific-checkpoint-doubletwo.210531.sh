@@ -113,7 +113,7 @@ export modellocalpointdata=$modellocalpoint/$mdatafile
 
 #############
 echo "-------------------------------------------------------------"
-echo "- Running  Guillaume's M.A. AI Model Server BoubleTwo     -"
+echo "- Running  Guillaume's M.A. AI Model Server DoubleTwo (d2)    -"
 echo "- Model: $modelname"
 echo "- Model Checkpoint: $checkpointno"
 echo "- AccessURL : $callurl"
