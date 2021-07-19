@@ -1,0 +1,2 @@
+docker start ast_result_webapp
+docker start ast_meta_server
