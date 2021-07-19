@@ -189,7 +189,6 @@ def stylize(models, inp):
     img = img / 127.5 - 1.
 
     #@a Pass 1 RESIZE to res1 the smaller side
-    image_size=pass1_image_size
     image_size=x1
     img_shape = img.shape[:2]
     alpha = float(image_size) / float(min(img_shape))
@@ -208,24 +207,23 @@ def stylize(models, inp):
     img = img[0]
     dtprint("INFO:Upresing Pass1 for Pass 2 (STARTING) ")
 
-    #@a Pass 2 RESIZE to res2 the smaller side
-    image_size=pass2_image_size
+    #-------------------PASS 1 DONE-----------------
+    #-----------------------------------------------
+
+    #-----------------------------------------------
+    #------------------Pass 2 STARTING--------------
+    #@a Pass 2 RESIZING
     image_size=x2
     img_shape = img.shape[:2]
     
     
     alpha = float(image_size) / float(min(img_shape))
-    dtprint ("DEBUG::pass1.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
+    dtprint ("DEBUG::pass2.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
 
     img = scipy.misc.imresize(img, size=alpha)
-    dtprint("INFO:Upresing Pass1 (DONE) ")
-
-    #-------------------PASS 1 DONE-----------------
-    #-----------------------------------------------
+    dtprint("#@state INFO:Upresing Pass2 (DONE) ")
 
 
-    #-----------------------------------------------
-    #------------------Pass 2 STARTING--------------
     #Iteration 2    
     img = np.array(img)
     img = img / 127.5 - 1.
@@ -242,32 +240,7 @@ def stylize(models, inp):
     #-------------------PASS 2 DONE-----------------
     #-----------------------------------------------
 
-    # #pass3
 
-    # #@a Pass 3 RESIZE to 2048px the smaller side
-    # image_size=pass3_image_size
-    # image_size=x3
-    # img_shape = img.shape[:2]
-    
-    
-    # alpha = float(image_size) / float(min(img_shape))
-    # dtprint ("DEBUG::pass2.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
-
-    # img = scipy.misc.imresize(img, size=alpha)
-    # dtprint("INFO:Upresing Pass2 (DONE) ")
-
-    # #Iteration 3
-    # img = np.array(img)
-    # img = img / 127.5 - 1.
-    # img = np.expand_dims(img, axis=0)
-    # #@a INFERENCE PASS 3
-    # dtprint("INFO:Pass3 inference (STARTING)")
-    # img = model3['sess'].run(model3['output_photo'], feed_dict={model3['input_photo']: img})
-    # dtprint("INFO:Pass3 inference (DONE)")
-    # img = (img + 1.) * 127.5
-    # img = img.astype('uint8')
-    # img = img[0]
-    # #pass3
 
     dtprint("INFO:Composing done")
     stop = time.time()
