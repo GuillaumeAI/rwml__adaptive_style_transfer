@@ -1,0 +1,11 @@
+
+
+#MODELNAME
+s=./doubletwo-multi-cherkpoint-svc-mounter.sh
+ps=9010
+
+x1=600
+x2=2000
+m=MODELNAME
+$s $m $ps $x1 $x2 "$(mckinfo $m)"
+#$s $m $ps $x1 $x2 "495"
