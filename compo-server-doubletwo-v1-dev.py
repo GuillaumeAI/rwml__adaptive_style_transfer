@@ -181,12 +181,14 @@ def stylize(models, inp):
     
     
 
+    #----------------------------------------------
+    #-------------------PASS 1 STARTING------------
     #
     img = inp['contentImage']
     img = np.array(img)
     img = img / 127.5 - 1.
 
-    #@a Pass 1 RESIZE to 1368px the smaller side
+    #@a Pass 1 RESIZE to res1 the smaller side
     image_size=pass1_image_size
     image_size=x1
     img_shape = img.shape[:2]
@@ -206,7 +208,7 @@ def stylize(models, inp):
     img = img[0]
     dtprint("INFO:Upresing Pass1 for Pass 2 (STARTING) ")
 
-    #@a Pass 2 RESIZE to 1024px the smaller side
+    #@a Pass 2 RESIZE to res2 the smaller side
     image_size=pass2_image_size
     image_size=x2
     img_shape = img.shape[:2]
@@ -218,6 +220,12 @@ def stylize(models, inp):
     img = scipy.misc.imresize(img, size=alpha)
     dtprint("INFO:Upresing Pass1 (DONE) ")
 
+    #-------------------PASS 1 DONE-----------------
+    #-----------------------------------------------
+
+
+    #-----------------------------------------------
+    #------------------Pass 2 STARTING--------------
     #Iteration 2    
     img = np.array(img)
     img = img / 127.5 - 1.
@@ -231,6 +239,8 @@ def stylize(models, inp):
     img = img[0]
 
 
+    #-------------------PASS 2 DONE-----------------
+    #-----------------------------------------------
 
     # #pass3
 
