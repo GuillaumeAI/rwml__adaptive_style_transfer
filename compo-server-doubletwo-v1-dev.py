@@ -156,7 +156,7 @@ def setup(opts):
 
 
 #@STCGoal add number or text to specify resolution of the three pass
-inputs={'contentImage': runway.image,'x1':number(default=pass1_image_size,min=24,max=17000),'x2':number(default=pass2_image_size,min=24,max=17000)}
+inputs={'contentImage': runway.image,'x1':number(default=pass1_image_size,min=24,max=17000),'x2':number(default=pass2_image_size,min=-2,max=17000)}
 outputs={'stylizedImage': runway.image,'totaltime':number,'x1': number,'x2': number,'model1name':text,'model2name':text}
 
 
@@ -177,6 +177,12 @@ def stylize(models, inp):
     #get size from inputs rather than env
     x1 = inp['x1']
     x2 = inp['x2']
+    
+    if x2==-2 : # Same res if -2 used
+        x2=x1
+    if x2==0 : # Same res if 0 used
+        x2=x1
+    
     # x3 = inp['x3']
     
     
@@ -211,34 +217,36 @@ def stylize(models, inp):
     #-----------------------------------------------
 
     #-----------------------------------------------
-    #------------------Pass 2 STARTING--------------
-    #@a Pass 2 RESIZING
-    image_size=x2
-    img_shape = img.shape[:2]
+    #------------------Pass 2 STARTING--------------   
     
-    
-    alpha = float(image_size) / float(min(img_shape))
-    dtprint ("DEBUG::pass2.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
+    if x2!=-1 : #@stcgoal We do pass two only if not -1 which enable only one pass
+        #@a Pass 2 RESIZING
+        image_size=x2
+        img_shape = img.shape[:2]
+        
+        
+        alpha = float(image_size) / float(min(img_shape))
+        dtprint ("DEBUG::pass2.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
 
-    img = scipy.misc.imresize(img, size=alpha)
-    dtprint("#@state INFO:Upresing Pass2 (DONE) ")
-
-
-    #Iteration 2    
-    img = np.array(img)
-    img = img / 127.5 - 1.
-    img = np.expand_dims(img, axis=0)
-    #@a INFERENCE PASS 2 using the same model
-    dtprint("INFO:Pass2 inference (STARTING)")
-    img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
-    dtprint("INFO:Pass2 inference (DONE)")
-    img = (img + 1.) * 127.5
-    img = img.astype('uint8')
-    img = img[0]
+        img = scipy.misc.imresize(img, size=alpha)
+        dtprint("#@state INFO:Upresing Pass2 (DONE) ")
 
 
-    #-------------------PASS 2 DONE-----------------
-    #-----------------------------------------------
+        #Iteration 2    
+        img = np.array(img)
+        img = img / 127.5 - 1.
+        img = np.expand_dims(img, axis=0)
+        #@a INFERENCE PASS 2 using the same model
+        dtprint("INFO:Pass2 inference (STARTING)")
+        img = model['sess'].run(model['output_photo'], feed_dict={model['input_photo']: img})
+        dtprint("INFO:Pass2 inference (DONE)")
+        img = (img + 1.) * 127.5
+        img = img.astype('uint8')
+        img = img[0]
+
+
+        #-------------------PASS 2 DONE-----------------
+        #-----------------------------------------------
 
 
 
