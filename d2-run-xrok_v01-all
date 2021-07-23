@@ -1,0 +1,11 @@
+
+
+#model_dsx-data_large_rock_choosen_v01_210722_new
+s=./doubletwo-multi-cherkpoint-svc-mounter.sh
+ps=9010
+
+x1=600
+x2=2000
+m=model_dsx-data_large_rock_choosen_v01_210722_new
+$s $m $ps $x1 $x2 "$(mckinfo $m)"
+#$s $m $ps $x1 $x2 "495"
