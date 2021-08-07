@@ -171,6 +171,7 @@ getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
 #}
 fname=$(getfnamefrommodel $modelname)
 sudo chmod 777  $metafile &> /dev/null
+sudo chown jgi.jgi $metafile &> /dev/null
 
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
