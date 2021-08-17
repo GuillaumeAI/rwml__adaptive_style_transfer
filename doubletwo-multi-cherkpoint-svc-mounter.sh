@@ -11,9 +11,9 @@ x2=$4
 chks="$5"
 if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] || [ "$4" == "" ] || [ "$5" == "" ]; then 
 	echo "Usage: ./doubletwo-multi-cherkpoint-svc-mounter.sh model_ds-GabrielleKelly-v01-210624-864x_new 9060 1500 2000 \"$(mckinfo model_ds-GabrielleKelly-v01-210624-864x_new)\""
-	exit 1
-fi
+#	exit 1
 
+else #We do process
 
 for chp in $chks; do 
 	echo "##############################################################################"
@@ -32,3 +32,4 @@ for chp in $chks; do
 	
 done
 
+fi
