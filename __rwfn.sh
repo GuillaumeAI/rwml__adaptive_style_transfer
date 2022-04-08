@@ -1,11 +1,14 @@
 
 
-
-
+## @fn astlaunchsslproxy
+## @ingroup astutil
+## @brief start,stop, install proxy container 
+## @param string containername name
+## @param string serverhostport port
 astlaunchsslproxy() {
 	containername="$1"
 	serverhostport=$2
-#	sport=$3
+	#	sport=$3
 	#proxycontainertag=$4
 	#tdomain=$5
 	#thost=$6
@@ -40,14 +43,14 @@ astlaunchsslproxy() {
         echo "...Installing"
 
 
-#     	echo $docker_cmd_proxy \
-#                -e DOMAIN=$tdomain  \
-#                -e TARGET_PORT=$tport  \
-#                -e TARGET_HOST=$thost   \
-#                -e SSL_PORT=$sport   \
-#                -p $sport:$sport \
-#                -e CLIENT_MAX_BODY_SIZE=$maxupload  \
-#                $proxycontainertag
+	#     	echo $docker_cmd_proxy \
+	#                -e DOMAIN=$tdomain  \
+	#                -e TARGET_PORT=$tport  \
+	#                -e TARGET_HOST=$thost   \
+	#                -e SSL_PORT=$sport   \
+	#                -p $sport:$sport \
+	#                -e CLIENT_MAX_BODY_SIZE=$maxupload  \
+	#                $proxycontainertag
 		
 		$docker_cmd_proxy \
                 -e DOMAIN=$tdomain  \
@@ -57,12 +60,21 @@ astlaunchsslproxy() {
                 -p $sport:$sport \
                 -e CLIENT_MAX_BODY_SIZE=$maxupload  \
                 $proxycontainertag && \
-#        echo "------Oh yeah, should have a proxy running" && \
+	#        echo "------Oh yeah, should have a proxy running" && \
 	echo "https://$tdomain:$sport"
 		
 }
 
 
+
+## @fn mkcontainername
+## @ingroup astutil
+## @brief Make a container name from the model name (previous version of getcontainernamefrommodel)
+## @param string modelname folder name of the model
+## @param string checkpointno ik
+## @param string prefix prefix to the containername (optional)
+## @param string suffix suffix to the containername (optional)
+## @param string separator (optional)
 mkcontainername() {
 	local modelname=$1
 	local checkpointno=$2
@@ -96,11 +108,17 @@ mkcontainername() {
 
 
 
+## @fn getfnamefrommodel
+## @ingroup astutil
+## @brief Make a fname from the model name for metadata
+## @param string modelname folder name of the model
+## @param string prefix prefix to the containername (optional)
+## @param string suffix suffix to the containername (optional)
 getfnamefrommodel() {
-        local _modelname=$1
+	local _modelname=$1
 	local _suffix="$2"
 	local _prefix="$3"
-        local r="$1"
+	local r="$1"
 	local dspath="$(pwd)/ds-modelname-fname"
 	if [ -e "$dspath" ]; then dspath="$(pwd)/ds-modelname-fname"
 	else
@@ -119,14 +137,32 @@ getfnamefrommodel() {
 
 }
 
+
+
+## @fn getcontainernamefrommodel
+## @ingroup astutil
+## @brief Make a containername from the model name for service (next version of mkcontainername)
+## @param string modelname folder name of the model
+## @param string suffix suffix to the containername (optional)
+## @param string chk model checkpoint
 getcontainernamefrommodel() {
 	local _modelname="$1"
-	local _chk="$2"
-	local cnameprefix="ast_"
 	local cnamesuffix="$2"
+	local _chk="$3"
+	local cnameprefix="ast_"
 	local fname="$(getfnamefrommodel $1)"
-	local r="$cnameprefix$fname$cnamesuffix"
+	local r="$cnameprefix$fname$_chk$cnamesuffix"
 
 	echo $r
 
+}
+
+## @fn getcontainernamefrommodelvar
+## @ingroup astutil
+## @brief Make a containername from the model name for service
+## @param string modelname folder name of the model
+## @param string suffix suffix to the containername (optional)
+## @param string chk model checkpoint
+getcontainernamefrommodelvar() {
+		export containername=$(getcontainernamefrommodel "$1" "$2" "$3")
 }
