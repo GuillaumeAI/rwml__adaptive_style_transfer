@@ -1,5 +1,13 @@
 # GIA-AST-Servers
 
+## Cleanup
+
+oh boy, what a cleanup here todo :o  When I do not fully understand what I am doing yet, it gets messy ;)
+Creating a new repo might be the next step.
+For the time being, I'll put what I can here to know how to use it: 
+
+See [USAGE](USAGE.md)
+
 ## Intentions
 
 * Adequate servicing of model thru an API
