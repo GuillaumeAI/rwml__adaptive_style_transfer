@@ -98,15 +98,35 @@ mkcontainername() {
 
 getfnamefrommodel() {
         local _modelname=$1
+	local _suffix="$2"
+	local _prefix="$3"
         local r="$1"
-        for ml in $(cat ds-modelname-fname); do
+	local dspath="$(pwd)/ds-modelname-fname"
+	if [ -e "$dspath" ]; then dspath="$(pwd)/ds-modelname-fname"
+	else
+		if [ -e "$rwroot" ]; then dspath="$rwroot/ds-modelname-fname" 
+		else echo "Define rwroot env var, most likely : export rwroot=/c/usr/src/rwml__adaptive_style_transfer" ; return 1; fi
+	fi
+	if [ -e "$dspath" ] ; then
+        for ml in $(cat $dspath); do
                 m=$(echo $ml | tr ";" " " | awk '// { print $1 }')
                 f=$(echo $ml | tr ";" " " | awk '// { print $2 }')
-                r=$(echo $r | sed -e 's/'"$m"'/'"$f"'/g')
+                r=$(echo $_modelname | sed -e 's/'"$m"'/'"$f"'/g')
 
         done
-        echo $r
+        echo $_prefix$r$_suffix
+	fi
 
 }
 
+getcontainernamefrommodel() {
+	local _modelname="$1"
+	local _chk="$2"
+	local cnameprefix="ast_"
+	local cnamesuffix="$2"
+	local fname="$(getfnamefrommodel $1)"
+	local r="$cnameprefix$fname$cnamesuffix"
 
+	echo $r
+
+}
