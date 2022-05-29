@@ -1,0 +1,16 @@
+docker start ast_dbginko-v03-210809-864x_315m_s1
+docker start ast_dbginko-v03-210809-864x_330m_s1
+docker start ast_dbginko-v03-210809-864x_345m_s1
+docker start ast_dbginko-v03-210809-864x_360m_s1
+docker start ast_dbginko-v03-210809-864x_375m_s1
+docker start ast_dbginko-v03-210809-864x_390m_s1
+docker start ast_dbginko-v03-210809-864x_405m_s1
+docker start ast_dbginko-v03-210809-864x_420m_s1
+docker start ast_dbginko-v03-210809-864x_435m_s1
+docker start ast_dbginko-v03-210809-864x_450m_s1
+docker start ast_dbginko-v03-210809-864x_465m_s1
+docker start ast_dbginko-v03-210809-864x_480m_s1
+docker start ast_dbginko-v03-210809-864x_495m_s1
+docker start ast_dbginko-v03-210809-864x_510m_s1
+docker start ast_dbginko-v03-210809-864x_525m_s1
+docker start ast_dbginko-v03-210809-864x_540m_s1
