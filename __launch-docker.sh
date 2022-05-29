@@ -53,7 +53,7 @@ echo "}">>    $metafile
 
 
 #@STCGoal Central registration of currently running services
-export globallocationpath=/home/jgi/astiapreviz
+#export globallocationpath=/home/jgi/astiapreviz
 cdir=$(pwd)
 gtpath=$globallocationpath/svr/$HOSTNAME
 mkdir -p $gtpath

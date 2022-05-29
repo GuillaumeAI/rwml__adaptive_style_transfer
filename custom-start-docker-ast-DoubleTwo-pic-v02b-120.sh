@@ -10,8 +10,9 @@ export checkpointno="120"
 
 export serverhostport=9040
 export modelname=model_gia-young-picasso-v02b-201210-864_new
-export PASS1IMAGESIZE=1700
-export PASS2IMAGESIZE=2200
+export modelname=model_gia-young-picasso-v02b-201210-864_new-120ik
+export PASS1IMAGESIZE=1333
+export PASS2IMAGESIZE=2333
 
 
 # ./addDoubleTwoChk.sh \

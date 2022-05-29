@@ -11,6 +11,13 @@ declare -r RWROOT=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 export astia_server_file_location='/tmp/astia'
 #chmod 777 $astia_server_file_location
 
+#meta svr
+export metahttpdocroot=/www/astia
+export metahttpdocastinfopath=$metahttpdocroot/info
+export httpserverserverhtdocs=$metahttpdocastinfopath #keep it compatible
+export metaglobalregistryfeature="0" #1 enable
+export globallocationpath=/home/jgi/astiapreviz
+export globallocationpath=/www/astia
 
 # Proxy Conf
 export thost=svr.astia.xyz

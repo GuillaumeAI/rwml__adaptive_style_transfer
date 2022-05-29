@@ -8,7 +8,7 @@
 #########################################################
 
 # 
-#. _env.sh
+. _env.sh
 
 if [ "$1" == "--fg" ]; then 
 	docker_mode="it"
@@ -190,7 +190,7 @@ echo "\"created\":\"$(date)\"" >>    $metafile
 echo "}">>    $metafile
 
 #@STCGoal Central registration of currently running services
-export globallocationpath=/home/jgi/astiapreviz
+#export globallocationpath=/home/jgi/astiapreviz
 cdir=$(pwd)
 gtpath=$globallocationpath/svr/$HOSTNAME
 sudo mkdir -p $gtpath

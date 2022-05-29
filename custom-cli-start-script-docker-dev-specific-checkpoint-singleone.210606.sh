@@ -56,6 +56,7 @@ export containername='ast_'$tmpname'_'$checkpointno'm_s1'
 
 
 
+echo "source __launch-docker-dev-specific-checkpoint-singleone.210606.sh $5 $6"
 source __launch-docker-dev-specific-checkpoint-singleone.210606.sh $5 $6
 
 

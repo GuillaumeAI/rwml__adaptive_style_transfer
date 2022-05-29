@@ -125,17 +125,23 @@ execme="$docker_cmd -v $(pwd):/work  \
 
 #@a Save model metadata for further id of results
 #@state We store by Port
-metarootdir=/www
-metabasepath=astia/info
-metarelfilepath=$metabasepath/$serverhostport.json
-mkdir -p $metarootdir/$metabasepath
-metafile=$metarootdir/$metarelfilepath
-getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
+
+metafilename=$serverhostport.json
+mkdir -p $metahttpdocastinfopath
+metafile=$metahttpdocastinfopath/$metafilename
+if [ "$hostdns" == "" ] ; then export hostdns=localhost;fi
+getmetaurl="$callprotocol://$hostdns/$metafilename"
+
+fname=$(getfnamefrommodel $modelname)
 
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"fname\":\"$fname\"," >>  $metafile
 echo "\"containername\":\"$containername\",">>    $metafile
+echo "\"containertag\":\"$compo3v2devcontainertag\",">>    $metafile
 echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
+echo "\"svrtype\":\"s1\",">>    $metafile
+echo "\"mtype\":\"ast\",">>    $metafile
 echo "\"type\":\"singleone\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile 
@@ -144,12 +150,13 @@ echo "\"created\":\"$(date)\"" >>    $metafile
 echo "}">>    $metafile
 
 #@STCGoal Central registration of currently running services
-export globallocationpath=/home/jgi/astiapreviz
-cdir=$(pwd)
-gtpath=$globallocationpath/svr/$HOSTNAME
-mkdir -p $gtpath
-(cp $metafile $gtpath && cd $gtpath && ls *json> list.txt)  &
-
+if [ "$metaglobalregistryfeature" == "1" ] ; then
+	        #moved _env.sh export globallocationpath=/home/jgi/astiapreviz
+	        cdir=$(pwd)
+	        gtpath=$globallocationpath/svr/$HOSTNAME
+	        mkdir -p $gtpath
+	        (cp $metafile $gtpath && cd $gtpath && ls *json> list.txt)  &
+fi
 
 echo "$execme"
 sleep 1

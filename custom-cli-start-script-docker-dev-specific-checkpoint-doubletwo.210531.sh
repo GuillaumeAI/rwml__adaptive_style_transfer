@@ -6,6 +6,7 @@ source $binroot/__fn.sh
 # script.sh MODEL_NAME APIPORT IMGSIZE1 IMGSIZE2 CHECKPOINT_NUM [--fg(debug)] 
 
 source _env.sh
+source .env
 
 showhelp=0
 if [ "$1" == "" ]; then

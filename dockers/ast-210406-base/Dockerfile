@@ -1,5 +1,8 @@
 FROM guillaumeai/server:ast-2103220014
 
+RUN apt update && apt upgrade -y
+RUN apt install ccrypt -y
+
 #RUN pip install opencv-python
 WORKDIR /model
 

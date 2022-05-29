@@ -8,7 +8,7 @@ FROM guillaumeai/server:ast-210502-compo-three-v2-dev-base
 # RUN apt install ccrypt -y
 RUN rm -rf /model
 WORKDIR /model
-RUN git clone https://github.com/GuillaumeAI/rwml__adaptive_style_transfer.git .
+RUN git clone https://github.com/GuillaumeAI/rwml__adaptive_style_transfer.git . && rm -rf tests .git
 
 #RUN groupdel -f ubuntu
 #RUN userdel --remove  ubuntu

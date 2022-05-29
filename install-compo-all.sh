@@ -1,5 +1,8 @@
 
+#@STCGoal Start a pattern of Script
+#@STCStatus Must manually edit pattern
 
+export script2startpattern="custom-start-docker-ast-compo"
 source _env.sh
 # Pulling docker images
 docker pull $containertag
@@ -7,7 +10,7 @@ docker pull $compocontainertag
 echo "--------------------------------------------------------"
 echo "WARNING - IT MIGHT STARTS CONTAINER THAT ARE NOT DESIRED"
 sleep 3
-for s in custom-start-docker-ast-compo*.sh ; do
+for s in $script2startpattern*.sh ; do
 	echo "Launching/Installing : $s"
  	./$s
 done

@@ -1,4 +1,7 @@
 
+#@STCGoal Generate D2 Install Script for Osiris Host (Cloud machine) 
+#@STCStatus Existing generated script osiris-doubletwo.sh-****
+
 . _env.sh
 ob=osiris-doubletwo.sh
 o=$ob-installer

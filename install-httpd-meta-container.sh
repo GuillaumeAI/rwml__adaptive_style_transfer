@@ -1,8 +1,10 @@
 #!/bin/bash
-# Will be moved to all host - keep it here to stay compatible with new host and ol0d ones
-export httpserverserverhtdocs=/www/astia/info
+#@STCGoal Install Meta AST Server
+#@STCStatus DEPRECATED.  Will be moved to all host - keep it here to stay compatible with new host and old ones
+export httpserverserverhtdocs=/www/astia/info #todo override in _env.sh
+. _env.sh
 mkdir -p $httpserverserverhtdocs && echo "Created folders to store Meta at: $httpserverserverhtdocs"
-source _env.sh
+
 
 # Exports...
 ## docker_run_args

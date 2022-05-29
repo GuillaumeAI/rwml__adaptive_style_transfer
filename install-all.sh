@@ -1,4 +1,6 @@
 
+#@STCGoal Prep the env. pull containers.  
+#@STCStatus OUTDATED.
 
 source _env.sh
 # Pulling docker images
