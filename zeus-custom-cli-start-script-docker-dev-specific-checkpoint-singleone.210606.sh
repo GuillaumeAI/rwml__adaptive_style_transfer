@@ -52,7 +52,11 @@ tmpname="${modelnametmp/$replacerstr/$secondString}"
 replacerstr="_new"
 modelnametmp=$tmpname
 tmpname="${modelnametmp/$replacerstr/$secondString}"
-export containername='ast_'$tmpname'_'$checkpointno'm_s1_zeus'
+export containernamesuffix="zeus"
+export containernametype='s1'
+export containernamebase=$tmpname'_'$checkpointno'_'$containernametype
+export containernameprefix="ast"
+export containername=$containernameprefix'_'$containernamebase'_'$containernamesuffix
 
 export launcher_spec_singleone_script="zeus-__launch-docker-dev-specific-checkpoint-singleone.210606.sh"
 

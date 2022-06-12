@@ -132,22 +132,26 @@ metafile=$metahttpdocastinfopath/$metafilename
 if [ "$hostdns" == "" ] ; then export hostdns=localhost;fi
 getmetaurl="$callprotocol://$hostdns/$metafilename"
 
-fname=$(getfnamefrommodel $modelname)
+fname=$(getfnamefrommodel $containername)
 
-# echo "{ " >   $metafile
-# echo "\"modelname\":\"$modelname\"," >>  $metafile
-# echo "\"fname\":\"$fname\"," >>  $metafile
-# echo "\"containername\":\"$containername\",">>    $metafile
-# echo "\"containertag\":\"$compo3v2devcontainertag\",">>    $metafile
-# echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
-# echo "\"svrtype\":\"s1\",">>    $metafile
-# echo "\"mtype\":\"ast\",">>    $metafile
-# echo "\"type\":\"singleone\",">>    $metafile
-# echo "\"callurl\":\"$callurl\",">>    $metafile
-# echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile 
-# echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
-# echo "\"created\":\"$(date)\"" >>    $metafile
-# echo "}">>    $metafile
+#ZEUS
+export zeustag="$zeussingleonev1devcontainertag--$containername"
+echo "ZeusTag=$zeustag"
+
+echo "{ " >   $metafile
+echo "\"modelname\":\"$modelname\"," >>  $metafile
+echo "\"fname\":\"$fname\"," >>  $metafile
+echo "\"containername\":\"$containername\",">>    $metafile
+echo "\"containertag\":\"$compo3v2devcontainertag\",">>    $metafile
+echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
+echo "\"svrtype\":\"s1\",">>    $metafile
+echo "\"mtype\":\"ast\",">>    $metafile
+echo "\"type\":\"singleone\",">>    $metafile
+echo "\"callurl\":\"$callurl\",">>    $metafile
+echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile 
+echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile
+echo "\"created\":\"$(date)\"" >>    $metafile
+echo "}">>    $metafile
 
 #@STCGoal Central registration of currently running services
 if [ "$metaglobalregistryfeature" == "1" ] ; then
@@ -159,23 +163,51 @@ if [ "$metaglobalregistryfeature" == "1" ] ; then
 fi
 
 echo "$execme"
-sleep 1
+echo "----------------OLD Exec as ref ---------------"
+#sleep 1
 #echo "$serverhostport"
 
 #$execme
-
-echo "#---------ZEUS DESIGN 220611"
-echo "#---This in the Dockerfile"
-echo "#-----#singleonev1devcontainertag"
-echo "#-----$singleonev1devcontainertag"
-echo "FROM $singleonev1devcontainertag"
-echo "#MODEL1NAME=$modelname"
-echo "#mkdir \$modelmountpoint"
-echo "WORKDIR $modelmountpoint"
-echo "COPY $modellocalpointmeta $modelmountpointmeta #COPY \$modellocalpointmeta \$modelmountpointmeta"
-echo "COPY $modellocalpointindex $modelmountpointindex #COPY \$modellocalpointindex \$modelmountpointindex"
-echo "COPY $modellocalpointdata:$modelmountpointdata #COPY \$modellocalpointdata:\$modelmountpointdata"
-echo "COPY $mcheckpointfilepath:$modelmountpointckfile #COPY \$mcheckpointfilepath:\$modelmountpointckfile"
-echo "Back to /model to run the server"
-echo "WORKDIR /model"
+cdir="$(pwd)"
+tdir="$modellocalpoint"
+cd $tdir
+#ls 
+mkdir -p build
+cp -f $mcheckpointfilepath build/checkpoint
+#pwd
+#ls build 
+#cat build/checkpoint
+#sleep 2
+echo "#---------ZEUS DESIGN 220611"  > Dockerfile
+echo "#---This in the Dockerfile" >> Dockerfile
+echo "#-----#singleonev1devcontainertag" >> Dockerfile
+echo "#-----$singleonev1devcontainertag" >> Dockerfile
+echo "FROM $singleonev1devcontainertag" >> Dockerfile
+echo "#MODEL1NAME=$modelname" >> Dockerfile
+echo "#mkdir \$modelmountpoint" >> Dockerfile
+echo "WORKDIR $modelmountpoint" >> Dockerfile
+echo "COPY $mmetafile ." >> Dockerfile
+echo "COPY $mindexfile ." >> Dockerfile
+echo "COPY $mdatafile ." >> Dockerfile
+echo "COPY ./build/checkpoint ." >> Dockerfile
+echo "#Back to /model to run the server" >> Dockerfile
+echo "WORKDIR /model" >> Dockerfile
+cat Dockerfile
 #sleep 1
+docker build -t  $zeustag .
+cd $cdir
+
+execme="$docker_cmd -v $(pwd):/work 
+	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
+	 -e MODELNAME=$modelname \
+	 -e MODEL1NAME=$modelname  -p $serverhostport:$serverport \
+	 -e SPORT=$serverhostport $zeustag"
+
+echo "----------------NEW Docker run ---------------"
+echo "$execme"
+pwd
+
+$execme
+
+echo "Might want to push :"
+echo "docker push $zeustag"
