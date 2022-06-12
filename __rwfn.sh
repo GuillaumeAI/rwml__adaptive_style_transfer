@@ -132,7 +132,16 @@ getfnamefrommodel() {
                 r=$(echo $_modelname | sed -e 's/'"$m"'/'"$f"'/g')
 
         done
-        echo $_prefix$r$_suffix
+	r=$_prefix$r$_suffix
+	r="${r/-864x_new/}"
+	r="${r/-864x_/}"
+	r="${r/-864x/}"
+	r="${r/_new/}"
+	r="${r/model_gia-ds-/}"
+	r="${r/model_gia-/}"
+	r="${r/model_/}"
+	echo $r
+        #echo $_prefix$r$_suffix
 	fi
 
 }
