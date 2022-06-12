@@ -132,7 +132,7 @@ metafile=$metahttpdocastinfopath/$metafilename
 if [ "$hostdns" == "" ] ; then export hostdns=localhost;fi
 getmetaurl="$callprotocol://$hostdns/$metafilename"
 
-fname=$(getfnamefrommodel $containername)
+fname=$(getfnamefrommodel $modelname)
 
 #ZEUS
 export zeustag="$zeussingleonev1devcontainertag--$containername"
@@ -209,5 +209,12 @@ pwd
 
 $execme
 
-echo "Might want to push :"
+echo "-------------------------------------"
+echo "1. Might want to push :"
 echo "docker push $zeustag"
+echo "---"
+echo "2. Might want to Run it..."
+echo "3. Delete the container:"
+echo "   docker rm --force --volumes $containername"
+echo "4. Delete the image:"
+echo "   docker rmi $zeustag"

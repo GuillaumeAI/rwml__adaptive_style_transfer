@@ -1,9 +1,9 @@
 # Env def for host
 # local Mount
 ## Environment path related
-export mount_root="/mnt/c"
+#export mount_root="/mnt/c"
 export src_root="$mount_root/usr/src"
-export modelmountpath="$mount_root/model/models"
+#export modelmountpath="$mount_root/model/models"
 export hostdns="gaia.guillaumeisabelle.com"
 export serverhostport=80
 #export callprotocol="http"

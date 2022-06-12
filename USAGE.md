@@ -2,6 +2,15 @@
 
 Here should be what is required to use (and might be to future plan a new distribution).
 
+## 220611 jgwill/zeus:$CONTAINER(copyrighted)
+* [make_full_container-model_gia-ds-dbginko-v03-210809-864x_new-singleone.220407.sh](make_full_container-model_gia-ds-dbginko-v03-210809-864x_new-singleone.220407.sh)  
+* [zeus-custom-cli-start-script-docker-dev-specific-checkpoint-singleone.210606.sh](zeus-custom-cli-start-script-docker-dev-specific-checkpoint-singleone.210606.sh)
+* [zeus-__launch-docker-dev-specific-checkpoint-singleone.210606.sh](zeus-__launch-docker-dev-specific-checkpoint-singleone.210606.sh)
+
+```sh
+
+```
+
 ## Notes
 Clearly, this repo contains more than 3 iterations of ways to manage AST servers.  Therefore, it gets roff to document.
 

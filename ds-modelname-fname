@@ -15,6 +15,7 @@ model_gia-ds-pierret_ds_210512-864-v01-210517-864_new;pt_v01
 model_gia-ds-wassily_kandinsky_v1_210310_new;wk_v01
 model_gia-ds-GuillaumeIsabelle-v02-210716-864x_new;jgi_v02
 model_cds-dbg02-gk01-v01-210717-864x_new:dbggk_v01
+model_gia-ds-dbginko-v03-210809-864x_newTMP:inko_v03
 model_gia-young-picasso-201210_new;pik_v02
 model_gia-young-picasso-v02b-201210-864_new;pik_v02b
 model_gia-young-picasso-v03-201216_new;pik_v03
@@ -29,3 +30,4 @@ model_picasso;picasso_vd
 model_pollock;pollock_vd
 model_roerich;roerich_vd
 model_van-gogh;vangogh_vd
+864x_new;x
