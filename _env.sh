@@ -11,6 +11,8 @@ declare -r RWROOT=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 export astia_server_file_location='/tmp/astia'
 #chmod 777 $astia_server_file_location
 
+export modelmountpath="/a/model/models"
+
 #meta svr
 export metahttpdocroot=/www/astia
 export metahttpdocastinfopath=$metahttpdocroot/info
@@ -30,7 +32,6 @@ export proxycontainertag=guillaumeai/server:sslproxy
 
 ## Environment path related
 
-export modelmountpath="/a/model/models"
 
 export admscript=./_adm__stopRemove_Containers__210502.sh
 alias dcls="$admscript --list --port"
@@ -99,7 +100,12 @@ export singleonev1devcontainerreponame="server"
 export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev"
 export singleonev1devcontainerrepo="$singleonev1devcontainerns/$singleonev1devcontainerreponame"
 export singleonev1devcontainertag="$singleonev1devcontainerrepo:$singleonev1devcontainerrepotag"
+export zeussingleonev1devcontainerns="jgwill"
+export zeussingleonev1devcontainerreponame="zeus"
+export zeussingleonev1devcontainerrepotag="ast-210606s1v1"
 
+export zeussingleonev1devcontainerrepo="$zeussingleonev1devcontainerns/$zeussingleonev1devcontainerreponame"
+export zeussingleonev1devcontainertag="$zeussingleonev1devcontainerrepo:$zeussingleonev1devcontainerrepotag"
 
 export serverport=8000
 #export serverhostport=9000
