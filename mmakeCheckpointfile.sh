@@ -51,7 +51,7 @@ export modellocalpoint="$modelmountpath/$modelname/checkpoint_long"
 # $modelmountpath  = /a/model/models/$modelname/checkpoint_long
 # $modellocalpoint # The root where we will mount the files
 # Files :
-# .ckpt-195000.index .ckpt-195000.meta .data-00000-of-00001 model_gia-ds-fpolsonwill_v02_210424_new_195000. checkpoint
+
 # 3 files
 checkpointpad=$checkpointno'000'
 mindex='.ckpt-'$checkpointpad'.index'

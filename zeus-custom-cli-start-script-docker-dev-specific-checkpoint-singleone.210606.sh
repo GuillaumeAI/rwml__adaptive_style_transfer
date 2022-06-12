@@ -2,6 +2,7 @@
 
 # Dev to mount specific checkpoint and launch an API Web service serving those checkpoints.
 source $binroot/__fn.sh
+#. __rwfn.sh
 
 # script.sh MODEL_NAME APIPORT IMGSIZE1 IMGSIZE2 CHECKPOINT_NUM [--fg(debug)] 
 
@@ -39,23 +40,24 @@ export PASS1IMAGESIZE=$3
 export checkpointno="$4"
 
 # Take care of cleaning the model name to fabric a pretty name for the container
-replacerstr="model_gia-ds-"
-secondString=""
-modelnametmp=$modelname
-tmpname="${modelnametmp/$replacerstr/$secondString}"
-replacerstr="model_gia"
-modelnametmp=$tmpname
-tmpname="${modelnametmp/$replacerstr/$secondString}"
-replacerstr="model_"
-modelnametmp=$tmpname
-tmpname="${modelnametmp/$replacerstr/$secondString}"
-replacerstr="_new"
-modelnametmp=$tmpname
-tmpname="${modelnametmp/$replacerstr/$secondString}"
+#replacerstr="model_gia-ds-"
+#secondString=""
+#modelnametmp=$modelname
+#tmpname="${modelnametmp/$replacerstr/$secondString}"
+#replacerstr="model_gia"
+#modelnametmp=$tmpname
+#tmpname="${modelnametmp/$replacerstr/$secondString}"
+#replacerstr="model_"
+#modelnametmp=$tmpname
+#tmpname="${modelnametmp/$replacerstr/$secondString}"
+#replacerstr="_new"
+#modelnametmp=$tmpname
+#tmpname="${modelnametmp/$replacerstr/$secondString}"
+tmpname="$(getfnamefrommodel $modelname)"
 export containernamesuffix="zeus"
 export containernametype='s1'
 export containernamebase=$tmpname'_'$checkpointno'_'$containernametype
-export containernameprefix="ast"
+#export containernameprefix="ast"
 export containername=$containernameprefix'_'$containernamebase'_'$containernamesuffix
 
 export launcher_spec_singleone_script="zeus-__launch-docker-dev-specific-checkpoint-singleone.210606.sh"

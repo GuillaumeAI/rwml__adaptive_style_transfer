@@ -5,6 +5,8 @@ docker build -t $containertag . $1
 #docker build -t $containertag . 
 sleep 1
 
+echo "docker run -it --rm -v \$(pwd):/work $containertag "
+
 if [ "$1" == "" ]; then
 echo "Pushing"
 #docker push $containertag

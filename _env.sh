@@ -43,6 +43,8 @@ export containermodelroot="/data/styleCheckpoint"
 ## used to start container simplified
 export scriptfn=./custom-cli-start-script-docker.sh
 
+export containernameprefix="ast"
+
 # Infrastructure related
 #export containertag="guillaumeai/ast:runwayml_picasso_2103180139"
 export containerns="guillaumeai"
@@ -97,7 +99,7 @@ export compo2dtv1devcontainertag="$compo2dtv1devcontainerrepo:$compo2dtv1devcont
 
 export singleonev1devcontainerns="guillaumeai"
 export singleonev1devcontainerreponame="server"
-export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev"
+export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev-acc"
 export singleonev1devcontainerrepo="$singleonev1devcontainerns/$singleonev1devcontainerreponame"
 export singleonev1devcontainertag="$singleonev1devcontainerrepo:$singleonev1devcontainerrepotag"
 export zeussingleonev1devcontainerns="jgwill"

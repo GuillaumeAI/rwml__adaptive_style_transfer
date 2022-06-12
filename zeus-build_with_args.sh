@@ -1,19 +1,20 @@
 source _env.sh
 
+
 # Would make a copy pushed to private repo 
 
 
-export modelname="model_gia-ds-dbginko-v03-210809-864x_new"
-export containerbasename=ast_dbginko-v03_sone_
-export tmpfname=$(getfnamefrommodel $modelname)
+export modelname="$1"
+#export containerbasename=ast_dbginko-v03_sone_
+export containerbasename=$(getfnamefrommodel $modelname)
 # The resolution of the two passes
 
 export PASS1IMAGESIZE=512
 
 
 #chks="15 30 45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300 315 330 345 360 375 390 405"
-chks="375"
-export startserverport=9065
+chks="$3"
+export startserverport=$2
 
 export launcher_script=zeus-custom-cli-start-script-docker-dev-specific-checkpoint-singleone.210606.sh
 
