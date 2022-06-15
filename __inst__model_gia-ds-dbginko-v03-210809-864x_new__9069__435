@@ -1,0 +1,6 @@
+#!/bin/bash
+m="model_gia-ds-dbginko-v03-210809-864x_new"
+p=9069
+cp=435
+autoabc=0
+. zeus-build_with_args.sh "$m" $p "$cp" $autoabc

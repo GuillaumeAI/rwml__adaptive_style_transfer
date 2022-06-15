@@ -39,6 +39,10 @@ export PASS1IMAGESIZE=$3
 
 export checkpointno="$4"
 
+export autoabc="$5"
+if [ "$5" == "" ]; then export autoabc=0;fi
+
+
 # Take care of cleaning the model name to fabric a pretty name for the container
 #replacerstr="model_gia-ds-"
 #secondString=""
@@ -62,7 +66,7 @@ export containername=$containernameprefix'_'$containernamebase'_'$containernames
 
 export launcher_spec_singleone_script="zeus-__launch-docker-dev-specific-checkpoint-singleone.210606.sh"
 
-echo "source $launcher_spec_singleone_script $5 $6"
-source $launcher_spec_singleone_script $5 $6
+echo "source $launcher_spec_singleone_script $5 $6 $7"
+source $launcher_spec_singleone_script $5 $6 $7
 
 

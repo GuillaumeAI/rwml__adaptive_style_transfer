@@ -8,7 +8,7 @@
 #########################################################
 
 # 
-if [ "$1" == "--fg" ]; then 
+if [ "$1" == "--fg" ] || [ "$2" == "--fg" ]; then 
 	docker_mode="it"
 	docker_run_args="--rm"
 fi
@@ -115,6 +115,7 @@ execme="$docker_cmd -v $(pwd):/work  \
 	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
 	 -e MODELNAME=$modelname \
 	 -e MODEL1NAME=$modelname  \
+	 -e AUTOABC=$autoabc  \
 	-v $modellocalpointmeta:$modelmountpointmeta \
 	-v $modellocalpointindex:$modelmountpointindex \
 	-v $modellocalpointdata:$modelmountpointdata \
@@ -144,6 +145,8 @@ echo "\"containername\":\"$containername\",">>    $metafile
 echo "\"containertag\":\"$compo3v2devcontainertag\",">>    $metafile
 echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
 echo "\"svrtype\":\"s1\",">>    $metafile
+echo "\"autoabc\":\"$autoabc\",">>    $metafile
+echo "\"autoabcvalue\":\"$autoabcvalue\",">>    $metafile
 echo "\"mtype\":\"ast\",">>    $metafile
 echo "\"type\":\"singleone\",">>    $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
@@ -198,6 +201,7 @@ cd $cdir
 
 execme="$docker_cmd -v $(pwd):/work 
 	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
+	 -e AUTOABC=$autoabc  \
 	 -e MODELNAME=$modelname \
 	 -e MODEL1NAME=$modelname  -p $serverhostport:$serverport \
 	 -e SPORT=$serverhostport $zeustag"

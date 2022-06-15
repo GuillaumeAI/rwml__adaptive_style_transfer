@@ -11,6 +11,12 @@ export containerbasename=$(getfnamefrommodel $modelname)
 
 export PASS1IMAGESIZE=512
 
+# Auto Brightness Contrast Adjustments
+#0 off, 1 on
+
+export AUTOABC=1
+if [ "$4" == "" ]; then export AUTOABC=0;fi
+
 
 #chks="15 30 45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300 315 330 345 360 375 390 405"
 chks="$3"
@@ -36,7 +42,8 @@ for c in $chks ; do
 		$modelname \
 		$serverhostport \
 		$PASS1IMAGESIZE \
-       		$checkpointno
+       		$checkpointno \
+					$AUTOABC
 	
 	serverhostport=$(expr $serverhostport + 1)
 

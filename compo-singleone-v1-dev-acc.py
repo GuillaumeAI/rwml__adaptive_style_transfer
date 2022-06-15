@@ -7,6 +7,7 @@
 #v1-dev
 #Receive the 2 res from arguments in the request...
 
+from enum import auto
 import os
 import numpy as np
 import cv2
@@ -31,6 +32,15 @@ if not os.getenv('PASS1IMAGESIZE'):
 else:
    pass1_image_size = os.getenv('PASS1IMAGESIZE')
    print("PASS1IMAGESIZE value:" + pass1_image_size)
+
+
+# Determining the size of the passes
+autoabc = 1
+if not os.getenv('AUTOABC'):
+   print("AUTOABC env var non existent;using default:" + autoabc)
+else:
+   autoabc = os.getenv('AUTOABC')
+   print("AUTOABC value:" + autoabc)
 
 #pass2_image_size = 1024
 #if not os.getenv('PASS2IMAGESIZE'):
@@ -135,6 +145,9 @@ def setup(opts):
     #print("model2name is : " + model2_name)
     # print("model3name is : " + model3_name)
     print("checkpoint_dir is : " + checkpoint_dir)
+
+    print("Auto Brightness-Contrast Correction is: " + autoabc)
+    
     #print("checkpoint2_dir is : " + checkpoint2_dir)
     # print("checkpoint3_dir is : " + checkpoint3_dir)
     print("-----------------------------------------")
@@ -262,7 +275,8 @@ def stylize(models, inp):
 
     #dtprint("INFO:Composing done")
 
-    img = img, alpha2, beta = automatic_brightness_and_contrast(img)
+    if autoabc == 1:
+        img = img, alpha2, beta = automatic_brightness_and_contrast(img)
 
     stop = time.time()
     totaltime = stop - start

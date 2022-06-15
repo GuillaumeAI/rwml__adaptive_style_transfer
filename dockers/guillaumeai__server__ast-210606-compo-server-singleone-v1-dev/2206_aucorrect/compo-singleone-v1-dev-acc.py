@@ -32,6 +32,15 @@ else:
    pass1_image_size = os.getenv('PASS1IMAGESIZE')
    print("PASS1IMAGESIZE value:" + pass1_image_size)
 
+
+# Determining the size of the passes
+autoabc = 1
+if not os.getenv('AUTOABC'):
+   print("AUTOABC env var non existent;using default:" + autoabc)
+else:
+   autoabc = os.getenv('AUTOABC')
+   print("AUTOABC value:" + autoabc)
+
 #pass2_image_size = 1024
 #if not os.getenv('PASS2IMAGESIZE'):
 #   print("PASS2IMAGESIZE env var non existent;using default:" + pass2_image_size)
@@ -262,7 +271,8 @@ def stylize(models, inp):
 
     #dtprint("INFO:Composing done")
 
-    img = img, alpha2, beta = automatic_brightness_and_contrast(img)
+    if autoabc == 1:
+        img = img, alpha2, beta = automatic_brightness_and_contrast(img)
 
     stop = time.time()
     totaltime = stop - start
