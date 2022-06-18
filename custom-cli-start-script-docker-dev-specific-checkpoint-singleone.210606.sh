@@ -52,7 +52,7 @@ tmpname="${modelnametmp/$replacerstr/$secondString}"
 replacerstr="_new"
 modelnametmp=$tmpname
 tmpname="${modelnametmp/$replacerstr/$secondString}"
-export containername='ast_'$tmpname'_'$checkpointno'm_s1'
+export containername='ast_'$tmpname'_'$checkpointno'm_s1_'$autoabc
 
 
 

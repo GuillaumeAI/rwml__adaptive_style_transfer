@@ -109,9 +109,9 @@ echo "-----------Installing $containername ------------"
 
 
 #echo "Exting because we are testing" ;exit 1
+if [ "$autoabc" != "" ]; then export AUTOABC_="-e AUTOABC=$autoabc";fi
 
-
-execme="$docker_cmd -v $(pwd):/work  \
+execme="$docker_cmd -v $(pwd):/work  $AUTOABC_ \
 	-v /a/bin:/a/bin \
 	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
 	 -e MODELNAME=$modelname \
@@ -132,8 +132,10 @@ metafile=$metahttpdocastinfopath/$metafilename
 if [ "$hostdns" == "" ] ; then export hostdns=localhost;fi
 getmetaurl="$callprotocol://$hostdns/$metafilename"
 
-fname=$(getfnamefrommodel $modelname)
-
+fname="$(getfnamefrommodel $modelname)$autoabc"
+echo "fname=$fname"
+echo "--------------------------"
+sleep 4
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
 echo "\"fname\":\"$fname\"," >>  $metafile
@@ -143,6 +145,7 @@ echo "\"checkpointno\":\"$checkpointno\",">>    $metafile
 echo "\"svrtype\":\"s1\",">>    $metafile
 echo "\"mtype\":\"ast\",">>    $metafile
 echo "\"type\":\"singleone\",">>    $metafile
+echo "\"autoabc\":\"$autoabc\",">>  $metafile
 echo "\"callurl\":\"$callurl\",">>    $metafile
 echo "\"PASS1IMAGESIZE\":\"$PASS1IMAGESIZE\"," >>    $metafile 
 echo "\"getmetaurl\":\"$getmetaurl\"," >>    $metafile

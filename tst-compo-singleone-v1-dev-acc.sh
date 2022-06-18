@@ -3,24 +3,23 @@ source _env.sh
 # ARTIST : CHG Model name
 
 
-export modelname="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new"
+#export modelname="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new"
+export modelname="model_gia-ds-dbginko-v03-210809-864x_new-435ik"
 
 # The resolution of the two passes
 
 export PASS1IMAGESIZE=512
 
-export startserverport=9019
+export startserverport=9018
 
-chks="285"
+export chks="435"
+export autoabc=1
 
 export serverhostport=$startserverport
 
 for c in $chks ; do
 	export	 checkpointno=$c
 
-
-	#export checkpointno=345
-	export containername=compo_ast_dbg_v01b_s1a_$checkpointno
 
 
 	export docker_mode="d"
@@ -40,6 +39,6 @@ done
 
 
 ## MODELNAME APIPORT PASS1IMAGESIZE CHECKPOINT_NUM [--fg (debug)] "
-#source __launch-docker-compo-doubletwo-v1-dev.sh $1 $2
+
 
 
