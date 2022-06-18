@@ -109,7 +109,11 @@ echo "-----------Installing $containername ------------"
 
 
 #echo "Exting because we are testing" ;exit 1
-if [ "$autoabc" != "" ]; then export AUTOABC_="-e AUTOABC=$autoabc";fi
+export AUTOABC_=""
+if [ "$autoabc" != "" ]; then export AUTOABC_="-e AUTOABC=$autoabc"
+	else
+	echo "AUTOABC IS OFF OR NOT Defined (export autoabc=1)"
+fi
 
 execme="$docker_cmd -v $(pwd):/work  $AUTOABC_ \
 	-v /a/bin:/a/bin \

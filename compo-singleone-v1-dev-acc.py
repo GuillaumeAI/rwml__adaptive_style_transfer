@@ -178,7 +178,7 @@ def setup(opts):
 
 
 #@STCGoal add number or text to specify resolution of the three pass
-inputs={'contentImage': runway.image,'x1':number(default=1024,min=24,max=17000)}
+inputs={'contentImage': runway.image,'x1':number(default=1024,min=24,max=17000),'x2':number(default=0,min=0,max=1)}
 outputs={'stylizedImage': runway.image,'totaltime':number,'x1': number,'model1name':text}
 
 @runway.command('stylize', inputs=inputs, outputs=outputs)
