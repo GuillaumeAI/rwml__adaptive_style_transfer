@@ -28,16 +28,18 @@ import time
 # Determining the size of the passes
 pass1_image_size = 1328
 if not os.getenv('PASS1IMAGESIZE'):
-   print("PASS1IMAGESIZE env var non existent;using default:" + pass1_image_size)
+   print("PASS1IMAGESIZE env var non existent;using default:" + pass1_image_size) 
 else:
    pass1_image_size = os.getenv('PASS1IMAGESIZE')
    print("PASS1IMAGESIZE value:" + pass1_image_size)
 
 
 # Determining the size of the passes
-autoabc = 1
+autoabc = 0
 if not os.getenv('AUTOABC'):
    print("AUTOABC env var non existent;using default:" + autoabc)
+   print("NOTE----> when running docker, set   AUTOABC variable")
+   print("   docker run [...]  -e AUTOABC=1  #enabled, 0 to disabled (default)")
 else:
    autoabc = os.getenv('AUTOABC')
    print("AUTOABC value:" + autoabc)
