@@ -1,0 +1,10 @@
+
+
+#DBG
+s=./doubletwo-multi-cherkpoint-svc-mounter.sh
+ps=9310
+x1=1500
+x2=1810
+#m=model_gia-ds-Inktobers-v01-210611-864x_new
+m=model_gia-ds-daliwill-210123-v02_new
+$s $m $ps $x1 $x2 "$(mckinfo $m)"

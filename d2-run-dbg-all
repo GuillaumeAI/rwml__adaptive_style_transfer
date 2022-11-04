@@ -1,11 +1,10 @@
 
 
-#model_gia-ds-dbginko-v03-210809-864x_new
+#DBG
 s=./doubletwo-multi-cherkpoint-svc-mounter.sh
-ps=9010
-
-x1=600
-x2=2000
+ps=9210
+x1=1200
+x2=1870
+#m=model_gia-ds-Inktobers-v01-210611-864x_new
 m=model_gia-ds-dbginko-v03-210809-864x_new
 $s $m $ps $x1 $x2 "$(mckinfo $m)"
-#$s $m $ps $x1 $x2 "495"
