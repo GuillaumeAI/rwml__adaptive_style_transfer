@@ -1,5 +1,5 @@
-containertag=guillaumeai/server:ast-210606-singleone-v1-dev-acc
-cp -f ../../../compo-singleone-v1-dev-acc.py . && \
+containertag=guillaumeai/server:ast-210606-singleone-v1-dev-acc2
+cp  ../../../compo-singleone-v1-dev-acc.py . && \
 docker build -t $containertag . $1
 #--no-cache
 #docker build -t $containertag . 
