@@ -36,16 +36,18 @@ else:
 
 
 # Determining the size of the passes
-autoabc = 0
+autoabc = 1
 if not os.getenv('AUTOABC'):
    print("AUTOABC env var non existent;using default:")
    print(autoabc)
+   ABCDEFAULT = 1
    print("NOTE----> when running docker, set   AUTOABC variable")
    print("   docker run ...  -e AUTOABC=1  #enabled, 0 to disabled (default)")
 else:
    autoabc = os.getenv('AUTOABC')
    print("AUTOABC value:")
    print(autoabc)
+   ABCDEFAULT = autoabc
 
 
 #pass2_image_size = 1024
@@ -152,8 +154,8 @@ def setup(opts):
     # print("model3name is : " + model3_name)
     print("checkpoint_dir is : " + checkpoint_dir)
 
-    print("Auto Brightness-Contrast Correction is: ")
-    print(autoabc)
+    print("Auto Brightness-Contrast Correction can be set as the x2 of this SingleOne Server")
+
     
     #print("checkpoint2_dir is : " + checkpoint2_dir)
     # print("checkpoint3_dir is : " + checkpoint3_dir)
@@ -178,13 +180,13 @@ def setup(opts):
 
 
 #@STCGoal add number or text to specify resolution of the three pass
-inputs={'contentImage': runway.image,'x1':number(default=1024,min=24,max=17000),'x2':number(default=0,min=0,max=1)}
-outputs={'stylizedImage': runway.image,'totaltime':number,'x1': number,'model1name':text}
+inputs={'contentImage': runway.image,'x1':number(default=1024,min=24,max=17000),'x2':number(default=0,min=-99,max=99)}
+outputs={'stylizedImage': runway.image,'totaltime':number,'x1': number,'c1':number,'model1name':text}
 
 @runway.command('stylize', inputs=inputs, outputs=outputs)
 def stylize(models, inp):
     start = time.time()
-    dtprint("Composing...")
+    dtprint("Composing.1..")
     model = models.m1
     #model2 = models.m2
     # model3 = models.m3
@@ -197,9 +199,10 @@ def stylize(models, inp):
 
     #get size from inputs rather than env
     x1 = inp['x1']
- #   x2 = inp['x2']
+    c1 = inp['x2']
     # x3 = inp['x3']
-    
+    if ci > 99:
+        ci = ABCDEFAULT
 
 
     #
@@ -281,14 +284,16 @@ def stylize(models, inp):
     # #pass3
 
     #dtprint("INFO:Composing done")
-
-    if autoabc == 1:
-        img = img, alpha2, beta = automatic_brightness_and_contrast(img)
+    print('autoabc value:')
+    print(c1)
+    if c1 != 0 :
+        print('Auto Brightening images...')
+        img = img, alpha2, beta = automatic_brightness_and_contrast(img,c1)
 
     stop = time.time()
     totaltime = stop - start
     print("The time of the run:", totaltime)
-    res2 = dict(stylizedImage=img,totaltime=totaltime,x1=x1,model1name=model1name)
+    res2 = dict(stylizedImage=img,totaltime=totaltime,x1=x1,model1name=model1name,c1=c1)
     return res2
 
 
