@@ -11,9 +11,10 @@ export tmpfname=$(getfnamefrommodel $modelname)
 export PASS1IMAGESIZE=512
 
 
-#chks="15 30 45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300 315 330 345 360 375 390 405"
-chks="375"
-export startserverport=9065
+chks="15 30 45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300 315 330 345 360 375 390 405"
+#chks="435"
+#export startserverport=9069
+export startserverport=9060
 
 export launcher_script=zeus-custom-cli-start-script-docker-dev-specific-checkpoint-singleone.210606.sh
 

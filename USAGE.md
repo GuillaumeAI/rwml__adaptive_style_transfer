@@ -1,5 +1,16 @@
 # Usage [^](README.md)
 
+
+## B220818 
+
+* [__inst__model_gia-ds-fpolsonwill_v02_210424_new__9019__195](__inst__model_gia-ds-fpolsonwill_v02_210424_new__9019__195)
+* [zeus-build_with_args.sh](zeus-build_with_args.sh)
+### Built
+
+* AUTO CORRECT[guillaumeai/server:ast-210606-singleone-v1-dev-acc2](./dockers/guillaumeai__server__ast-210606-compo-server-singleone-v1-dev/2206_aucorrect/Dockerfile)
+
+
+
 Here should be what is required to use (and might be to future plan a new distribution).
 
 ## 220611 jgwill/zeus:$CONTAINER(copyrighted)

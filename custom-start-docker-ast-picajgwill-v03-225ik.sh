@@ -1,7 +1,7 @@
 
 
 source _env.sh
-
+. .env
 # ARTIST : CHG Model name
 
 

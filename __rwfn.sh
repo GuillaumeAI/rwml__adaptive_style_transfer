@@ -127,9 +127,9 @@ getfnamefrommodel() {
 	fi
 	if [ -e "$dspath" ] ; then
         for ml in $(cat $dspath); do
-                m=$(echo $ml | tr ";" " " | awk '// { print $1 }')
-                f=$(echo $ml | tr ";" " " | awk '// { print $2 }')
-                r=$(echo $_modelname | sed -e 's/'"$m"'/'"$f"'/g')
+                _m=$(echo $ml | tr ";" " " | awk '// { print $1 }')
+                _f=$(echo $ml | tr ";" " " | awk '// { print $2 }')
+                r=$(echo $_modelname | sed -e 's/'"$_m"'/'"$_f"'/g')
 
         done
 	r=$_prefix$r$_suffix
@@ -140,6 +140,7 @@ getfnamefrommodel() {
 	r="${r/model_gia-ds-/}"
 	r="${r/model_gia-/}"
 	r="${r/model_/}"
+	r="${r/-x/}"
 	echo $r
         #echo $_prefix$r$_suffix
 	fi

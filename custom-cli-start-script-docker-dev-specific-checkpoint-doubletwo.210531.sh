@@ -66,7 +66,11 @@ tmpname="${modelnametmp/$replacerstr/$secondString}"
 #echo mkcontainername $modelname $checkpointno 'ast_' 'm_d2'
 #mkcontainername $modelname $checkpointno 'ast_' 'm_d2'
 #exit
+
 export containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2')
+export dsfilenamebase=$(mkcontainername $modelname '_' 'ast_' 'm_d2')
+export dsfilename='ds__'$dsfilenamebase'.txt'
+echo "$containername" >> $dsfilename
 
 if [ "$3" == "--stop" ] ; then
 	checkpointno=$serverhostport; containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2') ; (docker stop $containername$sslcontainersuffix &> /dev/null ; docker stop $containername &> /dev/null) && echo "$containername stopped"

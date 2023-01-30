@@ -3,7 +3,7 @@
 # Dev to mount specific checkpoint and launch an API Web service serving those checkpoints.
 source $binroot/__fn.sh
 
-# script.sh MODEL_NAME APIPORT IMGSIZE1 IMGSIZE2 CHECKPOINT_NUM [--fg(debug)] 
+# script.sh MODEL_NAME APIPORT IMGSIZE1 CHECKPOINT_NUM [--fg(debug)] 
 
 source _env.sh
 

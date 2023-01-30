@@ -11,7 +11,7 @@ declare -r RWROOT=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 export astia_server_file_location='/tmp/astia'
 #chmod 777 $astia_server_file_location
 
-export modelmountpath="/a/model/models"
+export modelmountpath="/mnt/a/model/models"
 
 #meta svr
 export metahttpdocroot=/www/astia
@@ -99,7 +99,11 @@ export compo2dtv1devcontainertag="$compo2dtv1devcontainerrepo:$compo2dtv1devcont
 
 export singleonev1devcontainerns="guillaumeai"
 export singleonev1devcontainerreponame="server"
-export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev-acc"
+export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev"
+export singleonev1devcontainerrepoacctag="ast-210606-singleone-v1-dev-acc2"
+export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev-acc2"
+export singleonev1devcontainerrepotag="$singleonev1devcontainerrepotag"
+#guillaumeai/server:ast-210606-singleone-v1-dev-acc2
 #export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev-acc"
 
 export singleonev1devcontainerrepo="$singleonev1devcontainerns/$singleonev1devcontainerreponame"

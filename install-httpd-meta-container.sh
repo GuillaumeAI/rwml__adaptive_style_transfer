@@ -20,8 +20,9 @@ export httpcontainername=ast_meta_server
 
 #echo docker run -d $docker_run_args --name $httpcontainername -p $httpserverserverport:$httpservercontainerport -v $(pwd):/work -v $httpserverserverhtdocs:$httpservercontainerhtdocs -v /a:/a -v /a:$httpservercontainerhtdocs/a $httpservercontainertag
 echo "--- Cleaning up if existing container----"
-docker stop $httpcontainername
-docker rm $httpcontainername
+docker stop $httpcontainername &> /dev/null && echo "Stopped meta svr"
+docker rm $httpcontainername &> /dev/null && echo "Removed meta SVR"
+
 echo "--- Cleanup done (if was required, otherwise ignore the errors-------"
 echo "---------------------------------------------------------------------"
 
@@ -32,7 +33,8 @@ echo "--------------------------------------------------------------------"
 
 #docker run -d $docker_run_args
 #docker run -it --rm 
-docker run -d $docker_run_args --name $httpcontainername -p $httpserverserverport:$httpservercontainerport -v $(pwd):/work -v $httpserverserverhtdocs:$httpservercontainerhtdocs -v /a:/a -v /a:$httpservercontainerhtdocs/a $httpservercontainertag http-server -p 8080 /wwwmeta
+#docker run -d $docker_run_args --name $httpcontainername -p $httpserverserverport:$httpservercontainerport -v $(pwd):/work -v $httpserverserverhtdocs:$httpservercontainerhtdocs -v /a:/a -v /a:$httpservercontainerhtdocs/a $httpservercontainertag http-server -p 8080 /wwwmeta
+docker run -d $docker_run_args --name $httpcontainername -p $httpserverserverport:$httpservercontainerport -v $(pwd):/work -v $httpserverserverhtdocs:$httpservercontainerhtdocs $httpservercontainertag http-server -p 8080 /wwwmeta
 
 echo "HTTP-SERVER Should have been install as a container that will always restart unless stopped and will run on this host :$httpserverserverport port."
 echo "  Most likeli the url should be:   http://$hostdns:$httpserverserverport"

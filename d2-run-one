@@ -7,12 +7,12 @@ if [ "$1" == "" ] ||  [ "$2" == "" ] || [ "$3" == "" ] ; then
 	
 fi
 
-if [ "$1" == "" ] && [ "$m" != "" ] ; then
-	export dispusage="0"
+#if [ "$1" == "" ] && [ "$m" != "" ] ; then
+#	export dispusage="0"
+#
+#fi
 
-fi
-
-if [ "$dispusage" == "1" ] ||  [ "$ps" == "" ] || [ "$ck" == "" ] ; then
+if [ "$dispusage" == "1" ] ; then
 	if  [ "$m" != "" ] && [ "$ps" == "" ] || [ "$ck" == "" ]  ; then 
         	echo "or define:    m=<model>  ; ps=<fullStartPort>; ck=\"<105 120>\""
 	else 

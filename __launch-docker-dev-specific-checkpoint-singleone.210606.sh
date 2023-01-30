@@ -170,4 +170,10 @@ sleep 1
 #echo "$serverhostport"
 
 $execme
+
+
+if [ "$statusafterlaunch" == "stop" ]; then 
+	echo "variable : \$statusafterlaunch == stop"
+	docker stop $containername  &> /dev/null  && echo "$containername Stopped"
+fi
 #sleep 1

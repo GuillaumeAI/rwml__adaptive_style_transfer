@@ -41,12 +41,14 @@ echo "-----------Installing $containername ------------"
 metarootdir=/www
 metabasepath=astia/info
 metarelfilepath=$metabasepath/$serverhostport.json
-mkdir -p $metarootdir/$metabasepath
+sudo mkdir -m 777 -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath
 getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
 
 
 fname=$(getfnamefrommodel $modelname-$model2name)
+
+sudo chmod 777  $metafile &> /dev/null
 
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname;$model2name;$model3name\"," >>  $metafile

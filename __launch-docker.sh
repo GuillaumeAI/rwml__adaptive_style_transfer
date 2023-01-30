@@ -1,5 +1,5 @@
 
-
+. .env
 # Ran by another script that preped all we need
 
 export docker_cmd="docker run -$docker_mode $docker_run_args --name $containername "
@@ -27,7 +27,7 @@ echo "-----------Installing $containername ------------"
 metarootdir=/www
 metabasepath=astia/info
 metarelfilepath=$metabasepath/$serverhostport.json
-mkdir -p $metarootdir/$metabasepath
+sudo mkdir -m 777 -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath
 getmetaurl="$callprotocol://$hostdns/$metarelfilepath"
 

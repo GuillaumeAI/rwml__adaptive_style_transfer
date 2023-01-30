@@ -36,8 +36,7 @@ mfilesuffix='.ckpt-'$checkpointpad
 mfilepresuffix='_'$checkpointpad
 
 # Content of the ./checkpoint file
-#>>model_checkpoint_path: "model_gia-ds-fpolsonwill_v02_210424_new_195000.ckpt-195000"
-#>>all_model_checkpoint_paths: "model_gia-ds-fpolsonwill_v02_210424_new_195000.ckpt-195000"
+
 tmpmodelfilename=$(cd $modellocalpoint;ls *$mmeta)
 replstring='_'$checkpointpad$mmeta
 secondString=""
