@@ -139,7 +139,7 @@ getmetaurl="$callprotocol://$hostdns/$metafilename"
 fname="$(getfnamefrommodel $modelname)$autoabc"
 echo "fname=$fname"
 echo "--------------------------"
-sleep 4
+sleep 1
 echo "{ " >   $metafile
 echo "\"modelname\":\"$modelname\"," >>  $metafile
 echo "\"fname\":\"$fname\"," >>  $metafile

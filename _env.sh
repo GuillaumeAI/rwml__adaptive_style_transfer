@@ -9,9 +9,10 @@ declare -r RWROOT=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 # ARTIST : Probably dont change anything bellow 
 
 export astia_server_file_location='/tmp/astia'
-#chmod 777 $astia_server_file_location
+sudo mkdir -p $astia_server_file_location || mkdir -p $astia_server_file_location
+sudo chmod 777 $astia_server_file_location || chmod 777 $astia_server_file_location
 
-export modelmountpath="/mnt/a/model/models"
+export modelmountpath="/var/lib/ast/model"
 
 #meta svr
 export metahttpdocroot=/www/astia
@@ -20,6 +21,8 @@ export httpserverserverhtdocs=$metahttpdocastinfopath #keep it compatible
 export metaglobalregistryfeature="0" #1 enable
 export globallocationpath=/home/jgi/astiapreviz
 export globallocationpath=/www/astia
+
+sudo mkdir -m 777 -p $globallocationpath $metahttpdocastinfopath
 
 # Proxy Conf
 export thost=svr.astia.xyz

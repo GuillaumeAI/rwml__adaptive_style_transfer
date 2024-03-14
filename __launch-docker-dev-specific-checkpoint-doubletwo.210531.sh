@@ -136,7 +136,7 @@ echo "-----------Installing $containername ------------"
 
 
 execme="$docker_cmd -v $(pwd):/work  \
-	-v /a/bin:/a/bin \
+	-v $binroot:/a/bin \
 	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
 	 -e PASS2IMAGESIZE=$PASS2IMAGESIZE  \
 	 -e MODELNAME=$modelname \
