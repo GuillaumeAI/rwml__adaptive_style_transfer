@@ -3,9 +3,9 @@
 # get all running docker container names
 
 if [ "$1" != "" ] && [ "$1" != "--list" ] && [ "$1" != "--rm" ] ;then
-	containers=$(docker ps | awk '{if(NR>1) print $NF}' | grep $1)
+	containers=$(docker ps|awk '{if(NR>1) print $NF}'| grep $1)
 else 
-	containers=$(docker ps | awk '{if(NR>1) print $NF}') 
+	containers=$(docker ps|awk '{if(NR>1) print $NF}') 
 
 fi
 
@@ -55,7 +55,7 @@ if [ "$1" == "--list" ]  ||  [ "$1" == "--ls" ];then
 		export msg="$container"
 		if [ "$2" == "--port" ]; then
 
-			cports=$(docker container port $container | tr ":" " "| awk '/0.0.0.0/ { print $4}')
+			cports=$(docker container port $container|tr ":" " "|awk '/0.0.0.0/ { print $4}')
 			#echo "$cports"
 		for cport in $cports; do
 			       #msg=$cport':'$container

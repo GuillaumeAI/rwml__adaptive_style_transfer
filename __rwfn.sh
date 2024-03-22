@@ -100,6 +100,51 @@ mkcontainername() {
 	modelnametmp=$tmpname
 	tmpname="${modelnametmp/$replacerstr/$secondString}"
 	replacerstr="_new"
+
+
+## @fn mkcontainername2403
+## @ingroup astutil
+## @brief Make a container name from the model name (previous version of getcontainernamefrommodel)
+## @param string modelname folder name of the model
+## @param string checkpointno ik
+## @param string prefix prefix to the containername (optional)
+## @param string suffix suffix to the containername (optional)
+## @param string separator (optional)
+mkcontainername2403() {
+        local modelname=$1
+        local checkpointno=$2
+        local prefix="$3"
+        if [ "$prefix" == "" ]; then  prefix="ast_";fi
+        
+        local suffix="$4"
+        
+        local separator="$5"
+        if [ "$separator" == "" ]; then separator="_";fi
+
+        local replacerstr="model_gia-ds-"
+        local secondString=""
+        local modelnametmp=$modelname
+        local tmpname="${modelnametmp/$replacerstr/$secondString}"
+        replacerstr="model_gia-"
+        modelnametmp=$tmpname
+        tmpname="${modelnametmp/$replacerstr/$secondString}" 
+        replacerstr="model_gia"
+        modelnametmp=$tmpname
+        tmpname="${modelnametmp/$replacerstr/$secondString}"
+        replacerstr="model_"
+        modelnametmp=$tmpname
+        tmpname="${modelnametmp/$replacerstr/$secondString}"
+        replacerstr="_new"
+        modelnametmp=$tmpname
+        tmpname="${modelnametmp/$replacerstr/$secondString}"
+	
+        replacerstr="-864x"
+        modelnametmp=$tmpname
+        tmpname="${modelnametmp/$replacerstr/$secondString}"
+
+        local _containername=$prefix$tmpname$separator$checkpointno$suffix
+        echo $_containername
+}
 	modelnametmp=$tmpname
 	tmpname="${modelnametmp/$replacerstr/$secondString}"
 	local _containername=$prefix$tmpname$separator$checkpointno$suffix
