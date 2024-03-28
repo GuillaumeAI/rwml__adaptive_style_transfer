@@ -1,5 +1,31 @@
 #!/bin/bash
 
+
+
+
+
+
+
+
+
+
+
+#@STCGoal Migrating to binroot//dkcHelper.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # get all running docker container names
 
 if [ "$1" != "" ] && [ "$1" != "--list" ] && [ "$1" != "--rm" ] ;then
