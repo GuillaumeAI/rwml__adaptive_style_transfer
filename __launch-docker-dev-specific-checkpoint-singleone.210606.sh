@@ -116,7 +116,7 @@ if [ "$autoabc" != "" ]; then export AUTOABC_="-e AUTOABC=$autoabc"
 fi
 
 execme="$docker_cmd -v $(pwd):/work  $AUTOABC_ \
-	-v /a/bin:/a/bin \
+	-v /opt/binscripts:/opt/binscripts \
 	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
 	 -e MODELNAME=$modelname \
 	 -e MODEL1NAME=$modelname  \

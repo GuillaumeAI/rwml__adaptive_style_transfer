@@ -120,7 +120,7 @@ nvidia_arg=" --runtime=nvidia --gpus all "
 execme="$docker_cmd \
 	$nvidia_arg \
 	-v $(pwd):/work  $AUTOABC_ \
-	-v /a/bin:/a/bin \
+	-v /opt/binscripts:/opt/binscripts \
 	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
 	 -e MODELNAME=$modelname \
 	 -e MODEL1NAME=$modelname  \

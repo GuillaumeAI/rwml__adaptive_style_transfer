@@ -136,7 +136,7 @@ echo "-----------Installing $containername ------------"
 
 
 execme="$docker_cmd -v $(pwd):/work  \
-	-v $binroot:/a/bin \
+	-v $binroot:/opt/binscripts \
 	 -e PASS1IMAGESIZE=$PASS1IMAGESIZE \
 	 -e PASS2IMAGESIZE=$PASS2IMAGESIZE  \
 	 -e MODELNAME=$modelname \
@@ -150,8 +150,8 @@ execme="$docker_cmd -v $(pwd):/work  \
 
 #@a Save model metadata for further id of results
 #@state We store by Port
-metarootdir=/www
-metabasepath=astia/info
+metarootdir=$metahttpdocroot #/www
+metabasepath=meta
 metarelfilepath=$metabasepath/$serverhostport.json
 mkdir -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath

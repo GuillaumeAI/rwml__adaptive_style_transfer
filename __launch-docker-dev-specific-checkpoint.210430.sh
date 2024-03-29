@@ -107,7 +107,7 @@ echo "-----------Installing $containername ------------"
 
 #echo $docker_cmd -v $(pwd):/work  -v $modellocalpoint:$modelmountpoint -p $serverhostport:$serverport -e SPORT=$serverhostport $containertag
 echo $docker_cmd -v $(pwd):/work  \
-        -v /a/bin:/a/bin \
+        -v /opt/binscripts:/opt/binscripts \
         -v $modellocalpointmeta:$modelmountpointmeta \
         -v $modellocalpointindex:$modelmountpointindex \
         -v $modellocalpointdata:$modelmountpointdata \
