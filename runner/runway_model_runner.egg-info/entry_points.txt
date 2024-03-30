@@ -1,3 +1,0 @@
-[console_scripts]
-model_runner = model_runner:main
-

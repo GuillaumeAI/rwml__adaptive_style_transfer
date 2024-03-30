@@ -1,9 +1,0 @@
-setup.py
-model_runner/__init__.py
-model_runner/utils.py
-runway_model_runner.egg-info/PKG-INFO
-runway_model_runner.egg-info/SOURCES.txt
-runway_model_runner.egg-info/dependency_links.txt
-runway_model_runner.egg-info/entry_points.txt
-runway_model_runner.egg-info/requires.txt
-runway_model_runner.egg-info/top_level.txt
