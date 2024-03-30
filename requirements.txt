@@ -53,7 +53,7 @@ pyparsing==2.2.0
 PySocks==1.7.1
 PyYAML==3.11
 #requests @ file:///tmp/build/80754af9/requests_1592841827918/work
-#runway-model-runner @ file:///root/runner
+runway-model-runner @ file:///root/runner
 runway-python==0.5.9
 scipy==1.2.3
 six==1.15.0
