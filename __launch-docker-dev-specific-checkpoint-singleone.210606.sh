@@ -47,6 +47,7 @@ tmpbasename="${tmpmodelfilename/$replstring/$secondString}"
 checkpointbasefilename=$tmpbasename
 # mcheckpointfilecontentline1='model_checkpoint_path: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 # mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
+#@STCIssue Already Defined in _env.sh
 astia_server_file_location='/tmp/astia'
 mkdir -p $astia_server_file_location
 mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
@@ -133,6 +134,8 @@ execme="$docker_cmd -v $(pwd):/work  $AUTOABC_ \
 metafilename=$serverhostport.json
 mkdir -p $metahttpdocastinfopath
 metafile=$metahttpdocastinfopath/$metafilename
+echo "metafile=$metafile"
+
 if [ "$hostdns" == "" ] ; then export hostdns=localhost;fi
 getmetaurl="$callprotocol://$hostdns/$metafilename"
 

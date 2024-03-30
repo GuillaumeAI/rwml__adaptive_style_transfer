@@ -38,8 +38,9 @@ echo "-----------Installing $containername ------------"
 
 #@a Save model metadata for further id of results
 #@state We store by Port
-metarootdir=/www
-metabasepath=astia/info
+metarootdir=$metahttpdocroot #/www
+metabasepath=meta
+
 metarelfilepath=$metabasepath/$serverhostport.json
 sudo mkdir -m 777 -p $metarootdir/$metabasepath
 metafile=$metarootdir/$metarelfilepath

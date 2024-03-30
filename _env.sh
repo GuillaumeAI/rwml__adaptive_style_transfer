@@ -6,28 +6,31 @@ declare -r RWROOT=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 . $binroot/__fn.sh
 . $RWROOT/__rwfn.sh
 
-# ARTIST : Probably dont change anything bellow 
-
-export astia_server_file_location='/tmp/astia'
-sudo mkdir -p $astia_server_file_location || mkdir -p $astia_server_file_location
-sudo chmod 777 $astia_server_file_location || chmod 777 $astia_server_file_location
-
 export modelmountpath="/var/lib/ast/model"
 
+# ARTIST : Probably dont change anything bellow
+
+export astia_server_file_location='/tmp/astia'
+sudo mkdir -p $astia_server_file_location || mkdir -p $astia_server_file_location 
+sudo chmod 777 $astia_server_file_location || chmod 777 $astia_server_file_location
+
+
 #meta svr
-export metahttpdocroot=/www/astia
-export metahttpdocastinfopath=$metahttpdocroot/info
+
+export metahttpdocroot=$HOME/.gia/ast/www
+export metahttpdocastinfopath=$metahttpdocroot/meta
 export httpserverserverhtdocs=$metahttpdocastinfopath #keep it compatible
 export metaglobalregistryfeature="0" #1 enable
 export globallocationpath=/home/jgi/astiapreviz
 export globallocationpath=/www/astia
+export globallocationpath=$HOME/.gia/ast/www
 
 sudo mkdir -m 777 -p $globallocationpath $metahttpdocastinfopath
 
 # Proxy Conf
 export thost=svr.astia.xyz
 export tdomain=api.astia.xyz
-export maxupload=40M 
+export maxupload=40M
 #export proxycontainertag=fsouza/docker-ssl-proxy
 export sslcontainersuffix="-sslproxy"
 export proxycontainertag=guillaumeai/server:sslproxy
@@ -101,10 +104,11 @@ export compo2dtv1devcontainertag="$compo2dtv1devcontainerrepo:$compo2dtv1devcont
 #guillaumeai/server:ast-210606-singleone-v1-dev
 
 export singleonev1devcontainerns="guillaumeai"
-export singleonev1devcontainerreponame="server"
+export singleonev1devcontainerreponame="ast"
 export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev"
 export singleonev1devcontainerrepoacctag="ast-210606-singleone-v1-dev-acc2"
 export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev-acc2"
+export singleonev1devcontainerrepotag="base-s1"
 export singleonev1devcontainerrepotag="$singleonev1devcontainerrepotag"
 #guillaumeai/server:ast-210606-singleone-v1-dev-acc2
 #export singleonev1devcontainerrepotag="ast-210606-singleone-v1-dev-acc"
@@ -118,7 +122,7 @@ export zeussingleonev1devcontainerrepotag="ast-210606s1v1"
 export zeussingleonev1devcontainerrepo="$zeussingleonev1devcontainerns/$zeussingleonev1devcontainerreponame"
 export zeussingleonev1devcontainertag="$zeussingleonev1devcontainerrepo:$zeussingleonev1devcontainerrepotag"
 
-export serverport=8000
+export serverport=7860 #changed for compat with HuggingFace
 #export serverhostport=9000
 
 export callprotocol="http"
@@ -154,9 +158,9 @@ export run_cmd="bash"
 hostenvfile="_henv_$HOSTNAME.sh"
 if [ -f $RWROOT/$hostenvfile ]; then
     . $RWROOT/$hostenvfile
-#else
-#	if [ ! -e "~/.bequiet" ] ; then    echo " $RWROOT/$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
-#	fi
+    #else
+    #	if [ ! -e "~/.bequiet" ] ; then    echo " $RWROOT/$hostenvfile does not exist, create it if you require to define specific to platform variable or overwrite some."
+    #	fi
 fi
 
 #echo "Environment is loaded"

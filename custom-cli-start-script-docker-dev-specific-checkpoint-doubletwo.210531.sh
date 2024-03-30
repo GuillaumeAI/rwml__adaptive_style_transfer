@@ -83,7 +83,7 @@ if [ "$3" == "--start" ] ; then
 fi
 
 if [ "$3" == "--rm" ] || [ "$3" == "--remove" ]; then
-        checkpointno=$serverhostport; containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2') ;/a/bin/dkcRemove.sh $containername ; /a/bin/dkcRemove.sh $containername$sslcontainersuffix 
+        checkpointno=$serverhostport; containername=$(mkcontainername $modelname $checkpointno 'ast_' 'm_d2') ;/opt/binscripts/dkcRemove.sh $containername ; /opt/binscripts/dkcRemove.sh $containername$sslcontainersuffix 
 	exit 0
 fi
  

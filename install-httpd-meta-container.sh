@@ -1,7 +1,8 @@
 #!/bin/bash
 #@STCGoal Install Meta AST Server
 #@STCStatus DEPRECATED.  Will be moved to all host - keep it here to stay compatible with new host and old ones
-export httpserverserverhtdocs=/www/astia/info #todo override in _env.sh
+export httpserverserverhtdocs=/www/astia/info # override in _env.sh
+export httpserverserverhtdocs=$HOME/.gia/ast/www/meta # override in _env.sh
 . _env.sh
 mkdir -p $httpserverserverhtdocs && echo "Created folders to store Meta at: $httpserverserverhtdocs"
 
@@ -34,6 +35,7 @@ echo "--------------------------------------------------------------------"
 #docker run -d $docker_run_args
 #docker run -it --rm 
 #docker run -d $docker_run_args --name $httpcontainername -p $httpserverserverport:$httpservercontainerport -v $(pwd):/work -v $httpserverserverhtdocs:$httpservercontainerhtdocs -v /a:/a -v /a:$httpservercontainerhtdocs/a $httpservercontainertag http-server -p 8080 /wwwmeta
+echo docker run -d $docker_run_args --name $httpcontainername -p $httpserverserverport:$httpservercontainerport -v $(pwd):/work -v $httpserverserverhtdocs:$httpservercontainerhtdocs $httpservercontainertag http-server -p 8080 /wwwmeta
 docker run -d $docker_run_args --name $httpcontainername -p $httpserverserverport:$httpservercontainerport -v $(pwd):/work -v $httpserverserverhtdocs:$httpservercontainerhtdocs $httpservercontainertag http-server -p 8080 /wwwmeta
 
 echo "HTTP-SERVER Should have been install as a container that will always restart unless stopped and will run on this host :$httpserverserverport port."

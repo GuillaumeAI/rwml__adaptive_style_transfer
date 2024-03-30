@@ -24,15 +24,15 @@ from datetime import datetime
 import time
 
 
-
+#/var/lib/ast/model/model_cezanne:/data/styleCheckpoint/model_cezanne
 
 # Determining the size of the passes
 pass1_image_size = 1328
 if not os.getenv('PASS1IMAGESIZE'):
-   print("PASS1IMAGESIZE env var non existent;using default:" + pass1_image_size) 
+   print("PASS1IMAGESIZE env var non existent;using default:" + str(pass1_image_size)) 
 else:
-   pass1_image_size = os.getenv('PASS1IMAGESIZE')
-   print("PASS1IMAGESIZE value:" + pass1_image_size)
+   pass1_image_size = os.getenv('PASS1IMAGESIZE', 1328)
+   print("PASS1IMAGESIZE value:" + str(pass1_image_size))
 
 
 # Determining the size of the passes
@@ -40,14 +40,14 @@ autoabc = 1
 if not os.getenv('AUTOABC'):
    print("AUTOABC env var non existent;using default:")
    print(autoabc)
-   ABCDEFAULT = 1
+   abcdefault = 1
    print("NOTE----> when running docker, set   AUTOABC variable")
    print("   docker run ...  -e AUTOABC=1  #enabled, 0 to disabled (default)")
 else:
-   autoabc = os.getenv('AUTOABC')
+   autoabc = os.getenv('AUTOABC',1)
    print("AUTOABC value:")
    print(autoabc)
-   ABCDEFAULT = autoabc
+   abcdefault = autoabc
 
 
 #pass2_image_size = 1024
@@ -71,7 +71,7 @@ model1name = "UNNAMED"
 if not os.getenv('MODEL1NAME'):
    print("MODEL1NAME env var non existent;using default:" + model1name)
 else:
-   model1name = os.getenv('MODEL1NAME')
+   model1name = os.getenv('MODEL1NAME', "UNNAMED")
    print("MODEL1NAME value:" + model1name)
    
 # #m2
@@ -201,8 +201,8 @@ def stylize(models, inp):
     x1 = inp['x1']
     c1 = inp['x2']
     # x3 = inp['x3']
-    if ci > 99:
-        ci = ABCDEFAULT
+    if c1 > 99:
+        ci = abcdefault
 
 
     #
@@ -217,7 +217,11 @@ def stylize(models, inp):
     alpha = float(image_size) / float(min(img_shape))
     dtprint ("DEBUG::content.imgshape:" +   str(tuple(img_shape)) + ", alpha:" + str(alpha))
 
-    img = scipy.misc.imresize(img, size=alpha)
+    try:
+        img = scipy.misc.imresize(img, size=alpha)
+    except:
+        pass
+        
 
     img = np.expand_dims(img, axis=0)
     #@a INFERENCE PASS 1
@@ -359,5 +363,6 @@ def automatic_brightness_and_contrast(image, clip_hist_percent=25):
 
 
 if __name__ == '__main__':
-    print('External Service port is:' +os.environ.get('SPORT'))
+    #print('External Service port is:' +os.environ.get('SPORT'))    
+    os.environ["RW_PORT"] = "7860"
     runway.run()

@@ -12,7 +12,7 @@ fi
 #if [ ! "$(dkcrm)" ] ; then echo no; else echo ya ; fi
 #exit
 source $binroot/__fn.sh
-dkcrm=/a/bin/dkcRemove.sh
+dkcrm=/opt/binscripts/dkcRemove.sh
 
 #s="./_adm__stopRemove_Containers__210502.sh --list --port | sort"
 r=$(./_adm__stopRemove_Containers__210502.sh --list |grep "$1" | tr ":" " " | awk '// {print $1}')

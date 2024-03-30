@@ -39,24 +39,28 @@ export PASS1IMAGESIZE=$3
 export checkpointno="$4"
 
 # Take care of cleaning the model name to fabric a pretty name for the container
-replacerstr="model_gia-ds-"
-secondString=""
-modelnametmp=$modelname
-tmpname="${modelnametmp/$replacerstr/$secondString}"
-replacerstr="model_gia"
-modelnametmp=$tmpname
-tmpname="${modelnametmp/$replacerstr/$secondString}"
-replacerstr="model_"
-modelnametmp=$tmpname
-tmpname="${modelnametmp/$replacerstr/$secondString}"
-replacerstr="_new"
-modelnametmp=$tmpname
-tmpname="${modelnametmp/$replacerstr/$secondString}"
-export containername='ast_'$tmpname'_'$checkpointno'm_s1_'$autoabc
+# replacerstr="model_gia-ds-"
+# secondString=""
+# modelnametmp=$modelname
+# tmpname="${modelnametmp/$replacerstr/$secondString}"
+# replacerstr="model_gia"
+# modelnametmp=$tmpname
+# tmpname="${modelnametmp/$replacerstr/$secondString}"
+# replacerstr="model_"
+# modelnametmp=$tmpname
+# tmpname="${modelnametmp/$replacerstr/$secondString}"
+# replacerstr="_new"
+# modelnametmp=$tmpname
+# tmpname="${modelnametmp/$replacerstr/$secondString}"
+# export containername='ast_'$tmpname'_'$checkpointno'm_s1_'$autoabc
 
-
+export containername=$(mkcontainername $modelname $checkpointno)
+echo "#Container name: $containername"
+echo 'dkcrm '$containername'&>/dev/null && echo "Removed '$containername'"'  >> __REMOVER_REF.sh
 
 echo "source __launch-docker-dev-specific-checkpoint-singleone.210606.sh $5 $6"
+
+
 source __launch-docker-dev-specific-checkpoint-singleone.210606.sh $5 $6
 
 
