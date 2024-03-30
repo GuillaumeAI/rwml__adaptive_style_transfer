@@ -1,77 +1,69 @@
+absl-py
+asn1crypto
+astor
+backports.weakref
+Brotli
+certifi
+cffi
+chardet
+click
+colorcet
+conda
+conda-package-handling
+cryptography
+enum34
+Flask
+Flask-Compress
+Flask-Cors
+Flask-Sockets
+funcsigs
+functools32
+futures
+gast
+gevent
+gevent-websocket
+google-pasta
+greenlet
+grpcio
+h5py
+idna
+ipaddress
+itsdangerous
+Jinja2
+Keras-Applications
+Keras-Preprocessing
+Markdown
+MarkupSafe
+mock
+numpy
+opencv-python
+opt-einsum
+packaging
+param
+Pillow
+protobuf
+pycosat
+pycparser
+pycrypto
+pyct
+pyOpenSSL
+pyparsing
+PySocks
+PyYAML
+requests
+runway-model-runner
 runway-python
-# tensorboard==1.15.5
-tensorflow==1.15.5
-# tensorflow-estimator==1.15.5
-numpy==1.16.0
-# absl-py==0.9.0
-# asn1crypto==0.22.0
-# astor==0.8.1
-# backports.weakref==1.0.post1
-# Brotli==1.0.7
-# certifi==2019.11.28
-# cffi==1.10.0
-# chardet==3.0.4
-# click==7.1.2
-# colorcet
-#conda==4.8.3
-#conda-package-handling==1.6.0
-# cryptography==1.8.1
-# enum34==1.1.6
-# Flask
-# Flask==1.1.2
-# Flask-Compress
-# Flask-Cors
-# Flask-Sockets
-# Flask-Compress==1.5.0
-# Flask-Cors==3.0.8
-# Flask-Sockets==0.2.1
-#funcsigs==1.0.2
-#functools32==3.2.3.post2
-# futures==3.3.0
-# gast==0.2.2
-# gevent==20.6.2
-# gevent-websocket==0.10.1
-# google-pasta==0.2.0
-# greenlet==0.4.16
-# grpcio==1.30.0
-# h5py==2.10.0
-# idna==2.6
-# ipaddress==1.0.18
-# itsdangerous==1.1.0
-# Jinja2==2.11.2
-# Keras-Applications==1.0.8
-# Keras-Preprocessing==1.1.2
-# Markdown==3.1.1
-# MarkupSafe==1.1.1
-# mock==3.0.5
-# opt-einsum==2.3.2
-# packaging==16.8
-# param==1.9.3
-# Pillow==6.2.2
-#pip==20.3.4
-protobuf==3.20
-# pycosat==0.6.3
-# pycparser==2.18
-# pycrypto==2.6.1
-# pyct==0.4.6
-# pyOpenSSL==17.0.0
-# pyparsing==2.2.0
-# PySocks==1.7.1
-# PyYAML==3.11
-#requests
-#runway-model-runner==0.1.0
-#runway-python==0.5.9
-runway
-scipy==1.1.0
-# setuptools==44.0.0.post20200106
-# six==1.15.0
-# termcolor==1.1.0
-# tqdm==4.47.0
-# Unidecode==1.1.1
-# urllib3==1.25.7
-# Werkzeug==1.0.1
-# wget==3.2
-# wheel==0.29.0
-# wrapt==1.12.1
-# zope.event==4.4
-# zope.interface==5.1.0
+scipy
+six
+tensorboard
+tensorflow
+tensorflow-estimator
+termcolor
+tqdm
+Unidecode
+urllib3
+Werkzeug
+wget
+wrapt
+zope.event
+zope.interface
