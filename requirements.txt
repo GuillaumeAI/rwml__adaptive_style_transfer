@@ -2,14 +2,12 @@ absl-py
 asn1crypto
 astor
 backports.weakref
-Brotli
+#Brotli
 certifi
 cffi
 chardet
 click
 colorcet
-conda
-conda-package-handling
 cryptography
 enum34
 Flask
