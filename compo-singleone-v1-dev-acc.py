@@ -24,6 +24,18 @@ from datetime import datetime
 import time
 
 
+#set env var RW_ if not already set
+if not os.getenv('RW_PORT'):
+    os.environ["RW_PORT"] = "7860"
+
+if not os.getenv('RW_DEBUG'):
+    os.environ["RW_DEBUG"] = "0"
+if not os.getenv('RW_HOST'):
+    os.environ["RW_HOST"] = "0.0.0.0"
+#RW_MODEL_OPTIONS
+if not os.getenv('RW_MODEL_OPTIONS'):
+    os.environ["RW_MODEL_OPTIONS"]='{"styleCheckpoint":"/data/styleCheckpoint"}'
+
 #/var/lib/ast/model/model_cezanne:/data/styleCheckpoint/model_cezanne
 
 # Determining the size of the passes

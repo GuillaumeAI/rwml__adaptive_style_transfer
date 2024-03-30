@@ -28,7 +28,17 @@ import re
 
 
 SRV_TYPE="s1"
+#set env var RW_PORT if not already set
+if not os.getenv('RW_PORT'):
+    os.environ["RW_PORT"] = "7860"
 
+if not os.getenv('RW_DEBUG'):
+    os.environ["RW_DEBUG"] = "0"
+if not os.getenv('RW_HOST'):
+    os.environ["RW_HOST"] = "0.0.0.0"
+#RW_MODEL_OPTIONS
+if not os.getenv('RW_MODEL_OPTIONS'):
+    os.environ["RW_MODEL_OPTIONS"]='{"styleCheckpoint":"/data/styleCheckpoint"}'
 
 # Determining the size of the passes
 pass1_image_size = 1328
@@ -142,7 +152,24 @@ def setup(opts):
     saver = tf.train.Saver()
     # saver2 = tf.train.Saver()
     # saver3 = tf.train.Saver()
-    path = opts['styleCheckpoint']
+    print("-------------====PATH---------------------->>>>--")
+    path_default = '/data/styleCheckpoint'
+    print("opts:")
+    print(opts)
+    print("----------------------------------------")
+    if opts is None:
+        print("ERROR:opts is None")
+        path = path_default
+    try:
+        path = opts['styleCheckpoint']
+    except:
+        opts= {'styleCheckpoint': u'/data/styleCheckpoint'}
+        path = opts['styleCheckpoint']
+    if not os.path.exists(path):
+        print("ERROR:Path does not exist:" + path)
+        path = path_default
+    print(path)
+    print("----------------PATH=======---------------<<<<--")
     #Getting the model name
     model_name = [p for p in os.listdir(path) if os.path.isdir(os.path.join(path, p))][0]    
     if not os.getenv('MODELNAME'):

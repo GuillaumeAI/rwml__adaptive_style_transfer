@@ -5,6 +5,19 @@ from module import encoder, decoder
 from glob import glob
 import runway
 
+#set env var RW_ if not already set
+if not os.getenv('RW_PORT'):
+    os.environ["RW_PORT"] = "7860"
+
+if not os.getenv('RW_DEBUG'):
+    os.environ["RW_DEBUG"] = "0"
+if not os.getenv('RW_HOST'):
+    os.environ["RW_HOST"] = "0.0.0.0"
+#RW_MODEL_OPTIONS
+if not os.getenv('RW_MODEL_OPTIONS'):
+    os.environ["RW_MODEL_OPTIONS"]='{"styleCheckpoint":"/data/styleCheckpoint"}'
+
+
 
 @runway.setup(options={'styleCheckpoint': runway.file(is_directory=True)})
 def setup(opts):
