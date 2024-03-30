@@ -220,5 +220,5 @@ def getdttag():
     return now.strftime("%H:%M:%S")
 
 if __name__ == '__main__':
-    print('External Service port is:' +os.environ.get('SPORT'))
+    #print('External Service port is:' +os.environ.get('SPORT'))
     runway.run()

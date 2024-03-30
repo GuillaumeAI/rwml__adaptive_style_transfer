@@ -45,5 +45,5 @@ def stylize(model, inp):
 
 
 if __name__ == '__main__':
-    print('External Service port is:' +os.environ.get('SPORT'))
+    #print('External Service port is:' +os.environ.get('SPORT'),7860)
     runway.run()
