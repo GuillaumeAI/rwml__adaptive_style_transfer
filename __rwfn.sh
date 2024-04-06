@@ -66,6 +66,19 @@ astlaunchsslproxy() {
 }
 
 
+toshortermodelname()
+{
+	#DavidBouchardGagnon-v02-210702
+    local sourcestring="$1"
+    local replacerstr="$2"
+    local secondString="$3"
+    modelnametmp=$sourcestring
+    tmpname="${modelnametmp/$replacerstr/$secondString}"
+    echo $tmpname
+
+
+}
+
 
 ## @fn mkcontainername
 ## @ingroup astutil
@@ -95,6 +108,47 @@ mkcontainername() {
     replacerstr="model_gia-"
     modelnametmp=$tmpname
     tmpname="${modelnametmp/$replacerstr/$secondString}"
+
+    #-864_new
+    replacerstr="-864_new"
+    modelnametmp=$tmpname
+    tmpname="${modelnametmp/$replacerstr/$secondString}"
+
+
+    #daliwill-210123-v02
+    tmpname=$(toshortermodelname $tmpname "daliwill-210123-v02" "daliwill02")
+    #model_gia-ds-DavidBouchardGagnon-v02-210702-864x_new-30ik
+    tmpname=$(toshortermodelname $tmpname "DavidBouchardGagnon-v02-210702" "dbg02")
+    #model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new
+    tmpname=$(toshortermodelname $tmpname "DavidBouchardGagnon-v01b-210510" "dbg01b")
+    #model_gia-ds-wassily_kandinsky_v1_210310_new
+    tmpname=$(toshortermodelname $tmpname "wassily_kandinsky_v1_210310" "kandinsky01")
+    #model_gia-ds-fpolsonwill_v02_210424_new
+    tmpname=$(toshortermodelname $tmpname "fpolsonwill_v02_210424" "polwill02")
+    #model_gia-young-picasso-v03-201216_new
+    tmpname=$(toshortermodelname $tmpname "young-picasso-v03-201216" "pikwill03")
+    #model_gia-young-picasso-v02b-201210-864_new
+    tmpname=$(toshortermodelname $tmpname "young-picasso-v02b-201210" "pikwill02b")
+    #model_gia-ds-Inktobers-v01-210611-864x_new
+    tmpname=$(toshortermodelname $tmpname "Inktobers-v01-210611" "inko01")
+    #model_gia-ds-inko-2403-864x_new
+    tmpname=$(toshortermodelname $tmpname "inko-2403" "inko2403")
+    #model_gia-ds-pierret_ds_210512-864-v02-210527-864_new
+    tmpname=$(toshortermodelname $tmpname "pierret_ds_210512-864-v02-210527" "piert02")
+  
+   
+
+
+
+
+
+
+
+   
+
+    secondString=""
+
+
     replacerstr="model_gia"
     modelnametmp=$tmpname
     tmpname="${modelnametmp/$replacerstr/$secondString}"
@@ -110,7 +164,23 @@ mkcontainername() {
     replacerstr="864x"
     modelnametmp=$tmpname
     tmpname="${modelnametmp/$replacerstr/$secondString}"
+    #if $checkpointno has 4 char, add a '0' 
+    origcheckpointno=$checkpointno
+    if [ ${#checkpointno} -eq 4 ]; then
+	checkpointno="0"$checkpointno
+    fi
     local _containername=$prefix$tmpname$separator$checkpointno$suffix
+
+    replacerstr=$origcheckpointno"_"$checkpointno
+    secondString=$checkpointno
+    modelnametmp=$_containername
+    tmpname="${modelnametmp/$replacerstr/$secondString}"
+    _containername=$tmpname
+    replacerstr="-"$checkpointno 
+    secondString="_"$checkpointno
+    modelnametmp=$_containername
+    tmpname="${modelnametmp/$replacerstr/$secondString}"
+    _containername=$tmpname
     echo $_containername
 }
 
@@ -137,6 +207,11 @@ mkcontainername2403() {
     local secondString=""
     local modelnametmp=$modelname
     local tmpname="${modelnametmp/$replacerstr/$secondString}"
+
+    replacerstr="_new"
+    modelnametmp=$tmpname
+    tmpname="${modelnametmp/$replacerstr/$secondString}"
+
     replacerstr="model_gia-"
     modelnametmp=$tmpname
     tmpname="${modelnametmp/$replacerstr/$secondString}"
@@ -154,7 +229,7 @@ mkcontainername2403() {
     modelnametmp=$tmpname
     tmpname="${modelnametmp/$replacerstr/$secondString}"
     
-    local _containername=$prefix$tmpname$separator$checkpointno$suffix
+    local _containername=$prefix$tmpname$separator$checkpointno'ik'$suffix
     echo $_containername
 }
 
