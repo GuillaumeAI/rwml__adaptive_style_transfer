@@ -255,7 +255,8 @@ def make_target_output_filename(  mname,checkpoint, fn='',res1=0,abc=0, ext='.jp
         res1_pad=""
         
     
-    
+    #pad checkpoint to 3 digits
+    checkpoint=checkpoint.zfill(3)
     
     if fn_base=="none":
         fn_base=""
