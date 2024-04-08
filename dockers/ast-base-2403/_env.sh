@@ -1,7 +1,7 @@
 ctlid=2403300347
 dockertag=guillaumeai/ast:base-2403
 
-containername=ast-base-2403
+containername=astbase2403
 dkhostname=$containername
 
 # PORT

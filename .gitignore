@@ -9,3 +9,6 @@ tests/*res*json
 tests/out*
 tests/sample*json
 tests/*ojson
+*.egg-info
+dist/
+build/

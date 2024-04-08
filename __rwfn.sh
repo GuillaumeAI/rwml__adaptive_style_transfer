@@ -135,6 +135,8 @@ mkcontainername() {
     tmpname=$(toshortermodelname $tmpname "inko-2403" "inko2403")
     #model_gia-ds-pierret_ds_210512-864-v02-210527-864_new
     tmpname=$(toshortermodelname $tmpname "pierret_ds_210512-864-v02-210527" "piert02")
+    #daliwill-240406-v03
+    tmpname=$(toshortermodelname $tmpname "daliwill-240406-v03" "daliwill03")
   
    
 

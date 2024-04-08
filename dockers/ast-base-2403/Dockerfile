@@ -238,6 +238,6 @@ RUN echo 'export RW_DEBUG=0;export RW_HOST=0.0.0.0;export RW_PORT=7860' >> /etc/
 RUN echo export 'RW_MODEL_OPTIONS={"styleCheckpoint":"/data/styleCheckpoint"}' >> /etc/profile
 
 
-USER 1000
+#USER 1000
 
 CMD ["/miniconda/bin/python", "compo-singleone-v2-dev-acc.py"]
