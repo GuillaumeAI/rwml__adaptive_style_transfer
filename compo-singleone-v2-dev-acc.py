@@ -28,7 +28,8 @@ import re
 
 
 SRV_TYPE="s1"
-#set env var RW_PORT if not already set
+
+#set env var RW_ if not already set
 if not os.getenv('RW_PORT'):
     os.environ["RW_PORT"] = "7860"
 
@@ -208,7 +209,7 @@ def setup(opts):
     # print("model3name is : " + model3_name)
     print("checkpoint_dir is : " + checkpoint_dir)
 
-    print("Auto Brightness-Contrast Correction can be set as the x2 of this SingleOne Server")
+    
 
     
     #print("checkpoint2_dir is : " + checkpoint2_dir)
@@ -237,7 +238,7 @@ def setup(opts):
 
 
 
-def make_target_output_filename(  mname,checkpoint, fn='',res1=0,res2=0,abc=0, ext='.jpg',svrtype="s1", modelid='', suffix='', xtra_model_id='',verbose=False):
+def make_target_output_filename(  mname,checkpoint, fn='',res1=0,abc=0, ext='.jpg',svrtype="s1", modelid='', suffix='', xtra_model_id='',verbose=False):
     fn_base=fn.replace(ext,"")
     fn_base=fn_base.replace(".jpg","")
     fn_base=fn_base.replace(".jpeg","")
@@ -248,12 +249,11 @@ def make_target_output_filename(  mname,checkpoint, fn='',res1=0,res2=0,abc=0, e
     
     #pad res1 and res2 to 4 digits
     res1_pad=str(res1).zfill(4)
-    res2_pad=str(res2).zfill(4)
+    
     abc_pad=str(abc).zfill(2)
     if res1_pad=="0000":
         res1_pad=""
-    if res2_pad=="0000":
-        res2_pad=""
+        
     
     
     
@@ -270,7 +270,6 @@ def make_target_output_filename(  mname,checkpoint, fn='',res1=0,res2=0,abc=0, e
         print("mname: ",mname)
         print("suffix: ",suffix)
         print("res1: ",res1_pad)
-        print("res2: ",res2_pad)
         print("abc: ",abc_pad)
         print("ext: ",ext)
         print("svrtype: ",svrtype)
@@ -279,7 +278,7 @@ def make_target_output_filename(  mname,checkpoint, fn='',res1=0,res2=0,abc=0, e
         print("checkpoint: ",checkpoint)
         print("fn: ",fn)
     
-    mtag = "{}__{}__{}x{}__{}x{}__{}__{}k".format(mname,suffix,res1_pad,abc_pad,res2_pad,abc_pad, svrtype, checkpoint).replace("_0x" + str(abc_pad), "")
+    mtag = "{}__{}__{}x{}__{}__{}k".format(mname,suffix,res1_pad,abc_pad, svrtype, checkpoint).replace("_0x" + str(abc_pad), "")
     if verbose:
         print(mtag)
     target_output = "{}__{}__{}{}{}".format(fn_base, modelid, mtag, xtra_model_id, ext).replace("_"+str(abc_pad)+"x"+str(abc_pad)+"_","").replace("_0x0_", "").replace("_0_", "").replace("_-", "_").replace("____", "__").replace("___", "__").replace("___", "__").replace("..",".").replace("model_","").replace("_x"+str(abc_pad)+"_","").replace("gia-ds-","")
@@ -300,7 +299,7 @@ def replace_values_from_csv(target_output):
     return target_output.replace("\n", "").replace("\r", "").replace(" ", "_")
     
 
-def _make_meta_as_json(x1=0,x2=0,c1=0,inp=None,result_dict=None):
+def _make_meta_as_json(x1=0,c1=0,inp=None,result_dict=None):
     global found_model,found_model_checkpoint
     fn='none'
     if inp['fn'] != 'none':
@@ -309,7 +308,7 @@ def _make_meta_as_json(x1=0,x2=0,c1=0,inp=None,result_dict=None):
     if inp['ext'] != '.jpg':
         ext=inp['ext']
     
-    filename=make_target_output_filename(found_model,found_model_checkpoint,fn,x1,x2,c1,ext,SRV_TYPE)
+    filename=make_target_output_filename(found_model,found_model_checkpoint,fn,x1,c1,ext,SRV_TYPE)
     
     if result_dict is None:
         json_return = {
@@ -353,7 +352,7 @@ def get_geta(models, inp):
 
 
 #@STCGoal add number or text to specify resolution of the three pass
-inputs={'contentImage': runway.image,'x1':number(default=1024,min=24,max=17000),'x2':number(default=0,min=-99,max=99),'c1':number(default=0,min=-99,max=99),'fn':text(default='none'),'ext':text(default='.jpg')}
+inputs={'contentImage': runway.image,'x1':number(default=1024,min=24,max=8000),'c1':number(default=0,min=-99,max=99),'fn':text(default='none'),'ext':text(default='.jpg')}
 outputs={'stylizedImage': runway.image,'totaltime':number,'x1': number,'c1':number,'model1name':text,'checkpoint':text,'filename':text,'model':text}
 
 @runway.command('stylize', inputs=inputs, outputs=outputs)
@@ -373,20 +372,8 @@ def stylize(models, inp):
 
     #get size from inputs rather than env
     x1 = int(inp['x1'])
-    x2 = int(inp['x2'])
+    
     c1 = int(inp['c1'])
-    if c1 == x2:
-        x2 = 0
-    # x3 = inp['x3']
-    if x2 > 99:
-        if c1 == 0:
-            c1 = x2
-        else: #it is not an image correction but a resolution
-            c1 = abcdefault
-    else:
-        if c1 == 0:
-            c1 = x2 #default to the x2 value for backward compatibility
-
 
     #
     img = inp['contentImage']
@@ -489,9 +476,9 @@ def stylize(models, inp):
     
     if include_meta_directly_in_result:
         result_dict = dict(stylizedImage=img,totaltime=totaltime,x1=x1,model1name=model1name,c1=c1)
-        result_dict = _make_meta_as_json(x1,x2,c1,inp,result_dict)
+        result_dict = _make_meta_as_json(x1,c1,inp,result_dict)
     else:
-        meta_data = _make_meta_as_json(x1,x2,c1,inp)
+        meta_data = _make_meta_as_json(x1,c1,inp)
         result_dict = dict(stylizedImage=img,totaltime=totaltime,x1=x1,model1name=model1name,c1=c1,meta=meta_data)
         
     return result_dict
